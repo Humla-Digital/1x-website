@@ -7,7 +7,17 @@ const BUILD_DIRECTORY = 'dist';
 const PRODUCTION = process.env.NODE_ENV === 'production';
 
 // Config entrypoint files
-const ENTRY_POINTS = ['src/index.ts'];
+const ENTRY_POINTS = [
+  'src/global.ts',
+  'src/index.ts',
+  'src/about.ts',
+  'src/careers.ts',
+  'src/discover.ts',
+  'src/discoverPost.ts',
+  'src/neo.ts',
+  'src/eve.ts',
+  'src/androidCollection.ts',
+];
 
 // Config dev serving
 const LIVE_RELOAD = !PRODUCTION;
