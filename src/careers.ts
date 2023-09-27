@@ -66,41 +66,55 @@ const careersImageSliderParams: SwiperOptions = {
 };
 const careersImageSlider = new Swiper('.image-gallery', careersImageSliderParams);
 
-if (window.innerWidth > 1399) {
-  $('.wrapper_career-benefit').each(function (_i, _element) {
-    const splitTextTimeline = gsap.timeline({ paused: true, reversed: true }),
-      careerBenefit = $(this).find('.is_career-benefit-typed'),
-      splitText = new SplitText(careerBenefit, { type: 'words,chars' }),
-      { chars } = splitText;
-
-    splitTextTimeline.from(chars, {
-      autoAlpha: 0,
-      duration: 0.01,
-      stagger: 0.01,
-    });
-    $(this).on('mouseenter', typeText).on('mouseleave', typeText);
-    function typeText() {
-      splitTextTimeline.reversed() ? splitTextTimeline.play() : splitTextTimeline.reverse();
-    }
-  });
-} else {
-  $('.wrapper_career-benefit').on('click', function () {
-    $(this).toggleClass('is-active');
-    if ($(this).hasClass('is-active')) {
-      $(this).find('.is_career-benefit-typed').addClass('is-active');
+function careerBenefits() {
+  if (window.innerWidth > 1399) {
+    $('.wrapper_career-benefit').each(function (_i, _element) {
       const splitTextTimeline = gsap.timeline({ paused: true, reversed: true }),
         careerBenefit = $(this).find('.is_career-benefit-typed'),
         splitText = new SplitText(careerBenefit, { type: 'words,chars' }),
         { chars } = splitText;
+
       splitTextTimeline.from(chars, {
         autoAlpha: 0,
         duration: 0.01,
         stagger: 0.01,
       });
-      splitTextTimeline.reversed() ? splitTextTimeline.play() : splitTextTimeline.reverse();
-    } else {
-      $(this).removeClass('is-active');
-      $(this).find('.is_career-benefit-typed').removeClass('is-active');
-    }
-  });
+      $(this).on('mouseenter', typeText).on('mouseleave', typeText);
+      function typeText() {
+        splitTextTimeline.reversed() ? splitTextTimeline.play() : splitTextTimeline.reverse();
+      }
+    });
+  } else {
+    $('.wrapper_career-benefit').on('click', function () {
+      $(this).toggleClass('is-active');
+      if ($(this).hasClass('is-active')) {
+        $(this).find('.is_career-benefit-typed').addClass('is-active');
+        const splitTextTimeline = gsap.timeline({ paused: true, reversed: true }),
+          careerBenefit = $(this).find('.is_career-benefit-typed'),
+          splitText = new SplitText(careerBenefit, { type: 'words,chars' }),
+          { chars } = splitText;
+        splitTextTimeline.from(chars, {
+          autoAlpha: 0,
+          duration: 0.01,
+          stagger: 0.01,
+        });
+        splitTextTimeline.reversed() ? splitTextTimeline.play() : splitTextTimeline.reverse();
+      } else {
+        $(this).removeClass('is-active');
+        $(this).find('.is_career-benefit-typed').removeClass('is-active');
+      }
+    });
+  }
 }
+declare global {
+  interface Window {
+    WebflowEditor: unknown;
+  }
+}
+window.Webflow ||= [];
+window.Webflow.push(() => {
+  if (!window.WebflowEditor) {
+    careerBenefits();
+  } else {
+  }
+});
