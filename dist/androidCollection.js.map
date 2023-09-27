@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../bin/live-reload.js", "../src/androidCollection.ts"],
+  "sourcesContent": ["new EventSource(`${SERVE_ORIGIN}/esbuild`).addEventListener('change', () => location.reload());\n", "/* eslint-disable no-console */\nexport {};\ndeclare global {\n  interface Window {\n    WebflowEditor: unknown;\n  }\n}\nwindow.Webflow ||= [];\nwindow.Webflow.push(() => {\n  if (!window.WebflowEditor) {\n    console.log('Wont run in Webflow editor');\n  } else {\n    console.log('Will run in the Webflow editor');\n  }\n});\n"],
+  "mappings": ";;;AAAA,MAAI,YAAY,GAAG,iCAAsB,EAAE,iBAAiB,UAAU,MAAM,SAAS,OAAO,CAAC;;;ACO7F,SAAO,YAAY,CAAC;AACpB,SAAO,QAAQ,KAAK,MAAM;AACxB,QAAI,CAAC,OAAO,eAAe;AACzB,cAAQ,IAAI,4BAA4B;AAAA,IAC1C,OAAO;AACL,cAAQ,IAAI,gCAAgC;AAAA,IAC9C;AAAA,EACF,CAAC;",
+  "names": []
+}
