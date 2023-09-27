@@ -3,7 +3,7 @@
   // bin/live-reload.js
   new EventSource(`${"http://localhost:3000"}/esbuild`).addEventListener("change", () => location.reload());
 
-  // node_modules/.pnpm/gsap@3.12.2/node_modules/gsap/gsap-core.js
+  // node_modules/.pnpm/@gsap+shockingly@3.12.2/node_modules/@gsap/shockingly/gsap-core.js
   function _assertThisInitialized(self) {
     if (self === void 0) {
       throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
@@ -3138,7 +3138,7 @@
   var Expo = _easeMap.Expo;
   var Circ = _easeMap.Circ;
 
-  // node_modules/.pnpm/gsap@3.12.2/node_modules/gsap/CSSPlugin.js
+  // node_modules/.pnpm/@gsap+shockingly@3.12.2/node_modules/@gsap/shockingly/CSSPlugin.js
   var _win2;
   var _doc2;
   var _docElement;
@@ -4224,11 +4224,11 @@
   });
   gsap.registerPlugin(CSSPlugin);
 
-  // node_modules/.pnpm/gsap@3.12.2/node_modules/gsap/index.js
+  // node_modules/.pnpm/@gsap+shockingly@3.12.2/node_modules/@gsap/shockingly/index.js
   var gsapWithCSS = gsap.registerPlugin(CSSPlugin) || gsap;
   var TweenMaxWithCSS = gsapWithCSS.core.Tween;
 
-  // node_modules/.pnpm/gsap@3.12.2/node_modules/gsap/Observer.js
+  // node_modules/.pnpm/@gsap+shockingly@3.12.2/node_modules/@gsap/shockingly/Observer.js
   function _defineProperties(target, props) {
     for (var i = 0; i < props.length; i++) {
       var descriptor = props[i];
@@ -4698,7 +4698,7 @@
   };
   _getGSAP() && gsap2.registerPlugin(Observer);
 
-  // node_modules/.pnpm/gsap@3.12.2/node_modules/gsap/ScrollTrigger.js
+  // node_modules/.pnpm/@gsap+shockingly@3.12.2/node_modules/@gsap/shockingly/ScrollTrigger.js
   var gsap3;
   var _coreInitted3;
   var _win4;
@@ -6652,7 +6652,7 @@
 })();
 /*! Bundled license information:
 
-gsap/gsap-core.js:
+@gsap/shockingly/gsap-core.js:
   (*!
    * GSAP 3.12.2
    * https://greensock.com
@@ -6663,7 +6663,7 @@ gsap/gsap-core.js:
    * @author: Jack Doyle, jack@greensock.com
   *)
 
-gsap/CSSPlugin.js:
+@gsap/shockingly/CSSPlugin.js:
   (*!
    * CSSPlugin 3.12.2
    * https://greensock.com
@@ -6674,7 +6674,7 @@ gsap/CSSPlugin.js:
    * @author: Jack Doyle, jack@greensock.com
   *)
 
-gsap/Observer.js:
+@gsap/shockingly/Observer.js:
   (*!
    * Observer 3.12.2
    * https://greensock.com
@@ -6685,7 +6685,7 @@ gsap/Observer.js:
    * @author: Jack Doyle, jack@greensock.com
   *)
 
-gsap/ScrollTrigger.js:
+@gsap/shockingly/ScrollTrigger.js:
   (*!
    * ScrollTrigger 3.12.2
    * https://greensock.com

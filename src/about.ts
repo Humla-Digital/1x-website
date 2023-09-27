@@ -4,13 +4,12 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/controller';
 
+import { initDiscoverGallerySlider } from 'src/modules/discoverPostSlider';
+import { initImageGalleryTabs } from 'src/modules/imageGalleryTabs';
+import { initValuesTabs } from 'src/modules/valuesTabs';
 import Swiper from 'swiper';
 import { Controller, Mousewheel, Navigation } from 'swiper/modules';
 import { type SwiperOptions } from 'swiper/types/index.d';
-
-import { initDiscoverGallerySlider } from '$utils/discoverPostSlider';
-import { initImageGalleryTabs } from '$utils/imageGalleryTabs';
-import { initValuesTabs } from '$utils/valuesTabs';
 export {};
 declare global {
   interface Window {
@@ -83,8 +82,8 @@ const timelineSliderParams: SwiperOptions = {
     },
   },
   navigation: {
-    nextEl: $('.swiper-arrow.button-next')[0],
-    prevEl: $('.swiper-arrow.button-prev')[0],
+    nextEl: $('#our-story-next')[0],
+    prevEl: $('#our-story-prev')[0],
   },
 };
 const timelineSlider = new Swiper('.our-story-timeline-slider', timelineSliderParams);

@@ -6,39 +6,39 @@ import Swiper from 'swiper';
 import { Mousewheel, Navigation } from 'swiper/modules';
 import { type SwiperOptions } from 'swiper/types/index.d';
 
-export function initDiscoverGallerySlider() {
-  const discoverGallerySliderParams: SwiperOptions = {
+export function initOurAndroidsSlider() {
+  const ourAndroidsSliderParams: SwiperOptions = {
     modules: [Navigation, Mousewheel],
     direction: 'horizontal',
-    slidesPerView: 1,
+    slidesPerView: 'auto',
     slidesPerGroup: 1,
-    spaceBetween: 20,
+    spaceBetween: 200,
+    loop: false,
+    centeredSlides: true,
     mousewheel: {
       forceToAxis: true,
     },
     speed: 300,
     // Responsive breakpoints
     breakpoints: {
-      320: {
-        slidesPerView: 'auto',
-      },
       // when window width is >= 480px
       480: {
-        slidesPerView: 'auto',
+        slidesPerView: 1,
       },
       // when window width is >= 768px
       768: {
-        slidesPerView: 2,
+        slidesPerView: 1,
       },
       // when window width is >= 992px
       992: {
-        slidesPerView: 3,
+        slidesPerView: 1,
       },
     },
+    // Navigation arrows
     navigation: {
-      nextEl: '.swiper-arrow.button-next',
-      prevEl: '.swiper-arrow.button-prev',
+      nextEl: '#our-androids-next',
+      prevEl: '#our-androids-prev',
     },
   };
-  const discoverGallerySlider = new Swiper('.discover-slider', discoverGallerySliderParams);
+  const ourAndroidsSlider = new Swiper('.our-androids-slider', ourAndroidsSliderParams);
 }

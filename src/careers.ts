@@ -1,6 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-console */
+import gsap from 'gsap';
+import { SplitText } from 'gsap/all';
+import { initImageGalleryTabs } from 'src/modules/imageGalleryTabs';
 import Swiper from 'swiper';
+
+import { hideEmptyDepartments } from '$utils/hideEmptyDepartments';
+gsap.registerPlugin(SplitText);
 export {};
 declare global {
   interface Window {
@@ -15,6 +21,8 @@ window.Webflow.push(() => {
     console.log('Will run in the Webflow editor');
   }
 });
+initImageGalleryTabs();
+hideEmptyDepartments();
 
 /*CAREERS IMAGE GALLERY SLIDER */
 $('.section_careers-image-slider').each(function (index) {
@@ -60,3 +68,21 @@ $('.section_careers-image-slider').each(function (index) {
     },
   });
 });
+/*
+if (window.innerWidth > 1399) {
+  $('.wrapper_career-benefit').each(function (i, element) {
+    const splitTextTimeline = gsap.timeline({ paused: true, reversed: true }),
+      theText = $(this).find('.is_career-benefit-typed'),
+      mySplitText = new SplitText(theText, { type: 'words,chars' }),
+      { chars } = mySplitText;
+
+    splitTextTimeline.to(chars, 0.01, { autoAlpha: 0 }, 0.01);
+
+    $(this).hover(makeItWork, makeItWork);
+
+    function makeItWork() {
+      splitTextTimeline.reversed() ? splitTextTimeline.play() : splitTextTimeline.reverse();
+    }
+  });
+}
+*/

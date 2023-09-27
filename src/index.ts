@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-console */
-import { initDiscoverGallerySlider } from '$utils/discoverPostSlider';
-import { initImageGalleryTabs } from '$utils/imageGalleryTabs';
+import { initDiscoverGallerySlider } from 'src/modules/discoverPostSlider';
+import { initImageGalleryTabs } from 'src/modules/imageGalleryTabs';
+import { initOurAndroidsSlider } from 'src/modules/ourAndroidsSlider';
+import { initTimedTextTabs } from 'src/modules/timedTextTabs';
+import { initValuesTabs } from 'src/modules/valuesTabs';
+
 import { jobCounter } from '$utils/jobCounter';
-import { initOurAndroidsSlider } from '$utils/ourAndroidsSlider';
 import { pauseVideo } from '$utils/pauseVideo';
-import { initTimedTextTabs } from '$utils/timedTextTabs';
-import { initValuesTabs } from '$utils/valuesTabs';
 export {};
 declare global {
   interface Window {

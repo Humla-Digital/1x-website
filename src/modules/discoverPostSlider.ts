@@ -6,39 +6,43 @@ import Swiper from 'swiper';
 import { Mousewheel, Navigation } from 'swiper/modules';
 import { type SwiperOptions } from 'swiper/types/index.d';
 
-export function initOurAndroidsSlider() {
-  const ourAndroidsSliderParams: SwiperOptions = {
+import { sliderCursor } from './sliderCursor';
+
+sliderCursor();
+
+export function initDiscoverGallerySlider() {
+  const discoverGallerySliderParams: SwiperOptions = {
     modules: [Navigation, Mousewheel],
     direction: 'horizontal',
-    slidesPerView: 'auto',
+    slidesPerView: 1,
     slidesPerGroup: 1,
-    spaceBetween: 200,
-    loop: false,
-    centeredSlides: true,
+    spaceBetween: 20,
     mousewheel: {
       forceToAxis: true,
     },
     speed: 300,
     // Responsive breakpoints
     breakpoints: {
+      320: {
+        slidesPerView: 'auto',
+      },
       // when window width is >= 480px
       480: {
-        slidesPerView: 1,
+        slidesPerView: 'auto',
       },
       // when window width is >= 768px
       768: {
-        slidesPerView: 1,
+        slidesPerView: 2,
       },
       // when window width is >= 992px
       992: {
-        slidesPerView: 1,
+        slidesPerView: 3,
       },
     },
-    // Navigation arrows
     navigation: {
-      nextEl: '.swiper-arrow.button-next',
-      prevEl: 'swiper-arrow.button-prev',
+      nextEl: '#discover-next',
+      prevEl: '#discover-prev',
     },
   };
-  const ourAndroidsSlider = new Swiper('.our-androids-slider', ourAndroidsSliderParams);
+  const discoverGallerySlider = new Swiper('.discover-slider', discoverGallerySliderParams);
 }
