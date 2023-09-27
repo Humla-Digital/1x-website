@@ -16189,6 +16189,7 @@
       direction: "horizontal",
       slidesPerView: 1,
       slidesPerGroup: 1,
+      setWrapperSize: true,
       spaceBetween: 20,
       mousewheel: {
         forceToAxis: true
@@ -16301,9 +16302,26 @@
         duration: 0.01,
         stagger: 0.01
       });
-      $(this).on("mouseenter", makeItWork).on("mouseleave", makeItWork);
-      function makeItWork() {
+      $(this).on("mouseenter", typeText).on("mouseleave", typeText);
+      function typeText() {
         splitTextTimeline.reversed() ? splitTextTimeline.play() : splitTextTimeline.reverse();
+      }
+    });
+  } else {
+    $(".wrapper_career-benefit").on("click", function() {
+      $(this).toggleClass("is-active");
+      if ($(this).hasClass("is-active")) {
+        $(this).find(".is_career-benefit-typed").addClass("is-active");
+        const splitTextTimeline = gsapWithCSS.timeline({ paused: true, reversed: true }), careerBenefit = $(this).find(".is_career-benefit-typed"), splitText = new SplitText(careerBenefit, { type: "words,chars" }), { chars } = splitText;
+        splitTextTimeline.from(chars, {
+          autoAlpha: 0,
+          duration: 0.01,
+          stagger: 0.01
+        });
+        splitTextTimeline.reversed() ? splitTextTimeline.play() : splitTextTimeline.reverse();
+      } else {
+        $(this).removeClass("is-active");
+        $(this).find(".is_career-benefit-typed").removeClass("is-active");
       }
     });
   }

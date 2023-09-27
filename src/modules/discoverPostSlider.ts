@@ -16,6 +16,7 @@ export function initDiscoverGallerySlider() {
     direction: 'horizontal',
     slidesPerView: 1,
     slidesPerGroup: 1,
+    setWrapperSize: true,
     spaceBetween: 20,
     mousewheel: {
       forceToAxis: true,
