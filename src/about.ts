@@ -10,20 +10,7 @@ import { initValuesTabs } from 'src/modules/valuesTabs';
 import Swiper from 'swiper';
 import { Controller, Mousewheel, Navigation } from 'swiper/modules';
 import { type SwiperOptions } from 'swiper/types/index.d';
-export {};
-declare global {
-  interface Window {
-    WebflowEditor: unknown;
-  }
-}
-window.Webflow ||= [];
-window.Webflow.push(() => {
-  if (!window.WebflowEditor) {
-    console.log('Wont run in Webflow editor');
-  } else {
-    console.log('Will run in the Webflow editor');
-  }
-});
+
 initValuesTabs();
 initImageGalleryTabs();
 initDiscoverGallerySlider();

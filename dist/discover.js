@@ -2,15 +2,5 @@
 (() => {
   // bin/live-reload.js
   new EventSource(`${"http://localhost:3000"}/esbuild`).addEventListener("change", () => location.reload());
-
-  // src/discover.ts
-  window.Webflow ||= [];
-  window.Webflow.push(() => {
-    if (!window.WebflowEditor) {
-      console.log("Will not run in Webflow editor");
-    } else {
-      console.log("Will run in the Webflow editor");
-    }
-  });
 })();
 //# sourceMappingURL=discover.js.map

@@ -1,7 +1,7 @@
 {
   "version": 3,
-  "sources": ["../bin/live-reload.js", "../src/neo.ts"],
-  "sourcesContent": ["new EventSource(`${SERVE_ORIGIN}/esbuild`).addEventListener('change', () => location.reload());\r\n", "/* eslint-disable no-console */\r\nexport {};\r\ndeclare global {\r\n  interface Window {\r\n    WebflowEditor: unknown;\r\n  }\r\n}\r\nwindow.Webflow ||= [];\r\nwindow.Webflow.push(() => {\r\n  if (!window.WebflowEditor) {\r\n    console.log('Wont run in Webflow editor');\r\n  } else {\r\n    console.log('Will run in the Webflow editor');\r\n  }\r\n});\r\n"],
-  "mappings": ";;;AAAA,MAAI,YAAY,GAAG,iCAAsB,EAAE,iBAAiB,UAAU,MAAM,SAAS,OAAO,CAAC;;;ACO7F,SAAO,YAAY,CAAC;AACpB,SAAO,QAAQ,KAAK,MAAM;AACxB,QAAI,CAAC,OAAO,eAAe;AACzB,cAAQ,IAAI,4BAA4B;AAAA,IAC1C,OAAO;AACL,cAAQ,IAAI,gCAAgC;AAAA,IAC9C;AAAA,EACF,CAAC;",
+  "sources": ["../bin/live-reload.js"],
+  "sourcesContent": ["new EventSource(`${SERVE_ORIGIN}/esbuild`).addEventListener('change', () => location.reload());\r\n"],
+  "mappings": ";;;AAAA,MAAI,YAAY,GAAG,iCAAsB,EAAE,iBAAiB,UAAU,MAAM,SAAS,OAAO,CAAC;",
   "names": []
 }

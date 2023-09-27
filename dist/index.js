@@ -11304,14 +11304,6 @@
   }
 
   // src/index.ts
-  window.Webflow ||= [];
-  window.Webflow.push(() => {
-    if (!window.WebflowEditor) {
-      console.log("Will not run in Webflow editor");
-    } else {
-      console.log("Will run in the Webflow editor");
-    }
-  });
   pauseVideo();
   jobCounter();
   initOurAndroidsSlider();

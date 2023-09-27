@@ -15,11 +15,13 @@ import { type SwiperOptions } from 'swiper/types/index.d';
 import { hideEmptyDepartments } from '$utils/hideEmptyDepartments';
 
 import { initDiscoverGallerySlider } from './modules/discoverPostSlider';
+import { initTimedTextTabs } from './modules/timedTextTabs';
 gsap.registerPlugin(SplitText);
 
 initImageGalleryTabs();
 hideEmptyDepartments();
 initDiscoverGallerySlider();
+initTimedTextTabs();
 
 const careersImageSliderParams: SwiperOptions = {
   modules: [Navigation, Mousewheel, Scrollbar],

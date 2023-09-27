@@ -16220,11 +16220,37 @@
     const discoverGallerySlider = new Swiper(".discover-slider", discoverGallerySliderParams);
   }
 
+  // src/modules/timedTextTabs.ts
+  init_live_reload();
+  function initTimedTextTabs() {
+    $(function() {
+      const tabDuration = 5e3;
+      let tabTimeout;
+      clearTimeout(tabTimeout);
+      tabLoop($(".stories_tab-link.is-dark.is-mission.w--current"));
+      function tabLoop(trigger) {
+        tabTimeout = setTimeout(function() {
+          const $next = trigger.next();
+          if ($next.length) {
+            $next.removeAttr("href").click();
+          } else {
+            $(".stories_tab-link.is-dark.is-mission:first").removeAttr("href").click();
+          }
+        }, tabDuration);
+      }
+      $(".stories_tab-link.is-dark.is-mission").click(function() {
+        clearTimeout(tabTimeout);
+        tabLoop($(this));
+      });
+    });
+  }
+
   // src/careers.ts
   gsapWithCSS.registerPlugin(SplitText);
   initImageGalleryTabs();
   hideEmptyDepartments();
   initDiscoverGallerySlider();
+  initTimedTextTabs();
   var careersImageSliderParams = {
     modules: [Navigation, Mousewheel, Scrollbar],
     direction: "horizontal",
