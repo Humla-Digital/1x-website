@@ -16,7 +16,7 @@ const ENTRY_POINTS = [
   'src/discoverPost.ts',
   'src/neo.ts',
   'src/eve.ts',
-  'src/androidCollection.ts',
+  'src/androids.ts',
 ];
 
 // Config dev serving
