@@ -11,6 +11,8 @@ export function initOurAndroidsSlider() {
     modules: [Navigation, Mousewheel],
     direction: 'horizontal',
     slidesPerView: 'auto',
+    shortSwipes: true,
+    longSwipes: false,
     slidesPerGroup: 1,
     spaceBetween: 200,
     loop: false,

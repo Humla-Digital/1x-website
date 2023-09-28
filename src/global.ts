@@ -1,9 +1,41 @@
 /* eslint-disable no-console */
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 import { turnNavWhite } from '$utils/navbarToWhite';
 import { updateFooterYear } from '$utils/updateFooterYear';
-
 turnNavWhite();
 updateFooterYear();
+
+const showNav = gsap
+  .from('.navbar-wrapper', {
+    yPercent: -100,
+    paused: true,
+    duration: 0.35,
+    ease: 'power1.Out',
+  })
+  .progress(1);
+
+ScrollTrigger.create({
+  start: 'top top',
+  end: 99999,
+  onUpdate: (self) => {
+    self.direction === -1 ? showNav.play() : showNav.reverse();
+  },
+});
+
+declare global {
+  interface Window {
+    WebflowEditor: unknown;
+  }
+}
+window.Webflow ||= [];
+window.Webflow.push(() => {
+  if (!window.WebflowEditor) {
+  } else {
+    $('.item_faq-content').addClass('is-active');
+  }
+});
 
 /**SIDEBAR MENU HOVER STATES*/
 if (window.innerWidth > 992) {

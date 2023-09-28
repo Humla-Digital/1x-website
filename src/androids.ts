@@ -1,6 +1,7 @@
 import { initDiscoverGallerySlider } from './modules/discoverPostSlider';
-
+import { faqModule } from './modules/faqs';
 initDiscoverGallerySlider();
+faqModule();
 declare global {
   interface Window {
     WebflowEditor: unknown;

@@ -6569,6 +6569,26 @@
   // src/global.ts
   turnNavWhite();
   updateFooterYear();
+  var showNav = gsapWithCSS.from(".navbar-wrapper", {
+    yPercent: -100,
+    paused: true,
+    duration: 0.35,
+    ease: "power1.Out"
+  }).progress(1);
+  ScrollTrigger2.create({
+    start: "top top",
+    end: 99999,
+    onUpdate: (self) => {
+      self.direction === -1 ? showNav.play() : showNav.reverse();
+    }
+  });
+  window.Webflow ||= [];
+  window.Webflow.push(() => {
+    if (!window.WebflowEditor) {
+    } else {
+      $(".item_faq-content").addClass("is-active");
+    }
+  });
   if (window.innerWidth > 992) {
     $(".sidebar-menu-link-row").on("mouseover", function() {
       $(this).siblings(".sidebar-menu-link-row").css("opacity", "0.3");
