@@ -6,7 +6,8 @@ import 'swiper/css/mousewheel';
 import 'swiper/css/scrollbar';
 
 import gsap from 'gsap';
-import { SplitText } from 'gsap/all';
+import { ScrollTrigger } from 'gsap/all';
+import { SplitText } from 'gsap/SplitText';
 import { initImageGalleryTabs } from 'src/modules/imageGalleryTabs';
 import Swiper from 'swiper';
 import { Mousewheel, Navigation, Scrollbar } from 'swiper/modules';
@@ -16,12 +17,44 @@ import { hideEmptyDepartments } from '$utils/hideEmptyDepartments';
 
 import { initDiscoverGallerySlider } from './modules/discoverPostSlider';
 import { initTimedTextTabs } from './modules/timedTextTabs';
-gsap.registerPlugin(SplitText);
+gsap.registerPlugin(SplitText, ScrollTrigger);
 
 initImageGalleryTabs();
 hideEmptyDepartments();
 initDiscoverGallerySlider();
 initTimedTextTabs();
+
+$('.section_company-values').each(function (index) {
+  const triggerElement = $(this);
+  const horizontalLine = $('.horizontal-line');
+  const tlHzLine = gsap.timeline({
+    scrollTrigger: {
+      trigger: triggerElement,
+      start: 'top +=1000',
+      markers: true,
+    },
+  });
+  tlHzLine.from(horizontalLine, {
+    width: '0',
+    ease: 'power3.inOut',
+    duration: 2.25,
+  });
+
+  const valueContent = $('.content-wrapper_company-value');
+  const tlValueContent = gsap.timeline({
+    scrollTrigger: {
+      trigger: triggerElement,
+      start: 'top center',
+    },
+  });
+  tlValueContent.from(valueContent, {
+    autoAlpha: '0',
+    stagger: 0.25,
+    duration: '0.8',
+    x: '-20',
+    ease: 'power1.Out',
+  });
+});
 
 const careersImageSliderParams: SwiperOptions = {
   modules: [Navigation, Mousewheel, Scrollbar],
@@ -106,6 +139,7 @@ function careerBenefits() {
     });
   }
 }
+
 declare global {
   interface Window {
     WebflowEditor: unknown;

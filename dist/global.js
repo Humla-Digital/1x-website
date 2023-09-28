@@ -6569,11 +6569,11 @@
   // src/global.ts
   turnNavWhite();
   updateFooterYear();
+  gsapWithCSS.registerPlugin(ScrollTrigger2);
   var showNav = gsapWithCSS.from(".navbar-wrapper", {
     yPercent: -100,
     paused: true,
-    duration: 0.35,
-    ease: "power1.Out"
+    duration: 0.25
   }).progress(1);
   ScrollTrigger2.create({
     start: "top top",

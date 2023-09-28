@@ -6,13 +6,13 @@ import { turnNavWhite } from '$utils/navbarToWhite';
 import { updateFooterYear } from '$utils/updateFooterYear';
 turnNavWhite();
 updateFooterYear();
+gsap.registerPlugin(ScrollTrigger);
 
 const showNav = gsap
   .from('.navbar-wrapper', {
     yPercent: -100,
     paused: true,
-    duration: 0.35,
-    ease: 'power1.Out',
+    duration: 0.25,
   })
   .progress(1);
 
