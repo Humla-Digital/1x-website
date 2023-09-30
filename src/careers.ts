@@ -30,8 +30,7 @@ $('.section_company-values').each(function (index) {
   const tlHzLine = gsap.timeline({
     scrollTrigger: {
       trigger: triggerElement,
-      start: 'top +=1000',
-      markers: true,
+      start: 'top +=1200',
     },
   });
   tlHzLine.from(horizontalLine, {

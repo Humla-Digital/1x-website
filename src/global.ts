@@ -24,6 +24,23 @@ ScrollTrigger.create({
   },
 });
 
+const footer = $('.footer');
+const targetEl = $('.footer_circles-wrapper').find('path');
+const footerAnimation = gsap.timeline({
+  scrollTrigger: {
+    trigger: footer,
+    start: 'center bottom',
+  },
+});
+
+footerAnimation.from(targetEl, {
+  autoAlpha: '0',
+  y: 10,
+  duration: 0.8,
+  stagger: 0.2,
+  delay: 1,
+});
+
 declare global {
   interface Window {
     WebflowEditor: unknown;

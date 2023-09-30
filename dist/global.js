@@ -6582,6 +6582,21 @@
       self.direction === -1 ? showNav.play() : showNav.reverse();
     }
   });
+  var footer = $(".footer");
+  var targetEl = $(".footer_circles-wrapper").find("path");
+  var footerAnimation = gsapWithCSS.timeline({
+    scrollTrigger: {
+      trigger: footer,
+      start: "center bottom"
+    }
+  });
+  footerAnimation.from(targetEl, {
+    autoAlpha: "0",
+    y: 10,
+    duration: 0.8,
+    stagger: 0.2,
+    delay: 1
+  });
   window.Webflow ||= [];
   window.Webflow.push(() => {
     if (!window.WebflowEditor) {
