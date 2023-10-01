@@ -13068,7 +13068,8 @@
         trigger: androidTrigger,
         start: "top top",
         end: "bottom bottom",
-        scrub: 1
+        scrub: 1,
+        markers: true
       }
     });
     androidScrollScene.to(
@@ -13100,6 +13101,44 @@
       3
     );
   }
+  (0, import_jquery2.default)(".android_value-props-tab-link").on("click", function() {
+    (0, import_jquery2.default)(this).find(".android_value-props-content").addClass("is-active");
+    (0, import_jquery2.default)(this).siblings(".android_value-props-tab-link").find(".android_value-props-content").removeClass("is-active");
+  });
+  (0, import_jquery2.default)(function() {
+    const tabDuration = 2e3;
+    let tabTimeout;
+    clearTimeout(tabTimeout);
+    tabLoop((0, import_jquery2.default)(".android_value-props-tab-link.w--current"));
+    function tabLoop(trigger) {
+      function startProgressBar() {
+        trigger.find(".android_value-props-progbar").animate({ width: "100%" }, tabDuration);
+      }
+      function stopProgressBar() {
+        (0, import_jquery2.default)(".android_value-props-progbar").stop(true, true).css("width", "0%");
+      }
+      startProgressBar();
+      tabTimeout = setTimeout(function() {
+        const $next = trigger.next();
+        startProgressBar();
+        if ($next.length) {
+          $next.removeAttr("href").click();
+          stopProgressBar();
+          startProgressBar();
+        } else {
+          (0, import_jquery2.default)(".android_value-props-tab-link:first").removeAttr("href").click();
+          stopProgressBar();
+          startProgressBar();
+        }
+      }, tabDuration);
+      (0, import_jquery2.default)(".android_value-props-tab-link").on("click", function() {
+        clearTimeout(tabTimeout);
+        tabLoop((0, import_jquery2.default)(this));
+        stopProgressBar();
+        startProgressBar();
+      });
+    }
+  });
 })();
 /*! Bundled license information:
 

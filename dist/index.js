@@ -11129,7 +11129,7 @@
       direction: "horizontal",
       slidesPerView: 1,
       slidesPerGroup: 1,
-      setWrapperSize: true,
+      setWrapperSize: false,
       spaceBetween: 20,
       mousewheel: {
         forceToAxis: true
@@ -11193,8 +11193,6 @@
       modules: [Navigation, Mousewheel],
       direction: "horizontal",
       slidesPerView: "auto",
-      shortSwipes: false,
-      longSwipes: true,
       slidesPerGroup: 1,
       spaceBetween: 200,
       loop: false,

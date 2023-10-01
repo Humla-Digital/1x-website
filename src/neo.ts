@@ -38,6 +38,7 @@ function neoScrollScene() {
       start: 'top top',
       end: 'bottom bottom',
       scrub: 1,
+      markers: true,
     },
   });
 
@@ -70,3 +71,55 @@ function neoScrollScene() {
     3
   );
 }
+
+$('.android_value-props-tab-link').on('click', function () {
+  $(this).find('.android_value-props-content').addClass('is-active');
+  $(this)
+    .siblings('.android_value-props-tab-link')
+    .find('.android_value-props-content')
+    .removeClass('is-active');
+});
+
+$(function () {
+  // Set duration of tab cycle in milliseconds
+  const tabDuration = 2000;
+
+  // Starts the tab cycle
+  let tabTimeout: number | undefined;
+  clearTimeout(tabTimeout);
+
+  tabLoop($('.android_value-props-tab-link.w--current'));
+
+  // Define cycle through all tabs
+  function tabLoop(trigger: JQuery<HTMLElement>) {
+    function startProgressBar() {
+      trigger.find('.android_value-props-progbar').animate({ width: '100%' }, tabDuration);
+    }
+
+    function stopProgressBar() {
+      $('.android_value-props-progbar').stop(true, true).css('width', '0%');
+    }
+    startProgressBar();
+    // Loop to next/first tab after tabDuration and reset / start progressbar
+    tabTimeout = setTimeout(function () {
+      const $next = trigger.next();
+      startProgressBar();
+      if ($next.length) {
+        $next.removeAttr('href').click();
+        stopProgressBar();
+        startProgressBar();
+      } else {
+        $('.android_value-props-tab-link:first').removeAttr('href').click();
+        stopProgressBar();
+        startProgressBar();
+      }
+    }, tabDuration);
+    // Reset timeout if a tab is clicked
+    $('.android_value-props-tab-link').on('click', function () {
+      clearTimeout(tabTimeout);
+      tabLoop($(this));
+      stopProgressBar();
+      startProgressBar();
+    });
+  }
+});
