@@ -4,6 +4,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/controller';
 
+import $ from 'jquery';
 import { initDiscoverGallerySlider } from 'src/modules/discoverPostSlider';
 import { initImageGalleryTabs } from 'src/modules/imageGalleryTabs';
 import { initValuesTabs } from 'src/modules/valuesTabs';

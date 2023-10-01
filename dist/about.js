@@ -6481,6 +6481,7 @@
 
   // src/about.ts
   init_live_reload();
+  var import_jquery2 = __toESM(require_jquery(), 1);
 
   // src/modules/discoverPostSlider.ts
   init_live_reload();
@@ -11466,8 +11467,8 @@
       }
     },
     navigation: {
-      nextEl: $("#our-story-next")[0],
-      prevEl: $("#our-story-prev")[0]
+      nextEl: (0, import_jquery2.default)("#our-story-next")[0],
+      prevEl: (0, import_jquery2.default)("#our-story-prev")[0]
     }
   };
   var timelineSlider = new Swiper(".our-story-timeline-slider", timelineSliderParams);
