@@ -18637,8 +18637,8 @@
   var careersImageSlider = new Swiper(".image-gallery", careersImageSliderParams);
   function careerBenefits() {
     if (window.innerWidth > 1399) {
-      $(".wrapper_career-benefit").each(function(_i2, _element) {
-        const splitTextTimeline = gsapWithCSS.timeline({ paused: true, reversed: true }), careerBenefit = $(this).find(".is_career-benefit-typed"), splitText = new SplitText(careerBenefit, { type: "words,chars" }), { chars } = splitText;
+      $(".wrapper_splittext-row").each(function(_i2, _element) {
+        const splitTextTimeline = gsapWithCSS.timeline({ paused: true, reversed: true }), careerBenefit = $(this).find(".is-splittext"), splitText = new SplitText(careerBenefit, { type: "words,chars" }), { chars } = splitText;
         splitTextTimeline.from(chars, {
           autoAlpha: 0,
           duration: 0.01,
@@ -18650,11 +18650,11 @@
         }
       });
     } else {
-      $(".wrapper_career-benefit").on("click", function() {
+      $(".wrapper_splittext-row").on("click", function() {
         $(this).toggleClass("is-active");
         if ($(this).hasClass("is-active")) {
-          $(this).find(".is_career-benefit-typed").addClass("is-active");
-          const splitTextTimeline = gsapWithCSS.timeline({ paused: true, reversed: true }), careerBenefit = $(this).find(".is_career-benefit-typed"), splitText = new SplitText(careerBenefit, { type: "words,chars" }), { chars } = splitText;
+          $(this).find(".is-splittext").addClass("is-active");
+          const splitTextTimeline = gsapWithCSS.timeline({ paused: true, reversed: true }), careerBenefit = $(this).find(".is-splittext"), splitText = new SplitText(careerBenefit, { type: "words,chars" }), { chars } = splitText;
           splitTextTimeline.from(chars, {
             autoAlpha: 0,
             duration: 0.01,
@@ -18663,7 +18663,7 @@
           splitTextTimeline.reversed() ? splitTextTimeline.play() : splitTextTimeline.reverse();
         } else {
           $(this).removeClass("is-active");
-          $(this).find(".is_career-benefit-typed").removeClass("is-active");
+          $(this).find(".is-splittext").removeClass("is-active");
         }
       });
     }

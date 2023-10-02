@@ -100,9 +100,9 @@ const careersImageSlider = new Swiper('.image-gallery', careersImageSliderParams
 
 function careerBenefits() {
   if (window.innerWidth > 1399) {
-    $('.wrapper_career-benefit').each(function (_i, _element) {
+    $('.wrapper_splittext-row').each(function (_i, _element) {
       const splitTextTimeline = gsap.timeline({ paused: true, reversed: true }),
-        careerBenefit = $(this).find('.is_career-benefit-typed'),
+        careerBenefit = $(this).find('.is-splittext'),
         splitText = new SplitText(careerBenefit, { type: 'words,chars' }),
         { chars } = splitText;
 
@@ -117,12 +117,12 @@ function careerBenefits() {
       }
     });
   } else {
-    $('.wrapper_career-benefit').on('click', function () {
+    $('.wrapper_splittext-row').on('click', function () {
       $(this).toggleClass('is-active');
       if ($(this).hasClass('is-active')) {
-        $(this).find('.is_career-benefit-typed').addClass('is-active');
+        $(this).find('.is-splittext').addClass('is-active');
         const splitTextTimeline = gsap.timeline({ paused: true, reversed: true }),
-          careerBenefit = $(this).find('.is_career-benefit-typed'),
+          careerBenefit = $(this).find('.is-splittext'),
           splitText = new SplitText(careerBenefit, { type: 'words,chars' }),
           { chars } = splitText;
         splitTextTimeline.from(chars, {
@@ -133,7 +133,7 @@ function careerBenefits() {
         splitTextTimeline.reversed() ? splitTextTimeline.play() : splitTextTimeline.reverse();
       } else {
         $(this).removeClass('is-active');
-        $(this).find('.is_career-benefit-typed').removeClass('is-active');
+        $(this).find('.is-splittext').removeClass('is-active');
       }
     });
   }

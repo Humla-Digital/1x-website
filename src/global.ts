@@ -8,6 +8,7 @@ turnNavWhite();
 updateFooterYear();
 gsap.registerPlugin(ScrollTrigger);
 
+$('.menu-link.w--current').siblings('.menu-link').css('opacity', '0.5');
 const showNav = gsap
   .from('.navbar-wrapper', {
     yPercent: -100,

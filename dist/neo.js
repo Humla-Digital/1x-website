@@ -13494,7 +13494,7 @@
         trigger: androidTrigger,
         start: "top top",
         end: "bottom bottom",
-        scrub: 1,
+        scrub: 0,
         markers: true
       }
     });
@@ -13526,8 +13526,9 @@
       },
       3
     );
+    ScrollTrigger2.refresh();
   }
-  function toggleSpecs() {
+  function specsToggle() {
     const imperialHeight = "5 foot 6 inches";
     const imperialWeight = "66 pounds";
     const imperialWalkspeed = "2.5 miles/hour walk speed";
@@ -13557,11 +13558,11 @@
       (0, import_jquery2.default)("#carry-capacity").text(metricCarry);
     });
   }
-  toggleSpecs();
+  specsToggle();
   function androidSpecs() {
     if (window.innerWidth > 1399) {
       (0, import_jquery2.default)(".wrapper_splittext-row").each(function(_i2, _element) {
-        const splitTextTimeline = gsapWithCSS.timeline({ paused: true, reversed: true }), careerBenefit = (0, import_jquery2.default)(this).find(".is-splittext"), splitText = new SplitText(careerBenefit, { type: "words,chars" }), { chars } = splitText;
+        const splitTextTimeline = gsapWithCSS.timeline({ paused: true, reversed: true }), textToSplit = (0, import_jquery2.default)(this).find(".is-splittext"), splitText = new SplitText(textToSplit, { type: "words,chars" }), { chars } = splitText;
         splitTextTimeline.from(chars, {
           autoAlpha: 0,
           duration: 0.01,
@@ -13613,11 +13614,11 @@
         const $next = trigger.next();
         startProgressBar();
         if ($next.length) {
-          $next.removeAttr("href").click();
+          $next.removeAttr("href").trigger("click");
           stopProgressBar();
           startProgressBar();
         } else {
-          (0, import_jquery2.default)(".android_value-props-tab-link:first").removeAttr("href").click();
+          (0, import_jquery2.default)(".android_value-props-tab-link:first").removeAttr("href").trigger("click");
           stopProgressBar();
           startProgressBar();
         }

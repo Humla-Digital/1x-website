@@ -39,7 +39,7 @@ function neoScrollScene() {
       trigger: androidTrigger,
       start: 'top top',
       end: 'bottom bottom',
-      scrub: 1,
+      scrub: 0,
       markers: true,
     },
   });
@@ -72,9 +72,10 @@ function neoScrollScene() {
     },
     3
   );
+  ScrollTrigger.refresh();
 }
 
-function toggleSpecs() {
+function specsToggle() {
   const imperialHeight = '5 foot 6 inches';
   const imperialWeight = '66 pounds';
   const imperialWalkspeed = '2.5 miles/hour walk speed';
@@ -106,14 +107,14 @@ function toggleSpecs() {
     $('#carry-capacity').text(metricCarry);
   });
 }
-toggleSpecs();
+specsToggle();
 
 function androidSpecs() {
   if (window.innerWidth > 1399) {
     $('.wrapper_splittext-row').each(function (_i, _element) {
       const splitTextTimeline = gsap.timeline({ paused: true, reversed: true }),
-        careerBenefit = $(this).find('.is-splittext'),
-        splitText = new SplitText(careerBenefit, { type: 'words,chars' }),
+        textToSplit = $(this).find('.is-splittext'),
+        splitText = new SplitText(textToSplit, { type: 'words,chars' }),
         { chars } = splitText;
 
       splitTextTimeline.from(chars, {
@@ -183,11 +184,11 @@ $(function () {
       const $next = trigger.next();
       startProgressBar();
       if ($next.length) {
-        $next.removeAttr('href').click();
+        $next.removeAttr('href').trigger('click');
         stopProgressBar();
         startProgressBar();
       } else {
-        $('.android_value-props-tab-link:first').removeAttr('href').click();
+        $('.android_value-props-tab-link:first').removeAttr('href').trigger('click');
         stopProgressBar();
         startProgressBar();
       }

@@ -6570,6 +6570,7 @@
   turnNavWhite();
   updateFooterYear();
   gsapWithCSS.registerPlugin(ScrollTrigger2);
+  $(".menu-link.w--current").siblings(".menu-link").css("opacity", "0.5");
   var showNav = gsapWithCSS.from(".navbar-wrapper", {
     yPercent: -100,
     paused: true,
