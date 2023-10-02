@@ -13467,6 +13467,7 @@
         (0, import_jquery.default)(this).siblings(".item_faq-content").removeClass("is-active");
         (0, import_jquery.default)(this).find(".faq-dot").removeClass("is-active");
       }
+      ScrollTrigger2.refresh();
     });
   }
 
@@ -13475,59 +13476,12 @@
   window.Webflow ||= [];
   window.Webflow.push(() => {
     if (!window.WebflowEditor) {
-      neoScrollScene();
+      careerBenefits();
       faqModule();
     } else {
       (0, import_jquery2.default)(".is_pdp-android-scene").addClass("in-editor");
     }
   });
-  function neoScrollScene() {
-    const androidTrigger = (0, import_jquery2.default)(".section_neo-features-scroll");
-    const target1 = (0, import_jquery2.default)(".is_pdp-android-scene:first-child");
-    const target2 = (0, import_jquery2.default)(".is_pdp-android-scene:nth-child(2)");
-    const target3 = (0, import_jquery2.default)(".is_pdp-android-scene:nth-child(3)");
-    gsapWithCSS.set(target1, { autoAlpha: 1 });
-    gsapWithCSS.set(target2, { autoAlpha: 0 });
-    gsapWithCSS.set(target3, { autoAlpha: 0 });
-    const androidScrollScene = gsapWithCSS.timeline({
-      scrollTrigger: {
-        trigger: androidTrigger,
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 0,
-        markers: true
-      }
-    });
-    androidScrollScene.to(
-      target1,
-      {
-        autoAlpha: 0
-      },
-      0
-    );
-    androidScrollScene.to(
-      target2,
-      {
-        autoAlpha: 1
-      },
-      1
-    );
-    androidScrollScene.to(
-      target2,
-      {
-        autoAlpha: 0
-      },
-      2
-    );
-    androidScrollScene.to(
-      target3,
-      {
-        autoAlpha: 1
-      },
-      3
-    );
-    ScrollTrigger2.refresh();
-  }
   function specsToggle() {
     const imperialHeight = "5 foot 6 inches";
     const imperialWeight = "66 pounds";
@@ -13559,10 +13513,10 @@
     });
   }
   specsToggle();
-  function androidSpecs() {
+  function careerBenefits() {
     if (window.innerWidth > 1399) {
       (0, import_jquery2.default)(".wrapper_splittext-row").each(function(_i2, _element) {
-        const splitTextTimeline = gsapWithCSS.timeline({ paused: true, reversed: true }), textToSplit = (0, import_jquery2.default)(this).find(".is-splittext"), splitText = new SplitText(textToSplit, { type: "words,chars" }), { chars } = splitText;
+        const splitTextTimeline = gsapWithCSS.timeline({ paused: true, reversed: true }), careerBenefit = (0, import_jquery2.default)(this).find(".is-splittext"), splitText = new SplitText(careerBenefit, { type: "words,chars" }), { chars } = splitText;
         splitTextTimeline.from(chars, {
           autoAlpha: 0,
           duration: 0.01,
@@ -13592,7 +13546,6 @@
       });
     }
   }
-  androidSpecs();
   (0, import_jquery2.default)(".android_value-props-tab-link").on("click", function() {
     (0, import_jquery2.default)(this).find(".android_value-props-content").addClass("is-active");
     (0, import_jquery2.default)(this).siblings(".android_value-props-tab-link").find(".android_value-props-content").removeClass("is-active");

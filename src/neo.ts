@@ -15,65 +15,12 @@ declare global {
 window.Webflow ||= [];
 window.Webflow.push(() => {
   if (!window.WebflowEditor) {
-    neoScrollScene();
+    careerBenefits();
     faqModule();
   } else {
     $('.is_pdp-android-scene').addClass('in-editor');
   }
 });
-
-function neoScrollScene() {
-  const androidTrigger = $('.section_neo-features-scroll');
-
-  const target1 = $('.is_pdp-android-scene:first-child');
-  const target2 = $('.is_pdp-android-scene:nth-child(2)');
-  const target3 = $('.is_pdp-android-scene:nth-child(3)');
-
-  gsap.set(target1, { autoAlpha: 1 });
-  gsap.set(target2, { autoAlpha: 0 });
-  gsap.set(target3, { autoAlpha: 0 });
-  //const mm = gsap.matchMedia();
-
-  const androidScrollScene = gsap.timeline({
-    scrollTrigger: {
-      trigger: androidTrigger,
-      start: 'top top',
-      end: 'bottom bottom',
-      scrub: 0,
-      markers: true,
-    },
-  });
-
-  androidScrollScene.to(
-    target1,
-    {
-      autoAlpha: 0,
-    },
-    0
-  );
-  androidScrollScene.to(
-    target2,
-    {
-      autoAlpha: 1,
-    },
-    1
-  );
-  androidScrollScene.to(
-    target2,
-    {
-      autoAlpha: 0,
-    },
-    2
-  );
-  androidScrollScene.to(
-    target3,
-    {
-      autoAlpha: 1,
-    },
-    3
-  );
-  ScrollTrigger.refresh();
-}
 
 function specsToggle() {
   const imperialHeight = '5 foot 6 inches';
@@ -109,12 +56,12 @@ function specsToggle() {
 }
 specsToggle();
 
-function androidSpecs() {
+function careerBenefits() {
   if (window.innerWidth > 1399) {
     $('.wrapper_splittext-row').each(function (_i, _element) {
       const splitTextTimeline = gsap.timeline({ paused: true, reversed: true }),
-        textToSplit = $(this).find('.is-splittext'),
-        splitText = new SplitText(textToSplit, { type: 'words,chars' }),
+        careerBenefit = $(this).find('.is-splittext'),
+        splitText = new SplitText(careerBenefit, { type: 'words,chars' }),
         { chars } = splitText;
 
       splitTextTimeline.from(chars, {
@@ -149,7 +96,6 @@ function androidSpecs() {
     });
   }
 }
-androidSpecs();
 
 $('.android_value-props-tab-link').on('click', function () {
   $(this).find('.android_value-props-content').addClass('is-active');

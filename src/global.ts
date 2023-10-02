@@ -4,11 +4,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import { turnNavWhite } from '$utils/navbarToWhite';
 import { updateFooterYear } from '$utils/updateFooterYear';
-turnNavWhite();
+
 updateFooterYear();
 gsap.registerPlugin(ScrollTrigger);
 
-$('.menu-link.w--current').siblings('.menu-link').css('opacity', '0.5');
+$('.menu-link.w--current').addClass('current-page');
+$('.current-page').siblings('.menu-link').addClass('opacity-50');
 const showNav = gsap
   .from('.navbar-wrapper', {
     yPercent: -100,
@@ -24,7 +25,7 @@ ScrollTrigger.create({
     self.direction === -1 ? showNav.play() : showNav.reverse();
   },
 });
-
+turnNavWhite();
 const footer = $('.footer');
 const targetEl = $('.footer_circles-wrapper').find('path');
 const footerAnimation = gsap.timeline({

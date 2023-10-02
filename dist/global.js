@@ -6567,10 +6567,10 @@
   }
 
   // src/global.ts
-  turnNavWhite();
   updateFooterYear();
   gsapWithCSS.registerPlugin(ScrollTrigger2);
-  $(".menu-link.w--current").siblings(".menu-link").css("opacity", "0.5");
+  $(".menu-link.w--current").addClass("current-page");
+  $(".current-page").siblings(".menu-link").addClass("opacity-50");
   var showNav = gsapWithCSS.from(".navbar-wrapper", {
     yPercent: -100,
     paused: true,
@@ -6583,6 +6583,7 @@
       self.direction === -1 ? showNav.play() : showNav.reverse();
     }
   });
+  turnNavWhite();
   var footer = $(".footer");
   var targetEl = $(".footer_circles-wrapper").find("path");
   var footerAnimation = gsapWithCSS.timeline({

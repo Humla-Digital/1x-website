@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 /* eslint-disable no-return-assign */
 /* eslint-disable no-console */
 import gsap from 'gsap';
@@ -7,16 +8,19 @@ const showDiscoverTags = gsap.timeline({ paused: true });
 showDiscoverTags.to('.discover-tag-collection-item', {
   autoAlpha: 1,
   stagger: 0.1,
-  duration: 0.25,
+  duration: 0.35,
 });
 
+const popularTopics = $('#popular-topics');
 $('.wrapper_discover-filters').on('click', function () {
+  let clicks = $(this).data('clicks');
+  if (!clicks) {
+    popularTopics.text('Popular Topics ↑');
+  } else {
+    popularTopics.text('Popular Topics ↓');
+  }
+  $(this).data('clicks', !clicks);
   $('.grid_discover-filter-tags').toggleClass('is-active');
   showDiscoverTags.play();
+  showDiscoverTags.restart();
 });
-
-$('.w-checkbox-input').on('click', function () {
-  $('.w-checkbox-input').not(this).prop('checked', false);
-});
-const input = $('input:checkbox');
-console.log(input);

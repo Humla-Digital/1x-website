@@ -714,7 +714,7 @@
               rbuggyQSA = [];
               if (support2.qsa = rnative.test(document2.querySelectorAll)) {
                 assert(function(el) {
-                  var input2;
+                  var input;
                   docElem.appendChild(el).innerHTML = "<a id='" + expando + "'></a><select id='" + expando + "-\r\\' msallowcapture=''><option selected=''></option></select>";
                   if (el.querySelectorAll("[msallowcapture^='']").length) {
                     rbuggyQSA.push("[*^$]=" + whitespace + `*(?:''|"")`);
@@ -725,9 +725,9 @@
                   if (!el.querySelectorAll("[id~=" + expando + "-]").length) {
                     rbuggyQSA.push("~=");
                   }
-                  input2 = document2.createElement("input");
-                  input2.setAttribute("name", "");
-                  el.appendChild(input2);
+                  input = document2.createElement("input");
+                  input.setAttribute("name", "");
+                  el.appendChild(input);
                   if (!el.querySelectorAll("[name='']").length) {
                     rbuggyQSA.push("\\[" + whitespace + "*name" + whitespace + "*=" + whitespace + `*(?:''|"")`);
                   }
@@ -742,9 +742,9 @@
                 });
                 assert(function(el) {
                   el.innerHTML = "<a href='' disabled='disabled'></a><select disabled='disabled'><option/></select>";
-                  var input2 = document2.createElement("input");
-                  input2.setAttribute("type", "hidden");
-                  el.appendChild(input2).setAttribute("name", "D");
+                  var input = document2.createElement("input");
+                  input.setAttribute("type", "hidden");
+                  el.appendChild(input).setAttribute("name", "D");
                   if (el.querySelectorAll("[name=d]").length) {
                     rbuggyQSA.push("name" + whitespace + "*[*^$|!~]?=");
                   }
@@ -1096,7 +1096,7 @@
               pseudos: {
                 // Potentially complex pseudos
                 "not": markFunction(function(selector3) {
-                  var input2 = [], results = [], matcher = compile(selector3.replace(rtrim2, "$1"));
+                  var input = [], results = [], matcher = compile(selector3.replace(rtrim2, "$1"));
                   return matcher[expando] ? markFunction(function(seed, matches2, _context2, xml) {
                     var elem, unmatched = matcher(seed, null, xml, []), i2 = seed.length;
                     while (i2--) {
@@ -1105,9 +1105,9 @@
                       }
                     }
                   }) : function(elem, _context2, xml) {
-                    input2[0] = elem;
-                    matcher(input2, null, xml, results);
-                    input2[0] = null;
+                    input[0] = elem;
+                    matcher(input, null, xml, results);
+                    input[0] = null;
                     return !results.pop();
                   };
                 }),
@@ -2823,11 +2823,11 @@
         var rtagName = /<([a-z][^\/\0>\x20\t\r\n\f]*)/i;
         var rscriptType = /^$|^module$|\/(?:java|ecma)script/i;
         (function() {
-          var fragment = document.createDocumentFragment(), div = fragment.appendChild(document.createElement("div")), input2 = document.createElement("input");
-          input2.setAttribute("type", "radio");
-          input2.setAttribute("checked", "checked");
-          input2.setAttribute("name", "t");
-          div.appendChild(input2);
+          var fragment = document.createDocumentFragment(), div = fragment.appendChild(document.createElement("div")), input = document.createElement("input");
+          input.setAttribute("type", "radio");
+          input.setAttribute("checked", "checked");
+          input.setAttribute("name", "t");
+          div.appendChild(input);
           support.checkClone = div.cloneNode(true).cloneNode(true).lastChild.checked;
           div.innerHTML = "<textarea>x</textarea>";
           support.noCloneChecked = !!div.cloneNode(true).lastChild.defaultValue;
@@ -4712,14 +4712,14 @@
           });
         };
         (function() {
-          var input2 = document.createElement("input"), select = document.createElement("select"), opt = select.appendChild(document.createElement("option"));
-          input2.type = "checkbox";
-          support.checkOn = input2.value !== "";
+          var input = document.createElement("input"), select = document.createElement("select"), opt = select.appendChild(document.createElement("option"));
+          input.type = "checkbox";
+          support.checkOn = input.value !== "";
           support.optSelected = opt.selected;
-          input2 = document.createElement("input");
-          input2.value = "t";
-          input2.type = "radio";
-          support.radioValue = input2.value === "t";
+          input = document.createElement("input");
+          input.value = "t";
+          input.type = "radio";
+          support.radioValue = input.value === "t";
         })();
         var boolHook, attrHandle = jQuery.expr.attrHandle;
         jQuery.fn.extend({
@@ -10719,17 +10719,21 @@
   showDiscoverTags.to(".discover-tag-collection-item", {
     autoAlpha: 1,
     stagger: 0.1,
-    duration: 0.25
+    duration: 0.35
   });
+  var popularTopics = (0, import_jquery.default)("#popular-topics");
   (0, import_jquery.default)(".wrapper_discover-filters").on("click", function() {
+    let clicks = (0, import_jquery.default)(this).data("clicks");
+    if (!clicks) {
+      popularTopics.text("Popular Topics \u2191");
+    } else {
+      popularTopics.text("Popular Topics \u2193");
+    }
+    (0, import_jquery.default)(this).data("clicks", !clicks);
     (0, import_jquery.default)(".grid_discover-filter-tags").toggleClass("is-active");
     showDiscoverTags.play();
+    showDiscoverTags.restart();
   });
-  (0, import_jquery.default)(".w-checkbox-input").on("click", function() {
-    (0, import_jquery.default)(".w-checkbox-input").not(this).prop("checked", false);
-  });
-  var input = (0, import_jquery.default)("input:checkbox");
-  console.log(input);
 })();
 /*! Bundled license information:
 
