@@ -13506,8 +13506,10 @@
     (0, import_jquery2.default)(".metric-toggle_item").on("click", function() {
       (0, import_jquery2.default)(this).addClass("is-active");
       (0, import_jquery2.default)(this).siblings(".metric-toggle_item").removeClass("is-active");
+      ScrollTrigger2.refresh();
     });
     (0, import_jquery2.default)("#imperial").on("click", function() {
+      ScrollTrigger2.refresh();
       (0, import_jquery2.default)("#height").text(imperialHeight);
       (0, import_jquery2.default)("#weight").text(imperialWeight);
       (0, import_jquery2.default)("#walk-speed").text(imperialWalkspeed);
@@ -13515,6 +13517,7 @@
       (0, import_jquery2.default)("#carry-capacity").text(imperialCarry);
     });
     (0, import_jquery2.default)("#metric").on("click", function() {
+      ScrollTrigger2.refresh();
       (0, import_jquery2.default)("#height").text(metricHeight);
       (0, import_jquery2.default)("#weight").text(metricWeight);
       (0, import_jquery2.default)("#walk-speed").text(metricWalkspeed);
@@ -13539,6 +13542,7 @@
       });
     } else {
       (0, import_jquery2.default)(".wrapper_splittext-row").on("click", function() {
+        ScrollTrigger2.refresh();
         (0, import_jquery2.default)(this).toggleClass("is-active");
         if ((0, import_jquery2.default)(this).hasClass("is-active")) {
           (0, import_jquery2.default)(this).find(".is-splittext").addClass("is-active");

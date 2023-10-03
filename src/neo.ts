@@ -42,8 +42,10 @@ function specsToggle() {
   $('.metric-toggle_item').on('click', function () {
     $(this).addClass('is-active');
     $(this).siblings('.metric-toggle_item').removeClass('is-active');
+    ScrollTrigger.refresh();
   });
   $('#imperial').on('click', function () {
+    ScrollTrigger.refresh();
     $('#height').text(imperialHeight);
     $('#weight').text(imperialWeight);
     $('#walk-speed').text(imperialWalkspeed);
@@ -51,6 +53,7 @@ function specsToggle() {
     $('#carry-capacity').text(imperialCarry);
   });
   $('#metric').on('click', function () {
+    ScrollTrigger.refresh();
     $('#height').text(metricHeight);
     $('#weight').text(metricWeight);
     $('#walk-speed').text(metricWalkspeed);
@@ -80,6 +83,7 @@ function careerBenefits() {
     });
   } else {
     $('.wrapper_splittext-row').on('click', function () {
+      ScrollTrigger.refresh();
       $(this).toggleClass('is-active');
       if ($(this).hasClass('is-active')) {
         $(this).find('.is-splittext').addClass('is-active');
