@@ -13584,6 +13584,56 @@
       });
     }
   });
+  function androidScene() {
+    const target1 = (0, import_jquery2.default)("#scene-content-1");
+    const target2 = (0, import_jquery2.default)("#scene-content-2");
+    const target3 = (0, import_jquery2.default)("#scene-content-3");
+    gsapWithCSS.set(target2, {
+      autoAlpha: 0
+    });
+    gsapWithCSS.set(target3, {
+      autoAlpha: 0
+    });
+    const scene = (0, import_jquery2.default)("#android-scroll-scene");
+    const sceneTl = gsapWithCSS.timeline({
+      scrollTrigger: {
+        trigger: scene,
+        markers: true,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1.2
+      }
+    });
+    sceneTl.to(
+      target1,
+      {
+        autoAlpha: 0
+      },
+      0
+    );
+    sceneTl.to(
+      target2,
+      {
+        autoAlpha: 1
+      },
+      1
+    );
+    sceneTl.to(
+      target2,
+      {
+        autoAlpha: 0
+      },
+      2
+    );
+    sceneTl.to(
+      target3,
+      {
+        autoAlpha: 1
+      },
+      3
+    );
+  }
+  androidScene();
 })();
 /*! Bundled license information:
 

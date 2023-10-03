@@ -148,3 +148,54 @@ $(function () {
     });
   }
 });
+
+function androidScene() {
+  const target1 = $('#scene-content-1');
+  const target2 = $('#scene-content-2');
+  const target3 = $('#scene-content-3');
+  gsap.set(target2, {
+    autoAlpha: 0,
+  });
+  gsap.set(target3, {
+    autoAlpha: 0,
+  });
+  const scene = $('#android-scroll-scene');
+  const sceneTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: scene,
+      markers: true,
+      start: 'top top',
+      end: 'bottom bottom',
+      scrub: 1.2,
+    },
+  });
+  sceneTl.to(
+    target1,
+    {
+      autoAlpha: 0,
+    },
+    0
+  );
+  sceneTl.to(
+    target2,
+    {
+      autoAlpha: 1,
+    },
+    1
+  );
+  sceneTl.to(
+    target2,
+    {
+      autoAlpha: 0,
+    },
+    2
+  );
+  sceneTl.to(
+    target3,
+    {
+      autoAlpha: 1,
+    },
+    3
+  );
+}
+androidScene();
