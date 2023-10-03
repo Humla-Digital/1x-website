@@ -19,10 +19,8 @@ import { initDiscoverGallerySlider } from './modules/discoverPostSlider';
 import { initTimedTextTabs } from './modules/timedTextTabs';
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
-initImageGalleryTabs();
 hideEmptyDepartments();
 initDiscoverGallerySlider();
-initTimedTextTabs();
 
 $('.section_company-values').each(function (index) {
   const triggerElement = $(this);

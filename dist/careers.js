@@ -13448,31 +13448,6 @@
   SplitText.version = "3.12.2";
   SplitText.register = _initCore5;
 
-  // src/modules/imageGalleryTabs.ts
-  init_live_reload();
-  function initImageGalleryTabs() {
-    $(function() {
-      const tabDuration = 5e3;
-      let tabTimeout;
-      clearTimeout(tabTimeout);
-      tabLoop($(".stories_tab-link.is_image-gallery.w--current"));
-      function tabLoop(trigger) {
-        tabTimeout = setTimeout(function() {
-          const $next = trigger.next();
-          if ($next.length) {
-            $next.removeAttr("href").click();
-          } else {
-            $(".stories_tab-link.is_image-gallery:first").removeAttr("href").click();
-          }
-        }, tabDuration);
-      }
-      $(".stories_tab-link.is_image-gallery").click(function() {
-        clearTimeout(tabTimeout);
-        tabLoop($(this));
-      });
-    });
-  }
-
   // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/swiper.mjs
   init_live_reload();
 
@@ -18533,37 +18508,10 @@
     const discoverGallerySlider = new Swiper(".discover-slider", discoverGallerySliderParams);
   }
 
-  // src/modules/timedTextTabs.ts
-  init_live_reload();
-  function initTimedTextTabs() {
-    $(function() {
-      const tabDuration = 5e3;
-      let tabTimeout;
-      clearTimeout(tabTimeout);
-      tabLoop($(".stories_tab-link.is-dark.is-mission.w--current"));
-      function tabLoop(trigger) {
-        tabTimeout = setTimeout(function() {
-          const $next = trigger.next();
-          if ($next.length) {
-            $next.removeAttr("href").click();
-          } else {
-            $(".stories_tab-link.is-dark.is-mission:first").removeAttr("href").click();
-          }
-        }, tabDuration);
-      }
-      $(".stories_tab-link.is-dark.is-mission").click(function() {
-        clearTimeout(tabTimeout);
-        tabLoop($(this));
-      });
-    });
-  }
-
   // src/careers.ts
   gsapWithCSS.registerPlugin(SplitText, ScrollTrigger2);
-  initImageGalleryTabs();
   hideEmptyDepartments();
   initDiscoverGallerySlider();
-  initTimedTextTabs();
   $(".section_company-values").each(function(index) {
     const triggerElement = $(this);
     const horizontalLine = $(".horizontal-line");
