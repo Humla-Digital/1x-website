@@ -11346,31 +11346,6 @@
     const discoverGallerySlider = new Swiper(".discover-slider", discoverGallerySliderParams);
   }
 
-  // src/modules/imageGalleryTabs.ts
-  init_live_reload();
-  function initImageGalleryTabs() {
-    $(function() {
-      const tabDuration = 5e3;
-      let tabTimeout;
-      clearTimeout(tabTimeout);
-      tabLoop($(".stories_tab-link.is_image-gallery.w--current"));
-      function tabLoop(trigger) {
-        tabTimeout = setTimeout(function() {
-          const $next = trigger.next();
-          if ($next.length) {
-            $next.removeAttr("href").click();
-          } else {
-            $(".stories_tab-link.is_image-gallery:first").removeAttr("href").click();
-          }
-        }, tabDuration);
-      }
-      $(".stories_tab-link.is_image-gallery").click(function() {
-        clearTimeout(tabTimeout);
-        tabLoop($(this));
-      });
-    });
-  }
-
   // src/modules/valuesTabs.ts
   init_live_reload();
   function initValuesTabs() {
@@ -11412,7 +11387,6 @@
 
   // src/about.ts
   initValuesTabs();
-  initImageGalleryTabs();
   initDiscoverGallerySlider();
   var cardsSliderParams = {
     modules: [Controller, Mousewheel],

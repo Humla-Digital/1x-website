@@ -13,7 +13,9 @@ import { Controller, Mousewheel, Navigation } from 'swiper/modules';
 import { type SwiperOptions } from 'swiper/types/index.d';
 
 initValuesTabs();
+/*
 initImageGalleryTabs();
+*/
 initDiscoverGallerySlider();
 /* OUR STORY SLIDER */
 const cardsSliderParams: SwiperOptions = {
