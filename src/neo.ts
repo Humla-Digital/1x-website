@@ -5,8 +5,11 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import SplitText from 'gsap/SplitText';
 import $ from 'jquery';
 
+import { pauseVideo } from '$utils/pauseVideo';
+
 import { faqModule } from './modules/faqs';
 gsap.registerPlugin(ScrollTrigger, SplitText);
+pauseVideo();
 declare global {
   interface Window {
     WebflowEditor: unknown;

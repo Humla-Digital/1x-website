@@ -13455,6 +13455,14 @@
   // src/neo.ts
   var import_jquery2 = __toESM(require_jquery(), 1);
 
+  // src/utils/pauseVideo.ts
+  init_live_reload();
+  function pauseVideo() {
+    $(".togglepause").on("click", function() {
+      $("video").trigger("click");
+    });
+  }
+
   // src/modules/faqs.ts
   init_live_reload();
   var import_jquery = __toESM(require_jquery(), 1);
@@ -13473,6 +13481,7 @@
 
   // src/neo.ts
   gsapWithCSS.registerPlugin(ScrollTrigger2, SplitText);
+  pauseVideo();
   window.Webflow ||= [];
   window.Webflow.push(() => {
     if (!window.WebflowEditor) {
