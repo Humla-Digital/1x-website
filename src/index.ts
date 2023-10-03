@@ -16,5 +16,5 @@ initDiscoverGallerySlider();
 /*
 initImageGalleryTabs();
 initTimedTextTabs();
-initValuesTabs();
 */
+initValuesTabs();

@@ -11200,6 +11200,45 @@
     const ourAndroidsSlider = new Swiper(".our-androids-slider", ourAndroidsSliderParams);
   }
 
+  // src/modules/valuesTabs.ts
+  init_live_reload();
+  function initValuesTabs() {
+    $(function() {
+      const tabDuration = 15e3;
+      let tabTimeout;
+      clearTimeout(tabTimeout);
+      tabLoop($(".tab_values.w--current"));
+      function startProgressBar() {
+        $(".auto-tabs-values_timer-bar").animate({ width: "100%" }, tabDuration);
+      }
+      function stopProgressBar() {
+        $(".auto-tabs-values_timer-bar").stop(true, true).css("width", "0%");
+      }
+      function tabLoop(trigger) {
+        startProgressBar();
+        tabTimeout = setTimeout(function() {
+          const $next = trigger.next();
+          startProgressBar();
+          if ($next.length) {
+            $next.removeAttr("href").click();
+            stopProgressBar();
+            startProgressBar();
+          } else {
+            $(".tab_values:first").removeAttr("href").click();
+            stopProgressBar();
+            startProgressBar();
+          }
+        }, tabDuration);
+      }
+      $(".tab_values").on("click", function() {
+        clearTimeout(tabTimeout);
+        tabLoop($(this));
+        stopProgressBar();
+        startProgressBar();
+      });
+    });
+  }
+
   // src/utils/jobCounter.ts
   init_live_reload();
   function jobCounter() {
@@ -11220,6 +11259,7 @@
   jobCounter();
   initOurAndroidsSlider();
   initDiscoverGallerySlider();
+  initValuesTabs();
 })();
 /*! Bundled license information:
 
