@@ -13,6 +13,8 @@ pauseVideo();
 jobCounter();
 initOurAndroidsSlider();
 initDiscoverGallerySlider();
+/*
 initImageGalleryTabs();
 initTimedTextTabs();
 initValuesTabs();
+*/
