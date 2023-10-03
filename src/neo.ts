@@ -17,6 +17,7 @@ window.Webflow.push(() => {
   if (!window.WebflowEditor) {
     careerBenefits();
     faqModule();
+    androidScene();
   } else {
     $('.is_pdp-android-scene').addClass('in-editor');
   }
@@ -97,58 +98,6 @@ function careerBenefits() {
   }
 }
 
-$('.android_value-props-tab-link').on('click', function () {
-  $(this).find('.android_value-props-content').addClass('is-active');
-  $(this)
-    .siblings('.android_value-props-tab-link')
-    .find('.android_value-props-content')
-    .removeClass('is-active');
-});
-
-$(function () {
-  // Set duration of tab cycle in milliseconds
-  const tabDuration = 2000;
-
-  // Starts the tab cycle
-  let tabTimeout: number | undefined;
-  clearTimeout(tabTimeout);
-
-  tabLoop($('.android_value-props-tab-link.w--current'));
-
-  // Define cycle through all tabs
-  function tabLoop(trigger: JQuery<HTMLElement>) {
-    function startProgressBar() {
-      trigger.find('.android_value-props-progbar').animate({ width: '100%' }, tabDuration);
-    }
-
-    function stopProgressBar() {
-      $('.android_value-props-progbar').stop(true, true).css('width', '0%');
-    }
-    startProgressBar();
-    // Loop to next/first tab after tabDuration and reset / start progressbar
-    tabTimeout = setTimeout(function () {
-      const $next = trigger.next();
-      startProgressBar();
-      if ($next.length) {
-        $next.removeAttr('href').trigger('click');
-        stopProgressBar();
-        startProgressBar();
-      } else {
-        $('.android_value-props-tab-link:first').removeAttr('href').trigger('click');
-        stopProgressBar();
-        startProgressBar();
-      }
-    }, tabDuration);
-    // Reset timeout if a tab is clicked
-    $('.android_value-props-tab-link').on('click', function () {
-      clearTimeout(tabTimeout);
-      tabLoop($(this));
-      stopProgressBar();
-      startProgressBar();
-    });
-  }
-});
-
 function androidScene() {
   const target1 = $('#scene-content-1');
   const target2 = $('#scene-content-2');
@@ -198,4 +147,3 @@ function androidScene() {
     3
   );
 }
-androidScene();

@@ -6,6 +6,6 @@
     "paths": {
       "$utils/*": ["src/utils/*"]
     },
-    "types": ["@finsweet/ts-utils", "jquery", "gsap"]
+    "types": ["@finsweet/ts-utils", "jquery", "gsap", "imagesloaded"]
   }
 }
