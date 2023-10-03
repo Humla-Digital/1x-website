@@ -6596,8 +6596,7 @@
     autoAlpha: "0",
     y: 10,
     duration: 0.8,
-    stagger: 0.2,
-    delay: 1
+    stagger: 0.2
   });
   window.Webflow ||= [];
   window.Webflow.push(() => {
