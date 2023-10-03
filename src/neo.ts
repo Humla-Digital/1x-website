@@ -143,13 +143,13 @@ function androidScene() {
     {
       autoAlpha: 0,
     },
-    2
+    3
   );
   sceneTl.to(
     target3,
     {
       autoAlpha: 1,
     },
-    3
+    4
   );
 }
