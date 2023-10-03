@@ -13570,7 +13570,6 @@
     const sceneTl = gsapWithCSS.timeline({
       scrollTrigger: {
         trigger: scene,
-        markers: true,
         start: "top top",
         end: "bottom bottom",
         scrub: 1.2
