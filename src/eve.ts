@@ -1,6 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/mousewheel';
+
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
+import Swiper from 'swiper';
+import { Mousewheel, Pagination } from 'swiper/modules';
+import { type SwiperOptions } from 'swiper/types';
 
 import { pauseVideo } from '$utils/pauseVideo';
 
@@ -148,3 +156,38 @@ function androidScene() {
     4
   );
 }
+const cardsSliderParams: SwiperOptions = {
+  modules: [Mousewheel, Pagination],
+  slidesPerView: 'auto',
+  spaceBetween: 40,
+  speed: 400,
+  setWrapperSize: false,
+  mousewheel: {
+    forceToAxis: true,
+  },
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+    renderBullet: function (index, className) {
+      return '<span class="' + className + '">' + '</span>';
+    },
+  },
+  breakpoints: {
+    // when window width is >= 290px
+    290: {
+      slidesPerView: 1,
+      spaceBetween: 20,
+      setWrapperSize: false,
+      slidesPerGroup: 1,
+    },
+    // when window width is >= 768px
+    768: {
+      slidesPerView: 1,
+    },
+    // when window width is >= 992px
+    992: {
+      slidesPerView: 'auto',
+    },
+  },
+};
+const cardsSlider = new Swiper('.our-story-cards-slider', cardsSliderParams);
