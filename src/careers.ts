@@ -21,6 +21,8 @@ gsap.registerPlugin(SplitText, ScrollTrigger);
 
 hideEmptyDepartments();
 initDiscoverGallerySlider();
+initTimedTextTabs();
+initImageGalleryTabs();
 
 $('.section_company-values').each(function (index) {
   const triggerElement = $(this);
