@@ -13608,6 +13608,20 @@
       4
     );
   }
+  (0, import_jquery2.default)(".section_about-neo").each(function() {
+    const splitTextTimeline = gsapWithCSS.timeline({ paused: true, reversed: true }), aboutText = (0, import_jquery2.default)(this).find(".d-light-44"), splitText = new SplitText(aboutText, { type: "words,chars" }), { chars } = splitText;
+    splitTextTimeline.from(chars, {
+      autoAlpha: 0,
+      duration: 0.01,
+      stagger: 0.05
+    });
+    const triggerElement = (0, import_jquery2.default)(this);
+    ScrollTrigger2.create({
+      trigger: triggerElement,
+      start: "top center",
+      onEnter: () => splitTextTimeline.play()
+    });
+  });
 })();
 /*! Bundled license information:
 

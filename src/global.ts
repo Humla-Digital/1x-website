@@ -27,20 +27,20 @@ ScrollTrigger.create({
 });
 turnNavWhite();
 $('footer').each(function () {
-  const footer = $(this);
+  const triggerElement = $('.footer_circles-wrapper');
   const target = $('.footer_circles-wrapper').find('path');
   const footerAnimation = gsap.timeline({
     scrollTrigger: {
-      trigger: footer,
+      trigger: triggerElement,
       start: 'center bottom',
     },
   });
 
   footerAnimation.from(target, {
     autoAlpha: '0',
-    y: 10,
-    duration: 0.8,
-    stagger: 0.2,
+    y: 20,
+    duration: 1.2,
+    stagger: 0.12,
   });
 });
 

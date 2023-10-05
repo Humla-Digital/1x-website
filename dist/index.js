@@ -17668,6 +17668,7 @@
   // src/modules/discoverPostSlider.ts
   sliderCursor();
   function initDiscoverGallerySlider() {
+    gsapWithCSS.registerPlugin(ScrollTrigger2);
     $(".section_discover-slider").each(function(index) {
       const cardTargets = gsapWithCSS.utils.toArray($(this).find(".swiper-slide"));
       const h2Target = $(this).find("h2");

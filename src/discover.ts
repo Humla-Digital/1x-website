@@ -2,7 +2,9 @@
 /* eslint-disable no-return-assign */
 /* eslint-disable no-console */
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import $ from 'jquery';
+gsap.registerPlugin(ScrollTrigger);
 gsap.set('.discover-tag-collection-item', { autoAlpha: 0 });
 const showDiscoverTags = gsap.timeline({ paused: true });
 showDiscoverTags.to('.discover-tag-collection-item', {
@@ -23,4 +25,22 @@ $('.wrapper_discover-filters').on('click', function () {
   $('.grid_discover-filter-tags').toggleClass('is-active');
   showDiscoverTags.play();
   showDiscoverTags.restart();
+  ScrollTrigger.refresh();
+});
+
+$('.section_evergreen-studio-post').each(function () {
+  let triggerElement = $(this);
+  let targetElements = gsap.utils.toArray(
+    $(this).find('.wrapper_featured-post-text-content, .image-wrapper_featured-post')
+  );
+  let tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: triggerElement,
+      start: 'top center',
+    },
+  });
+  tl.from(targetElements, {
+    autoAlpha: 0,
+    stagger: 0.2,
+  });
 });

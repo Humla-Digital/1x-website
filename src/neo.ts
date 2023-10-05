@@ -153,3 +153,21 @@ function androidScene() {
     4
   );
 }
+
+$('.section_about-neo').each(function () {
+  const splitTextTimeline = gsap.timeline({ paused: true, reversed: true }),
+    aboutText = $(this).find('.d-light-44'),
+    splitText = new SplitText(aboutText, { type: 'words,chars' }),
+    { chars } = splitText;
+  splitTextTimeline.from(chars, {
+    autoAlpha: 0,
+    duration: 0.01,
+    stagger: 0.05,
+  });
+  const triggerElement = $(this);
+  ScrollTrigger.create({
+    trigger: triggerElement,
+    start: 'top center',
+    onEnter: () => splitTextTimeline.play(),
+  });
+});

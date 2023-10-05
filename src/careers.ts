@@ -151,3 +151,41 @@ window.Webflow.push(() => {
   } else {
   }
 });
+
+$('.section_featured-team-post').each(function () {
+  const triggerElement = $(this);
+  const targetElements = gsap.utils.toArray(
+    $(this).find('.image-wrapper_featured-team-post, .content-wrapper_featured-team-post')
+  );
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: triggerElement,
+      start: 'top center',
+    },
+  });
+  tl.from(targetElements, {
+    autoAlpha: 0,
+    x: '-20',
+    stagger: 0.2,
+    ease: 'power2.out',
+  });
+});
+
+$('.section_featured-studio-post').each(function () {
+  const triggerElement = $(this);
+  const targetElements = gsap.utils.toArray(
+    $(this).find('.image-wrapper_featured-team-post, .content-wrapper_featured-team-post')
+  );
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: triggerElement,
+      start: 'top center',
+    },
+  });
+  tl.from(targetElements, {
+    autoAlpha: 0,
+    x: '-20',
+    stagger: 0.2,
+    ease: 'power2.out',
+  });
+});

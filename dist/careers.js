@@ -18496,6 +18496,7 @@
   // src/modules/discoverPostSlider.ts
   sliderCursor();
   function initDiscoverGallerySlider() {
+    gsapWithCSS.registerPlugin(ScrollTrigger2);
     $(".section_discover-slider").each(function(index) {
       const cardTargets = gsapWithCSS.utils.toArray($(this).find(".swiper-slide"));
       const h2Target = $(this).find("h2");
@@ -18696,6 +18697,42 @@
       careerBenefits();
     } else {
     }
+  });
+  $(".section_featured-team-post").each(function() {
+    const triggerElement = $(this);
+    const targetElements = gsapWithCSS.utils.toArray(
+      $(this).find(".image-wrapper_featured-team-post, .content-wrapper_featured-team-post")
+    );
+    const tl = gsapWithCSS.timeline({
+      scrollTrigger: {
+        trigger: triggerElement,
+        start: "top center"
+      }
+    });
+    tl.from(targetElements, {
+      autoAlpha: 0,
+      x: "-20",
+      stagger: 0.2,
+      ease: "power2.out"
+    });
+  });
+  $(".section_featured-studio-post").each(function() {
+    const triggerElement = $(this);
+    const targetElements = gsapWithCSS.utils.toArray(
+      $(this).find(".image-wrapper_featured-team-post, .content-wrapper_featured-team-post")
+    );
+    const tl = gsapWithCSS.timeline({
+      scrollTrigger: {
+        trigger: triggerElement,
+        start: "top center"
+      }
+    });
+    tl.from(targetElements, {
+      autoAlpha: 0,
+      x: "-20",
+      stagger: 0.2,
+      ease: "power2.out"
+    });
   });
 })();
 /*! Bundled license information:
