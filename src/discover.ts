@@ -5,42 +5,60 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import $ from 'jquery';
 gsap.registerPlugin(ScrollTrigger);
-gsap.set('.discover-tag-collection-item', { autoAlpha: 0 });
-const showDiscoverTags = gsap.timeline({ paused: true });
-showDiscoverTags.to('.discover-tag-collection-item', {
-  autoAlpha: 1,
-  stagger: 0.1,
-  duration: 0.35,
-});
 
-const popularTopics = $('#popular-topics');
-$('.wrapper_discover-filters').on('click', function () {
-  let clicks = $(this).data('clicks');
-  if (!clicks) {
-    popularTopics.text('Popular Topics ↑');
-  } else {
-    popularTopics.text('Popular Topics ↓');
+declare global {
+  interface Window {
+    WebflowEditor: unknown;
   }
-  $(this).data('clicks', !clicks);
-  $('.grid_discover-filter-tags').toggleClass('is-active');
-  showDiscoverTags.play();
-  showDiscoverTags.restart();
-  ScrollTrigger.refresh();
+}
+window.Webflow ||= [];
+window.Webflow.push(() => {
+  if (!window.WebflowEditor) {
+    discoverTags();
+    studioPostAnim();
+  } else {
+  }
 });
 
-$('.section_evergreen-studio-post').each(function () {
-  let triggerElement = $(this);
-  let targetElements = gsap.utils.toArray(
-    $(this).find('.wrapper_featured-post-text-content, .image-wrapper_featured-post')
-  );
-  let tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: triggerElement,
-      start: 'top center',
-    },
+function discoverTags() {
+  gsap.set('.discover-tag-collection-item', { autoAlpha: 0 });
+  const showDiscoverTags = gsap.timeline({ paused: true });
+  showDiscoverTags.to('.discover-tag-collection-item', {
+    autoAlpha: 1,
+    stagger: 0.1,
+    duration: 0.35,
   });
-  tl.from(targetElements, {
-    autoAlpha: 0,
-    stagger: 0.2,
+
+  const popularTopics = $('#popular-topics');
+  $('.wrapper_discover-filters').on('click', function () {
+    let clicks = $(this).data('clicks');
+    if (!clicks) {
+      popularTopics.text('Popular Topics ↑');
+    } else {
+      popularTopics.text('Popular Topics ↓');
+    }
+    $(this).data('clicks', !clicks);
+    $('.grid_discover-filter-tags').toggleClass('is-active');
+    showDiscoverTags.play();
+    showDiscoverTags.restart();
+    ScrollTrigger.refresh();
   });
-});
+}
+function studioPostAnim() {
+  $('.section_evergreen-studio-post').each(function () {
+    let triggerElement = $(this);
+    let targetElements = gsap.utils.toArray(
+      $(this).find('.wrapper_featured-post-text-content, .image-wrapper_featured-post')
+    );
+    let tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: triggerElement,
+        start: 'top center',
+      },
+    });
+    tl.from(targetElements, {
+      autoAlpha: 0,
+      stagger: 0.2,
+    });
+  });
+}

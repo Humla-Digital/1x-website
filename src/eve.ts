@@ -26,9 +26,12 @@ window.Webflow.push(() => {
     careerBenefits();
     faqModule();
     androidScene();
-    pauseVideo();
+    aboutEveTypedAnim();
   } else {
     $('.is_pdp-android-scene').addClass('in-editor');
+    specsToggle();
+    eveLearnsSlider();
+    pauseVideo();
   }
 });
 
@@ -158,56 +161,60 @@ function androidScene() {
     4
   );
 }
-const cardsSliderParams: SwiperOptions = {
-  modules: [Mousewheel, Pagination],
-  slidesPerView: 'auto',
-  spaceBetween: 40,
-  speed: 400,
-  setWrapperSize: false,
-  mousewheel: {
-    forceToAxis: true,
-  },
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true,
-    renderBullet: function (index, className) {
-      return '<span class="' + className + '">' + '</span>';
+function eveLearnsSlider() {
+  const cardsSliderParams: SwiperOptions = {
+    modules: [Mousewheel, Pagination],
+    slidesPerView: 'auto',
+    spaceBetween: 40,
+    speed: 400,
+    setWrapperSize: false,
+    mousewheel: {
+      forceToAxis: true,
     },
-  },
-  breakpoints: {
-    // when window width is >= 290px
-    290: {
-      slidesPerView: 1,
-      spaceBetween: 20,
-      setWrapperSize: false,
-      slidesPerGroup: 1,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+      renderBullet: function (index, className) {
+        return '<span class="' + className + '">' + '</span>';
+      },
     },
-    // when window width is >= 768px
-    768: {
-      slidesPerView: 1,
+    breakpoints: {
+      // when window width is >= 290px
+      290: {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        setWrapperSize: false,
+        slidesPerGroup: 1,
+      },
+      // when window width is >= 768px
+      768: {
+        slidesPerView: 1,
+      },
+      // when window width is >= 992px
+      992: {
+        slidesPerView: 'auto',
+      },
     },
-    // when window width is >= 992px
-    992: {
-      slidesPerView: 'auto',
-    },
-  },
-};
-const cardsSlider = new Swiper('.our-story-cards-slider', cardsSliderParams);
+  };
+  const cardsSlider = new Swiper('.our-story-cards-slider', cardsSliderParams);
+}
 
-$('.section_about-eve').each(function () {
-  const splitTextTimeline = gsap.timeline({ paused: true, reversed: true }),
-    aboutText = $(this).find('.d-light-44'),
-    splitText = new SplitText(aboutText, { type: 'words,chars' }),
-    { chars } = splitText;
-  splitTextTimeline.from(chars, {
-    autoAlpha: 0,
-    duration: 0.01,
-    stagger: 0.05,
+function aboutEveTypedAnim() {
+  $('.section_about-eve').each(function () {
+    const splitTextTimeline = gsap.timeline({ paused: true, reversed: true }),
+      aboutText = $(this).find('.d-light-44'),
+      splitText = new SplitText(aboutText, { type: 'words,chars' }),
+      { chars } = splitText;
+    splitTextTimeline.from(chars, {
+      autoAlpha: 0,
+      duration: 0.01,
+      stagger: 0.05,
+    });
+    const triggerElement = $(this);
+    ScrollTrigger.create({
+      trigger: triggerElement,
+      start: 'top center',
+      onEnter: () => splitTextTimeline.play(),
+    });
   });
-  const triggerElement = $(this);
-  ScrollTrigger.create({
-    trigger: triggerElement,
-    start: 'top center',
-    onEnter: () => splitTextTimeline.play(),
-  });
-});
+}

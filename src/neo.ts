@@ -9,7 +9,6 @@ import { pauseVideo } from '$utils/pauseVideo';
 
 import { faqModule } from './modules/faqs';
 gsap.registerPlugin(ScrollTrigger, SplitText);
-pauseVideo();
 declare global {
   interface Window {
     WebflowEditor: unknown;
@@ -21,8 +20,11 @@ window.Webflow.push(() => {
     careerBenefits();
     faqModule();
     androidScene();
+    aboutNeoTypedAnim();
   } else {
     $('.is_pdp-android-scene').addClass('in-editor');
+    specsToggle();
+    pauseVideo();
   }
 });
 
@@ -154,20 +156,22 @@ function androidScene() {
   );
 }
 
-$('.section_about-neo').each(function () {
-  const splitTextTimeline = gsap.timeline({ paused: true, reversed: true }),
-    aboutText = $(this).find('.d-light-44'),
-    splitText = new SplitText(aboutText, { type: 'words,chars' }),
-    { chars } = splitText;
-  splitTextTimeline.from(chars, {
-    autoAlpha: 0,
-    duration: 0.01,
-    stagger: 0.05,
+function aboutNeoTypedAnim() {
+  $('.section_about-neo').each(function () {
+    const splitTextTimeline = gsap.timeline({ paused: true, reversed: true }),
+      aboutText = $(this).find('.d-light-44'),
+      splitText = new SplitText(aboutText, { type: 'words,chars' }),
+      { chars } = splitText;
+    splitTextTimeline.from(chars, {
+      autoAlpha: 0,
+      duration: 0.01,
+      stagger: 0.05,
+    });
+    const triggerElement = $(this);
+    ScrollTrigger.create({
+      trigger: triggerElement,
+      start: 'top center',
+      onEnter: () => splitTextTimeline.play(),
+    });
   });
-  const triggerElement = $(this);
-  ScrollTrigger.create({
-    trigger: triggerElement,
-    start: 'top center',
-    onEnter: () => splitTextTimeline.play(),
-  });
-});
+}

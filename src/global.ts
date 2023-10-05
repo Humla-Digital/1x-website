@@ -10,39 +10,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 $('.menu-link.w--current').addClass('current-page');
 $('.current-page').siblings('.menu-link').addClass('opacity-50');
-const showNav = gsap
-  .from('.navbar-wrapper', {
-    yPercent: -100,
-    paused: true,
-    duration: 0.25,
-  })
-  .progress(1);
-
-ScrollTrigger.create({
-  start: 'top top',
-  end: 99999,
-  onUpdate: (self) => {
-    self.direction === -1 ? showNav.play() : showNav.reverse();
-  },
-});
-turnNavWhite();
-$('footer').each(function () {
-  const triggerElement = $('.footer_circles-wrapper');
-  const target = $('.footer_circles-wrapper').find('path');
-  const footerAnimation = gsap.timeline({
-    scrollTrigger: {
-      trigger: triggerElement,
-      start: 'center bottom',
-    },
-  });
-
-  footerAnimation.from(target, {
-    autoAlpha: '0',
-    y: 20,
-    duration: 1.2,
-    stagger: 0.12,
-  });
-});
 
 declare global {
   interface Window {
@@ -52,10 +19,52 @@ declare global {
 window.Webflow ||= [];
 window.Webflow.push(() => {
   if (!window.WebflowEditor) {
+    navbarAnim();
+    featuredPostAnim();
   } else {
+    turnNavWhite();
+    footerAnim();
     $('.item_faq-content').addClass('is-active');
   }
 });
+
+function navbarAnim() {
+  const showNav = gsap
+    .from('.navbar-wrapper', {
+      yPercent: -100,
+      paused: true,
+      duration: 0.25,
+    })
+    .progress(1);
+
+  ScrollTrigger.create({
+    start: 'top top',
+    end: 99999,
+    onUpdate: (self) => {
+      self.direction === -1 ? showNav.play() : showNav.reverse();
+    },
+  });
+}
+
+function footerAnim() {
+  $('footer').each(function () {
+    const triggerElement = $('.footer_circles-wrapper');
+    const target = $('.footer_circles-wrapper').find('path');
+    const footerAnimation = gsap.timeline({
+      scrollTrigger: {
+        trigger: triggerElement,
+        start: 'center bottom',
+      },
+    });
+
+    footerAnimation.from(target, {
+      autoAlpha: '0',
+      y: 20,
+      duration: 1.2,
+      stagger: 0.12,
+    });
+  });
+}
 
 /**SIDEBAR MENU HOVER STATES*/
 if (window.innerWidth > 992) {
@@ -146,22 +155,24 @@ $('.tablet_sidebar-back').on('click', function () {
   $('.sidebar-menu-drawer').removeClass('is-active');
 });
 
-if ('.section_announcement-featured-post') {
-  $('.section_announcement-featured-post').each(function () {
-    const triggerElement = $(this);
-    const targets = gsap.utils.toArray([$(this).find('div'), $(this).find('p')]);
-    const targetImg = $(this).find('img');
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        start: 'top center',
-        trigger: triggerElement,
-      },
+function featuredPostAnim() {
+  if ('.section_announcement-featured-post') {
+    $('.section_announcement-featured-post').each(function () {
+      const triggerElement = $(this);
+      const targets = gsap.utils.toArray([$(this).find('div'), $(this).find('p')]);
+      const targetImg = $(this).find('img');
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          start: 'top center',
+          trigger: triggerElement,
+        },
+      });
+      tl.from(targets, {
+        autoAlpha: 0,
+      });
+      tl.from(targetImg, {
+        autoAlpha: 0,
+      });
     });
-    tl.from(targets, {
-      autoAlpha: 0,
-    });
-    tl.from(targetImg, {
-      autoAlpha: 0,
-    });
-  });
+  }
 }
