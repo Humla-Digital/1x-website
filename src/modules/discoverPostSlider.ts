@@ -27,18 +27,17 @@ export function initDiscoverGallerySlider() {
     });
     tl.from(h2Target, {
       autoAlpha: 0,
+      duration: 0.2,
     });
     tl.from(cardTargets, {
       autoAlpha: 0,
       stagger: 0.1,
+      duration: 0.4,
     });
-    tl.from(
-      buttonTarget,
-      {
-        autoAlpha: 0,
-      },
-      0
-    );
+    tl.from(buttonTarget, {
+      autoAlpha: 0,
+      duration: 0.3,
+    });
   });
   const discoverGallerySliderParams: SwiperOptions = {
     modules: [Navigation, Mousewheel],

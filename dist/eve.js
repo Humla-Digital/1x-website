@@ -13452,13 +13452,13 @@
   SplitText.version = "3.12.2";
   SplitText.register = _initCore5;
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/swiper.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/swiper.mjs
   init_live_reload();
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/shared/swiper-core.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/shared/swiper-core.mjs
   init_live_reload();
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/shared/ssr-window.esm.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/shared/ssr-window.esm.mjs
   init_live_reload();
   function isObject(obj) {
     return obj !== null && typeof obj === "object" && "constructor" in obj && obj.constructor === Object;
@@ -13609,7 +13609,7 @@
     return win;
   }
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/shared/utils.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/shared/utils.mjs
   init_live_reload();
   function deleteProps(obj) {
     const object = obj;
@@ -13855,7 +13855,7 @@
     return el.offsetWidth;
   }
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/shared/swiper-core.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/shared/swiper-core.mjs
   var support;
   function calcSupport() {
     const window2 = getWindow();
@@ -15408,7 +15408,7 @@
       swiper._clientLeft = swiper.wrapperEl.clientLeft;
       if (swiper.activeIndex === swiper.slides.length - 1 && params.cssMode) {
         requestAnimationFrame(() => {
-          swiper.slideTo(swiper.activeIndex + increment, speed, runCallbacks, internal);
+          swiper.slideTo(swiper.activeIndex + increment);
         });
         return true;
       }
@@ -15416,7 +15416,7 @@
     if (params.rewind && swiper.isEnd) {
       return swiper.slideTo(0, speed, runCallbacks, internal);
     }
-    return swiper.slideTo(swiper.activeIndex + increment, speed, runCallbacks, internal);
+    return swiper.slideTo(swiper.activeIndex + increment);
   }
   function slidePrev(speed, runCallbacks, internal) {
     if (speed === void 0) {
@@ -17412,16 +17412,16 @@
   });
   Swiper.use([Resize, Observer2]);
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/modules/index.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/modules/index.mjs
   init_live_reload();
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/modules/virtual.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/modules/virtual.mjs
   init_live_reload();
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/modules/keyboard.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/modules/keyboard.mjs
   init_live_reload();
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/modules/mousewheel.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/modules/mousewheel.mjs
   init_live_reload();
   function Mousewheel(_ref) {
     let {
@@ -17746,10 +17746,10 @@
     });
   }
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/modules/navigation.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/modules/navigation.mjs
   init_live_reload();
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/shared/create-element-if-not-defined.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/shared/create-element-if-not-defined.mjs
   init_live_reload();
   function createElementIfNotDefined(swiper, originalParams, params, checkProps) {
     if (swiper.params.createElements) {
@@ -17769,10 +17769,10 @@
     return params;
   }
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/modules/pagination.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/modules/pagination.mjs
   init_live_reload();
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/shared/classes-to-selector.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/shared/classes-to-selector.mjs
   init_live_reload();
   function classesToSelector(classes2) {
     if (classes2 === void 0) {
@@ -17781,7 +17781,7 @@
     return `.${classes2.trim().replace(/([\.:!+\/])/g, "\\$1").replace(/ /g, ".")}`;
   }
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/modules/pagination.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/modules/pagination.mjs
   function Pagination(_ref) {
     let {
       swiper,
@@ -18251,70 +18251,70 @@
     });
   }
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/modules/scrollbar.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/modules/scrollbar.mjs
   init_live_reload();
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/modules/parallax.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/modules/parallax.mjs
   init_live_reload();
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/modules/zoom.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/modules/zoom.mjs
   init_live_reload();
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/modules/controller.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/modules/controller.mjs
   init_live_reload();
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/modules/a11y.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/modules/a11y.mjs
   init_live_reload();
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/modules/history.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/modules/history.mjs
   init_live_reload();
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/modules/hash-navigation.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/modules/hash-navigation.mjs
   init_live_reload();
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/modules/autoplay.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/modules/autoplay.mjs
   init_live_reload();
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/modules/thumbs.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/modules/thumbs.mjs
   init_live_reload();
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/modules/free-mode.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/modules/free-mode.mjs
   init_live_reload();
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/modules/grid.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/modules/grid.mjs
   init_live_reload();
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/modules/manipulation.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/modules/manipulation.mjs
   init_live_reload();
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/modules/effect-fade.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/modules/effect-fade.mjs
   init_live_reload();
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/shared/effect-init.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/shared/effect-init.mjs
   init_live_reload();
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/shared/effect-target.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/shared/effect-target.mjs
   init_live_reload();
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/shared/effect-virtual-transition-end.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/shared/effect-virtual-transition-end.mjs
   init_live_reload();
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/modules/effect-cube.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/modules/effect-cube.mjs
   init_live_reload();
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/modules/effect-flip.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/modules/effect-flip.mjs
   init_live_reload();
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/shared/create-shadow.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/shared/create-shadow.mjs
   init_live_reload();
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/modules/effect-coverflow.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/modules/effect-coverflow.mjs
   init_live_reload();
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/modules/effect-creative.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/modules/effect-creative.mjs
   init_live_reload();
 
-  // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/modules/effect-cards.mjs
+  // node_modules/.pnpm/swiper@10.3.0/node_modules/swiper/modules/effect-cards.mjs
   init_live_reload();
 
   // src/utils/pauseVideo.ts

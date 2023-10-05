@@ -4,6 +4,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/controller';
 
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import $ from 'jquery';
 import { initDiscoverGallerySlider } from 'src/modules/discoverPostSlider';
 import { initImageGalleryTabs } from 'src/modules/imageGalleryTabs';
@@ -11,7 +13,7 @@ import { initValuesTabs } from 'src/modules/valuesTabs';
 import Swiper from 'swiper';
 import { Controller, Mousewheel, Navigation } from 'swiper/modules';
 import { type SwiperOptions } from 'swiper/types/index.d';
-
+gsap.registerPlugin(ScrollTrigger);
 initValuesTabs();
 
 initImageGalleryTabs();
@@ -79,3 +81,40 @@ const timelineSliderParams: SwiperOptions = {
 const timelineSlider = new Swiper('.our-story-timeline-slider', timelineSliderParams);
 timelineSlider.controller.control = cardsSlider;
 cardsSlider.controller.control = timelineSlider;
+
+$('.section_our-perspective').each(function () {
+  const triggerElement = $(this);
+  const targetElements = gsap.utils.toArray(
+    '.image-wrapper_our-perspective, .d-mono-15, .d-light-48'
+  );
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: triggerElement,
+      start: 'top center',
+    },
+  });
+  tl.from(targetElements, {
+    autoAlpha: 0,
+    stagger: 0.2,
+  });
+});
+
+$('.section_explore-careers').each(function () {
+  const triggerElement = $(this);
+  const bgTarget = $(this).find('.content-wrapper_explore-careers');
+  const contentTargets = gsap.utils.toArray('.sm-max-width-200, .m-light-16, .p2-button');
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: triggerElement,
+      start: 'top center',
+    },
+  });
+  tl.from(bgTarget, {
+    autoAlpha: 0,
+  });
+  tl.from(contentTargets, {
+    autoAlpha: 0,
+    stagger: 0.2,
+  });
+});
