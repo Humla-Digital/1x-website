@@ -23,7 +23,7 @@ const cardsSliderParams: SwiperOptions = {
   slidesPerView: 1,
   spaceBetween: 56,
   speed: 400,
-  setWrapperSize: true,
+  setWrapperSize: false,
   mousewheel: {
     forceToAxis: true,
   },

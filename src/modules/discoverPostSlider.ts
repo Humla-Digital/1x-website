@@ -2,6 +2,8 @@
 import 'swiper/css';
 import 'swiper/css/navigation';
 
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Swiper from 'swiper';
 import { Mousewheel, Navigation } from 'swiper/modules';
 import { type SwiperOptions } from 'swiper/types/index.d';
@@ -11,6 +13,28 @@ import { sliderCursor } from './sliderCursor';
 sliderCursor();
 
 export function initDiscoverGallerySlider() {
+  $('.section_discover-slider').each(function (index) {
+    const cardTargets = gsap.utils.toArray($(this).find('.swiper-slide'));
+    const h2Target = $(this).find('h2');
+    const buttonTarget = $(this).find('.wrapper_button-slider-controls');
+    const triggerElement = $(this);
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        start: 'top center',
+        trigger: triggerElement,
+      },
+    });
+    tl.from(h2Target, {
+      autoAlpha: 0,
+    });
+    tl.from(cardTargets, {
+      autoAlpha: 0,
+      stagger: 0.2,
+    });
+    tl.from(buttonTarget, {
+      autoAlpha: 0,
+    });
+  });
   const discoverGallerySliderParams: SwiperOptions = {
     modules: [Navigation, Mousewheel],
     direction: 'horizontal',

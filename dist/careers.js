@@ -13448,6 +13448,31 @@
   SplitText.version = "3.12.2";
   SplitText.register = _initCore5;
 
+  // src/modules/imageGalleryTabs.ts
+  init_live_reload();
+  function initImageGalleryTabs() {
+    $(function() {
+      const tabDuration = 5e3;
+      let tabTimeout;
+      clearTimeout(tabTimeout);
+      tabLoop($(".stories_tab-link.is_image-gallery.w--current"));
+      function tabLoop(trigger) {
+        tabTimeout = setTimeout(function() {
+          const $next = trigger.next();
+          if ($next.length) {
+            $next.removeAttr("href").click();
+          } else {
+            $(".stories_tab-link.is_image-gallery:first").removeAttr("href").click();
+          }
+        }, tabDuration);
+      }
+      $(".stories_tab-link.is_image-gallery").click(function() {
+        clearTimeout(tabTimeout);
+        tabLoop($(this));
+      });
+    });
+  }
+
   // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/swiper.mjs
   init_live_reload();
 
@@ -18471,6 +18496,28 @@
   // src/modules/discoverPostSlider.ts
   sliderCursor();
   function initDiscoverGallerySlider() {
+    $(".section_discover-slider").each(function(index) {
+      const cardTargets = gsapWithCSS.utils.toArray($(this).find(".swiper-slide"));
+      const h2Target = $(this).find("h2");
+      const buttonTarget = $(this).find(".wrapper_button-slider-controls");
+      const triggerElement = $(this);
+      const tl = gsapWithCSS.timeline({
+        scrollTrigger: {
+          start: "top center",
+          trigger: triggerElement
+        }
+      });
+      tl.from(h2Target, {
+        autoAlpha: 0
+      });
+      tl.from(cardTargets, {
+        autoAlpha: 0,
+        stagger: 0.2
+      });
+      tl.from(buttonTarget, {
+        autoAlpha: 0
+      });
+    });
     const discoverGallerySliderParams = {
       modules: [Navigation, Mousewheel],
       direction: "horizontal",
@@ -18508,10 +18555,37 @@
     const discoverGallerySlider = new Swiper(".discover-slider", discoverGallerySliderParams);
   }
 
+  // src/modules/timedTextTabs.ts
+  init_live_reload();
+  function initTimedTextTabs() {
+    $(function() {
+      const tabDuration = 5e3;
+      let tabTimeout;
+      clearTimeout(tabTimeout);
+      tabLoop($(".stories_tab-link.is-dark.is-mission.w--current"));
+      function tabLoop(trigger) {
+        tabTimeout = setTimeout(function() {
+          const $next = trigger.next();
+          if ($next.length) {
+            $next.removeAttr("href").click();
+          } else {
+            $(".stories_tab-link.is-dark.is-mission:first").removeAttr("href").click();
+          }
+        }, tabDuration);
+      }
+      $(".stories_tab-link.is-dark.is-mission").click(function() {
+        clearTimeout(tabTimeout);
+        tabLoop($(this));
+      });
+    });
+  }
+
   // src/careers.ts
   gsapWithCSS.registerPlugin(SplitText, ScrollTrigger2);
   hideEmptyDepartments();
   initDiscoverGallerySlider();
+  initTimedTextTabs();
+  initImageGalleryTabs();
   $(".section_company-values").each(function(index) {
     const triggerElement = $(this);
     const horizontalLine = $(".horizontal-line");

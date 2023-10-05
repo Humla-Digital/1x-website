@@ -2,11 +2,32 @@
 import 'swiper/css';
 import 'swiper/css/navigation';
 
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Swiper from 'swiper';
 import { Mousewheel, Navigation } from 'swiper/modules';
 import { type SwiperOptions } from 'swiper/types/index.d';
-
 export function initOurAndroidsSlider() {
+  gsap.registerPlugin(ScrollTrigger);
+  $('.section_our-androids').each(function (index) {
+    const triggerElement = $(this);
+    const targets = gsap.utils.toArray([
+      '.our-androids-title',
+      $(this).find('.d-light-18'),
+      $(this).find('.button-group'),
+    ]);
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: triggerElement,
+        start: 'top center',
+      },
+    });
+    tl.from(targets, {
+      autoAlpha: 0,
+      stagger: 0.25,
+    });
+  });
+
   const ourAndroidsSliderParams: SwiperOptions = {
     modules: [Navigation, Mousewheel],
     direction: 'horizontal',

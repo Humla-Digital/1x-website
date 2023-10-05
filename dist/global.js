@@ -6584,19 +6584,21 @@
     }
   });
   turnNavWhite();
-  var footer = $(".footer");
-  var targetEl = $(".footer_circles-wrapper").find("path");
-  var footerAnimation = gsapWithCSS.timeline({
-    scrollTrigger: {
-      trigger: footer,
-      start: "center bottom"
-    }
-  });
-  footerAnimation.from(targetEl, {
-    autoAlpha: "0",
-    y: 10,
-    duration: 0.8,
-    stagger: 0.2
+  $("footer").each(function() {
+    const footer = $(this);
+    const target = $(".footer_circles-wrapper").find("path");
+    const footerAnimation = gsapWithCSS.timeline({
+      scrollTrigger: {
+        trigger: footer,
+        start: "center bottom"
+      }
+    });
+    footerAnimation.from(target, {
+      autoAlpha: "0",
+      y: 10,
+      duration: 0.8,
+      stagger: 0.2
+    });
   });
   window.Webflow ||= [];
   window.Webflow.push(() => {
@@ -6685,6 +6687,25 @@
   $(".tablet_sidebar-back").on("click", function() {
     $(".sidebar-menu-drawer").removeClass("is-active");
   });
+  if (".section_announcement-featured-post") {
+    $(".section_announcement-featured-post").each(function() {
+      const triggerElement = $(this);
+      const targets = gsapWithCSS.utils.toArray([$(this).find("div"), $(this).find("p")]);
+      const targetImg = $(this).find("img");
+      const tl = gsapWithCSS.timeline({
+        scrollTrigger: {
+          start: "top center",
+          trigger: triggerElement
+        }
+      });
+      tl.from(targets, {
+        autoAlpha: 0
+      });
+      tl.from(targetImg, {
+        autoAlpha: 0
+      });
+    });
+  }
 })();
 /*! Bundled license information:
 

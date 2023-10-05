@@ -26,20 +26,22 @@ ScrollTrigger.create({
   },
 });
 turnNavWhite();
-const footer = $('.footer');
-const targetEl = $('.footer_circles-wrapper').find('path');
-const footerAnimation = gsap.timeline({
-  scrollTrigger: {
-    trigger: footer,
-    start: 'center bottom',
-  },
-});
+$('footer').each(function () {
+  const footer = $(this);
+  const target = $('.footer_circles-wrapper').find('path');
+  const footerAnimation = gsap.timeline({
+    scrollTrigger: {
+      trigger: footer,
+      start: 'center bottom',
+    },
+  });
 
-footerAnimation.from(targetEl, {
-  autoAlpha: '0',
-  y: 10,
-  duration: 0.8,
-  stagger: 0.2,
+  footerAnimation.from(target, {
+    autoAlpha: '0',
+    y: 10,
+    duration: 0.8,
+    stagger: 0.2,
+  });
 });
 
 declare global {
@@ -143,3 +145,23 @@ $('.sidebar-close').on('click', function () {
 $('.tablet_sidebar-back').on('click', function () {
   $('.sidebar-menu-drawer').removeClass('is-active');
 });
+
+if ('.section_announcement-featured-post') {
+  $('.section_announcement-featured-post').each(function () {
+    const triggerElement = $(this);
+    const targets = gsap.utils.toArray([$(this).find('div'), $(this).find('p')]);
+    const targetImg = $(this).find('img');
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        start: 'top center',
+        trigger: triggerElement,
+      },
+    });
+    tl.from(targets, {
+      autoAlpha: 0,
+    });
+    tl.from(targetImg, {
+      autoAlpha: 0,
+    });
+  });
+}

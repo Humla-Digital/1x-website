@@ -18418,6 +18418,9 @@
       });
     }
   }
+  $(".stories_tab-link-15s").on("click", function() {
+    ScrollTrigger2.refresh();
+  });
   function androidScene() {
     const target1 = $("#scene-content-1");
     const target2 = $("#scene-content-2");
