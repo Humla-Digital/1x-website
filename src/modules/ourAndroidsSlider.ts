@@ -24,7 +24,7 @@ export function initOurAndroidsSlider() {
     });
     tl.from(targets, {
       autoAlpha: 0,
-      stagger: 0.25,
+      stagger: 0.1,
     });
   });
 

@@ -17685,11 +17685,15 @@
       });
       tl.from(cardTargets, {
         autoAlpha: 0,
-        stagger: 0.2
+        stagger: 0.1
       });
-      tl.from(buttonTarget, {
-        autoAlpha: 0
-      });
+      tl.from(
+        buttonTarget,
+        {
+          autoAlpha: 0
+        },
+        0
+      );
     });
     const discoverGallerySliderParams = {
       modules: [Navigation, Mousewheel],
@@ -17772,7 +17776,7 @@
       });
       tl.from(targets, {
         autoAlpha: 0,
-        stagger: 0.25
+        stagger: 0.1
       });
     });
     const ourAndroidsSliderParams = {
