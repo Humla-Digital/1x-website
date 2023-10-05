@@ -15,8 +15,8 @@ window.Webflow.push(() => {
   if (!window.WebflowEditor) {
     androidsHeroAnim();
     initDiscoverGallerySlider();
-  } else {
     faqModule();
+  } else {
   }
 });
 

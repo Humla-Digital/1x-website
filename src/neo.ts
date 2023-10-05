@@ -21,10 +21,10 @@ window.Webflow.push(() => {
     faqModule();
     androidScene();
     aboutNeoTypedAnim();
-  } else {
-    $('.is_pdp-android-scene').addClass('in-editor');
     specsToggle();
     pauseVideo();
+  } else {
+    $('.is_pdp-android-scene').addClass('in-editor');
   }
 });
 

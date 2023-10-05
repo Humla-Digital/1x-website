@@ -27,11 +27,11 @@ window.Webflow.push(() => {
     faqModule();
     androidScene();
     aboutEveTypedAnim();
-  } else {
-    $('.is_pdp-android-scene').addClass('in-editor');
     specsToggle();
     eveLearnsSlider();
     pauseVideo();
+  } else {
+    $('.is_pdp-android-scene').addClass('in-editor');
   }
 });
 

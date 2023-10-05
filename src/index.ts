@@ -26,11 +26,11 @@ window.Webflow.push(() => {
     initImageGalleryTabs();
     embodiedLearningAnim();
     exploreCareersAnim();
-  } else {
     pauseVideo();
     jobCounter();
     initOurAndroidsSlider();
     initDiscoverGallerySlider();
+  } else {
   }
 });
 

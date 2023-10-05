@@ -34,9 +34,9 @@ window.Webflow.push(() => {
     initImageGalleryTabs();
     companyValuesAnim();
     featuredPostAnims();
-  } else {
     hideEmptyDepartments();
     careersImageGallery();
+  } else {
   }
 });
 

@@ -21,9 +21,9 @@ window.Webflow.push(() => {
   if (!window.WebflowEditor) {
     navbarAnim();
     featuredPostAnim();
-  } else {
     turnNavWhite();
     footerAnim();
+  } else {
     $('.item_faq-content').addClass('is-active');
   }
 });

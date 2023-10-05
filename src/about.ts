@@ -27,8 +27,8 @@ window.Webflow.push(() => {
     initImageGalleryTabs();
     initValuesTabs();
     aboutAnimations();
-  } else {
     ourStorySlider();
+  } else {
   }
 });
 /* OUR STORY SLIDER */
