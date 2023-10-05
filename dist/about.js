@@ -15700,7 +15700,7 @@
     spaceBetween: 0,
     speed: 400,
     slideToClickedSlide: true,
-    setWrapperSize: true,
+    setWrapperSize: false,
     slideActiveClass: "is-active",
     breakpoints: {
       // when window width is >= 290px

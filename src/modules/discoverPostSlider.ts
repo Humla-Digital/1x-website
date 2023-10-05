@@ -13,6 +13,7 @@ import { sliderCursor } from './sliderCursor';
 sliderCursor();
 
 export function initDiscoverGallerySlider() {
+  gsap.registerPlugin(ScrollTrigger);
   $('.section_discover-slider').each(function (index) {
     const cardTargets = gsap.utils.toArray($(this).find('.swiper-slide'));
     const h2Target = $(this).find('h2');
