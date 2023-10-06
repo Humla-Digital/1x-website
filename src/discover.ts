@@ -16,6 +16,7 @@ window.Webflow.push(() => {
   if (!window.WebflowEditor) {
     discoverTags();
     studioPostAnim();
+    hideEmptyPostGrids();
   } else {
   }
 });
@@ -61,4 +62,12 @@ function studioPostAnim() {
       stagger: 0.2,
     });
   });
+}
+
+function hideEmptyPostGrids() {
+  $('.w-dyn-empty')
+    .parents('.section_discover-post-grid')
+    .each(function () {
+      $(this).hide();
+    });
 }
