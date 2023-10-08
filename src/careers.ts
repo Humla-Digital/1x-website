@@ -16,6 +16,7 @@ import { type SwiperOptions } from 'swiper/types/index.d';
 import { hideEmptyDepartments } from '$utils/hideEmptyDepartments';
 
 import { initDiscoverGallerySlider } from './modules/discoverPostSlider';
+import { textTabsV2 } from './modules/textTabs';
 import { initTimedTextTabs } from './modules/timedTextTabs';
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
@@ -30,7 +31,8 @@ window.Webflow.push(() => {
   if (!window.WebflowEditor) {
     careerBenefits();
     initDiscoverGallerySlider();
-    initTimedTextTabs();
+    //initTimedTextTabs();
+    textTabsV2();
     initImageGalleryTabs();
     companyValuesAnim();
     featuredPostAnims();

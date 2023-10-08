@@ -11,6 +11,8 @@ import { initValuesTabs } from 'src/modules/valuesTabs';
 
 import { jobCounter } from '$utils/jobCounter';
 import { pauseVideo } from '$utils/pauseVideo';
+
+import { textTabsV2 } from './modules/textTabs';
 gsap.registerPlugin(ScrollTrigger);
 
 declare global {
@@ -22,7 +24,8 @@ window.Webflow ||= [];
 window.Webflow.push(() => {
   if (!window.WebflowEditor) {
     initValuesTabs();
-    initTimedTextTabs();
+    //initTimedTextTabs();
+    textTabsV2();
     initImageGalleryTabs();
     embodiedLearningAnim();
     exploreCareersAnim();

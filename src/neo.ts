@@ -7,6 +7,7 @@ import $ from 'jquery';
 
 import { pauseVideo } from '$utils/pauseVideo';
 
+import { androidValuePropsTabs } from './modules/androidValuePropsTabs';
 import { faqModule } from './modules/faqs';
 gsap.registerPlugin(ScrollTrigger, SplitText);
 declare global {
@@ -17,6 +18,7 @@ declare global {
 window.Webflow ||= [];
 window.Webflow.push(() => {
   if (!window.WebflowEditor) {
+    androidValuePropsTabs();
     careerBenefits();
     faqModule();
     androidScene();
