@@ -6538,6 +6538,13 @@
   };
   _getGSAP3() && gsap3.registerPlugin(ScrollTrigger2);
 
+  // src/utils/hideEmptyDynLists.ts
+  function hideEmptyDynSections() {
+    $(".w-dyn-empty").parents("section").each(function() {
+      $(this).hide();
+    });
+  }
+
   // src/utils/navbarToWhite.ts
   gsapWithCSS.registerPlugin(ScrollTrigger2);
   function turnNavWhite() {
@@ -6574,6 +6581,7 @@
   window.Webflow ||= [];
   window.Webflow.push(() => {
     if (!window.WebflowEditor) {
+      hideEmptyDynSections();
       navbarAnim();
       featuredPostAnim();
       turnNavWhite();

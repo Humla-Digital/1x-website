@@ -40,6 +40,11 @@ export function androidValuePropsTabs() {
 
   // Reset Loops
   $('.android_value-props-tab-link').on('click', function () {
+    $(this)
+      .siblings('.android_value-props-tab-link')
+      .find('.accordion_status')
+      .removeClass('active');
+    $(this).find('.accordion_status').addClass('active');
     clearTimeout(tabTimeout);
     tabLoop();
   });
