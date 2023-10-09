@@ -43,7 +43,7 @@ window.Webflow.push(() => {
 });
 
 function companyValuesAnim() {
-  $('.section_company-values').each(function (index) {
+  $('.section_company-values').each(function (_index: unknown) {
     const triggerElement = $(this);
     const horizontalLine = $('.horizontal-line');
     const tlHzLine = gsap.timeline({

@@ -7,16 +7,19 @@ export function turnNavWhite() {
   /*Turn navbar color white when dark sections in view */
   const navbar = document.querySelector('.navbar-wrapper');
 
-  const sections = gsap.utils.toArray('[data-dark-header]');
-  sections.forEach((section: any) => {
-    ScrollTrigger.create({
-      trigger: section,
-      start: 'top top+=71',
-      end: 'bottom top+=71',
-      toggleClass: {
-        targets: [navbar],
-        className: 'turn_white',
-      },
+  if (navbar) {
+    // Now we know that foo is truthy, it will necessarily not be null/undefined.
+    const sections = gsap.utils.toArray('[data-dark-header]');
+    sections.forEach((section: any) => {
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top top+=71',
+        end: 'bottom top+=71',
+        toggleClass: {
+          targets: [navbar],
+          className: 'turn_white',
+        },
+      });
     });
-  });
+  }
 }

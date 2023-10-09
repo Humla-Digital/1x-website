@@ -4,6 +4,9 @@ dependencies:
   '@finsweet/ts-utils':
     specifier: ^0.39.2
     version: 0.39.2
+  '@types/jquery':
+    specifier: 3.5.21
+    version: 3.5.21
   gsap:
     specifier: npm:@gsap/shockingly@^3.12.2
     version: /@gsap/shockingly@3.12.2
@@ -27,9 +30,6 @@ devDependencies:
   '@playwright/test':
     specifier: ^1.38.1
     version: 1.38.1
-  '@types/jquery':
-    specifier: ^3.5.22
-    version: 3.5.22
   '@typescript-eslint/eslint-plugin':
     specifier: ^5.62.0
     version: 5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.51.0)(typescript@5.2.2)
@@ -632,11 +632,11 @@ packages:
       ci-info: 3.9.0
     dev: true
 
-  /@types/jquery@3.5.22:
-    resolution: {integrity: sha512-ISQFeUK5GwRftLK4PVvKTWEVCxZ2BpaqBz0TWkIq5w4vGojxZP9+XkqgcPjxoqmPeew+HLyWthCBvK7GdF5NYA==}
+  /@types/jquery@3.5.21:
+    resolution: {integrity: sha512-BgCalH4OX2JcjbnD9E86L+WeN6IcCGZle+Iy0I6eOMuraAfcMb0Z1x9E51rC2Dqq+m8KexEoDBW6GIJxUPmLEg==}
     dependencies:
       '@types/sizzle': 2.3.4
-    dev: true
+    dev: false
 
   /@types/json-schema@7.0.13:
     resolution: {integrity: sha512-RbSSoHliUbnXj3ny0CNFOoxrIDV6SUGyStHsvDqosw6CkdPV8TtWGlfecuK4ToyMEAql6pzNxgCFKanovUzlgQ==}
@@ -660,7 +660,7 @@ packages:
 
   /@types/sizzle@2.3.4:
     resolution: {integrity: sha512-jA2llq2zNkg8HrALI7DtWzhALcVH0l7i89yhY3iBdOz6cBPeACoFq+fkQrjHA39t1hnSFOboZ7A/AY5MMZSlag==}
-    dev: true
+    dev: false
 
   /@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.51.0)(typescript@5.2.2):
     resolution: {integrity: sha512-TiZzBSJja/LbhNPvk6yc0JrX9XqhQ0hdh6M2svYfsHGejaKFIAGd9MQ+ERIMzLGlN/kZoYIgdxFV0PuljTKXag==}

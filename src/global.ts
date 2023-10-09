@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 import { hideEmptyDynSections } from '$utils/hideEmptyDynLists';
 import { turnNavWhite } from '$utils/navbarToWhite';
 import { updateFooterYear } from '$utils/updateFooterYear';
