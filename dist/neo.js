@@ -13605,10 +13605,19 @@
     const target1 = (0, import_jquery2.default)("#scene-content-1");
     const target2 = (0, import_jquery2.default)("#scene-content-2");
     const target3 = (0, import_jquery2.default)("#scene-content-3");
+    const target4 = (0, import_jquery2.default)("#scene-head-1");
+    const target5 = (0, import_jquery2.default)("#scene-head-2");
+    const target6 = (0, import_jquery2.default)("#scene-head-3");
     gsapWithCSS.set(target2, {
       autoAlpha: 0
     });
     gsapWithCSS.set(target3, {
+      autoAlpha: 0
+    });
+    gsapWithCSS.set(target5, {
+      autoAlpha: 0
+    });
+    gsapWithCSS.set(target6, {
       autoAlpha: 0
     });
     const scene = (0, import_jquery2.default)("#android-scroll-scene");
@@ -13628,7 +13637,21 @@
       0
     );
     sceneTl.to(
+      target4,
+      {
+        autoAlpha: 0
+      },
+      0
+    );
+    sceneTl.to(
       target2,
+      {
+        autoAlpha: 1
+      },
+      1
+    );
+    sceneTl.to(
+      target5,
       {
         autoAlpha: 1
       },
@@ -13642,7 +13665,21 @@
       3
     );
     sceneTl.to(
+      target5,
+      {
+        autoAlpha: 0
+      },
+      3
+    );
+    sceneTl.to(
       target3,
+      {
+        autoAlpha: 1
+      },
+      4
+    );
+    sceneTl.to(
+      target6,
       {
         autoAlpha: 1
       },

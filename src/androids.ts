@@ -1,6 +1,8 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+import { hideEmptyDynSections } from '$utils/hideEmptyDynLists';
+
 import { initDiscoverGallerySlider } from './modules/discoverPostSlider';
 import { faqModule } from './modules/faqs';
 gsap.registerPlugin(ScrollTrigger);
@@ -16,6 +18,7 @@ window.Webflow.push(() => {
     androidsHeroAnim();
     initDiscoverGallerySlider();
     faqModule();
+    hideEmptyDynSections();
   } else {
   }
 });

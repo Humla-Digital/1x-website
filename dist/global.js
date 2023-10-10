@@ -6538,13 +6538,6 @@
   };
   _getGSAP3() && gsap3.registerPlugin(ScrollTrigger2);
 
-  // src/utils/hideEmptyDynLists.ts
-  function hideEmptyDynSections() {
-    $(".w-dyn-empty").parents("section").each(function() {
-      $(this).remove();
-    });
-  }
-
   // src/utils/navbarToWhite.ts
   gsapWithCSS.registerPlugin(ScrollTrigger2);
   function turnNavWhite() {
@@ -6583,9 +6576,7 @@
   window.Webflow ||= [];
   window.Webflow.push(() => {
     if (!window.WebflowEditor) {
-      hideEmptyDynSections();
       navbarAnim();
-      featuredPostAnim();
       turnNavWhite();
       footerAnim();
     } else {
@@ -6652,7 +6643,6 @@
       }
       $("#menu-content-androids").addClass("is-active");
       $("#menu-content-careers").removeClass("is-active");
-      $("#menu-content-discover").removeClass("is-active");
     });
     $("#menu-item-careers").on("mouseover", function() {
       if (!$(".sidebar-menu-drawer").hasClass("is-active")) {
@@ -6704,27 +6694,6 @@
   $(".tablet_sidebar-back").on("click", function() {
     $(".sidebar-menu-drawer").removeClass("is-active");
   });
-  function featuredPostAnim() {
-    if (".section_announcement-featured-post") {
-      $(".section_announcement-featured-post").each(function() {
-        const triggerElement = $(this);
-        const targets = gsapWithCSS.utils.toArray([$(this).find("div"), $(this).find("p")]);
-        const targetImg = $(this).find("img");
-        const tl = gsapWithCSS.timeline({
-          scrollTrigger: {
-            start: "top center",
-            trigger: triggerElement
-          }
-        });
-        tl.from(targets, {
-          autoAlpha: 0
-        });
-        tl.from(targetImg, {
-          autoAlpha: 0
-        });
-      });
-    }
-  }
 })();
 /*! Bundled license information:
 

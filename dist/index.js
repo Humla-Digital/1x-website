@@ -17853,6 +17853,14 @@
     });
   }
 
+  // src/utils/hideEmptyDynLists.ts
+  init_live_reload();
+  function hideEmptyDynSections() {
+    $(".w-dyn-empty").parents("section").each(function() {
+      $(this).remove();
+    });
+  }
+
   // src/utils/jobCounter.ts
   init_live_reload();
   function jobCounter() {
@@ -17918,6 +17926,7 @@
       jobCounter();
       initOurAndroidsSlider();
       initDiscoverGallerySlider();
+      hideEmptyDynSections();
     } else {
     }
   });

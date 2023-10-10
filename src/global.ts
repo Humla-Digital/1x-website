@@ -2,7 +2,6 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import { hideEmptyDynSections } from '$utils/hideEmptyDynLists';
 import { turnNavWhite } from '$utils/navbarToWhite';
 import { updateFooterYear } from '$utils/updateFooterYear';
 
@@ -20,9 +19,8 @@ declare global {
 window.Webflow ||= [];
 window.Webflow.push(() => {
   if (!window.WebflowEditor) {
-    hideEmptyDynSections();
     navbarAnim();
-    featuredPostAnim();
+    //featuredPostAnim();
     turnNavWhite();
     footerAnim();
   } else {
@@ -100,7 +98,7 @@ if (window.innerWidth > 992) {
     }
     $('#menu-content-androids').addClass('is-active');
     $('#menu-content-careers').removeClass('is-active');
-    $('#menu-content-discover').removeClass('is-active');
+    //$('#menu-content-discover').removeClass('is-active');
   });
   $('#menu-item-careers').on('mouseover', function () {
     if (!$('.sidebar-menu-drawer').hasClass('is-active')) {

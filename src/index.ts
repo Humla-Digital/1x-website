@@ -8,6 +8,7 @@ import { initImageGalleryTabs } from 'src/modules/imageGalleryTabs';
 import { initOurAndroidsSlider } from 'src/modules/ourAndroidsSlider';
 import { initValuesTabs } from 'src/modules/valuesTabs';
 
+import { hideEmptyDynSections } from '$utils/hideEmptyDynLists';
 import { jobCounter } from '$utils/jobCounter';
 import { pauseVideo } from '$utils/pauseVideo';
 
@@ -31,6 +32,7 @@ window.Webflow.push(() => {
     jobCounter();
     initOurAndroidsSlider();
     initDiscoverGallerySlider();
+    hideEmptyDynSections();
   } else {
   }
 });
