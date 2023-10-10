@@ -18587,7 +18587,7 @@
         } else {
           $(".stories_tab-link:first").trigger("click");
         }
-      }, 1e4);
+      }, 5e3);
     }
     $(".stories_tab-link").on("click", function() {
       clearTimeout(tabTimeout);
