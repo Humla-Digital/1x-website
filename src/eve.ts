@@ -104,7 +104,7 @@ function careerBenefits() {
         splitTextTimeline.from(chars, {
           autoAlpha: 0,
           duration: 0.01,
-          stagger: 0.01,
+          stagger: 0.03,
         });
         splitTextTimeline.reversed() ? splitTextTimeline.play() : splitTextTimeline.reverse();
       } else {
