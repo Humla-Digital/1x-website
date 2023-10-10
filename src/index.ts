@@ -6,7 +6,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { initDiscoverGallerySlider } from 'src/modules/discoverPostSlider';
 import { initImageGalleryTabs } from 'src/modules/imageGalleryTabs';
 import { initOurAndroidsSlider } from 'src/modules/ourAndroidsSlider';
-import { initTimedTextTabs } from 'src/modules/timedTextTabs';
 import { initValuesTabs } from 'src/modules/valuesTabs';
 
 import { jobCounter } from '$utils/jobCounter';
@@ -24,7 +23,6 @@ window.Webflow ||= [];
 window.Webflow.push(() => {
   if (!window.WebflowEditor) {
     initValuesTabs();
-    //initTimedTextTabs();
     textTabsV2();
     initImageGalleryTabs();
     embodiedLearningAnim();

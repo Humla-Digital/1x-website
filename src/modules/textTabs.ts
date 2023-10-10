@@ -35,7 +35,7 @@ export function textTabsV2() {
       } else {
         $('.stories_tab-link:first').trigger('click');
       }
-    }, 10000); // 10 Second Rotation
+    }, 10000); // 5 Second Rotation
   }
 
   // Reset Loops
