@@ -17,6 +17,7 @@ import { contentCarouselTabs } from './modules/contentCarouselTabs';
 import { faqModule } from './modules/faqs';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
+
 declare global {
   interface Window {
     WebflowEditor: unknown;

@@ -17937,10 +17937,10 @@
       initImageGalleryTabs();
       initValuesTabs();
       aboutAnimations();
+      ourStorySlider();
     } else {
     }
   });
-  ourStorySlider();
   function ourStorySlider() {
     const cardsSliderParams = {
       modules: [Controller, Mousewheel],
