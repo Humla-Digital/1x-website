@@ -4,6 +4,8 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import $ from 'jquery';
+
+import { hideEmptyDynSections } from '$utils/hideEmptyDynLists';
 gsap.registerPlugin(ScrollTrigger);
 
 declare global {
@@ -15,8 +17,8 @@ window.Webflow ||= [];
 window.Webflow.push(() => {
   if (!window.WebflowEditor) {
     discoverTags();
-    studioPostAnim();
-    hideEmptyPostGrids();
+    //studioPostAnim();
+    hideEmptyDynSections();
   } else {
   }
 });

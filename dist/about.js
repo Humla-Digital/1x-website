@@ -13027,7 +13027,7 @@
   _getGSAP3() && gsap3.registerPlugin(ScrollTrigger2);
 
   // src/about.ts
-  var import_jquery2 = __toESM(require_jquery(), 1);
+  var import_jquery = __toESM(require_jquery(), 1);
 
   // src/modules/discoverPostSlider.ts
   init_live_reload();
@@ -17799,61 +17799,7 @@
   // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/modules/effect-cards.mjs
   init_live_reload();
 
-  // src/modules/sliderCursor.ts
-  init_live_reload();
-  var import_jquery = __toESM(require_jquery(), 1);
-  function sliderCursor() {
-    const sliders = (0, import_jquery.default)(".has-cursor");
-    const cursor = (0, import_jquery.default)(".cursor-move");
-    const cursorDot = (0, import_jquery.default)(".cursor-dot");
-    const buttons = (0, import_jquery.default)(".in-slider");
-    const sliderNavs = (0, import_jquery.default)(".disable-cursor");
-    function moveCursor(event2) {
-      cursor.css(
-        "transform",
-        `translate3d(calc(${event2.clientX}px - 50vw), calc(${event2.clientY}px - 50vh), 0)`
-      );
-    }
-    window.onmousemove = (event2) => {
-      moveCursor(event2);
-    };
-    window.onpointermove = (event2) => {
-      moveCursor(event2);
-    };
-    Array.from(sliders).forEach((slider) => {
-      slider.onmouseenter = () => {
-        cursorDot.addClass("show");
-      };
-      slider.onmouseleave = () => {
-        cursorDot.removeClass("show");
-      };
-      slider.onpointerdown = () => {
-        cursorDot.addClass("active");
-      };
-      slider.onpointerup = () => {
-        cursorDot.removeClass("active");
-      };
-    });
-    Array.from(buttons).forEach((button) => {
-      button.onmouseenter = () => {
-        cursorDot.removeClass("show");
-      };
-      button.onmouseleave = () => {
-        cursorDot.addClass("show");
-      };
-    });
-    Array.from(sliderNavs).forEach((sliderNav) => {
-      sliderNav.onmouseenter = () => {
-        cursorDot.removeClass("show");
-      };
-      sliderNav.onmouseleave = () => {
-        cursorDot.addClass("show");
-      };
-    });
-  }
-
   // src/modules/discoverPostSlider.ts
-  sliderCursor();
   function initDiscoverGallerySlider() {
     gsapWithCSS.registerPlugin(ScrollTrigger2);
     $(".section_discover-slider").each(function(index) {
@@ -18049,8 +17995,8 @@
         }
       },
       navigation: {
-        nextEl: (0, import_jquery2.default)("#our-story-next")[0],
-        prevEl: (0, import_jquery2.default)("#our-story-prev")[0]
+        nextEl: (0, import_jquery.default)("#our-story-next")[0],
+        prevEl: (0, import_jquery.default)("#our-story-prev")[0]
       }
     };
     const timelineSlider = new Swiper(".our-story-timeline-slider", timelineSliderParams);
@@ -18058,8 +18004,8 @@
     cardsSlider.controller.control = timelineSlider;
   }
   function aboutAnimations() {
-    (0, import_jquery2.default)(".section_our-perspective").each(function() {
-      const triggerElement = (0, import_jquery2.default)(this);
+    (0, import_jquery.default)(".section_our-perspective").each(function() {
+      const triggerElement = (0, import_jquery.default)(this);
       const targetElements = gsapWithCSS.utils.toArray(
         ".image-wrapper_our-perspective, .d-mono-15, .d-light-48"
       );
@@ -18074,9 +18020,9 @@
         stagger: 0.2
       });
     });
-    (0, import_jquery2.default)(".section_explore-careers").each(function() {
-      const triggerElement = (0, import_jquery2.default)(this);
-      const bgTarget = (0, import_jquery2.default)(this).find(".content-wrapper_explore-careers");
+    (0, import_jquery.default)(".section_explore-careers").each(function() {
+      const triggerElement = (0, import_jquery.default)(this);
+      const bgTarget = (0, import_jquery.default)(this).find(".content-wrapper_explore-careers");
       const contentTargets = gsapWithCSS.utils.toArray(".sm-max-width-200, .m-light-16, .p2-button");
       const tl = gsapWithCSS.timeline({
         scrollTrigger: {

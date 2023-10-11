@@ -13028,13 +13028,22 @@
 
   // src/discover.ts
   var import_jquery = __toESM(require_jquery(), 1);
+
+  // src/utils/hideEmptyDynLists.ts
+  init_live_reload();
+  function hideEmptyDynSections() {
+    $(".w-dyn-empty").parents("section").each(function() {
+      $(this).remove();
+    });
+  }
+
+  // src/discover.ts
   gsapWithCSS.registerPlugin(ScrollTrigger2);
   window.Webflow ||= [];
   window.Webflow.push(() => {
     if (!window.WebflowEditor) {
       discoverTags();
-      studioPostAnim();
-      hideEmptyPostGrids();
+      hideEmptyDynSections();
     } else {
     }
   });
@@ -13059,29 +13068,6 @@
       showDiscoverTags.play();
       showDiscoverTags.restart();
       ScrollTrigger2.refresh();
-    });
-  }
-  function studioPostAnim() {
-    (0, import_jquery.default)(".section_evergreen-studio-post").each(function() {
-      let triggerElement = (0, import_jquery.default)(this);
-      let targetElements = gsapWithCSS.utils.toArray(
-        (0, import_jquery.default)(this).find(".wrapper_featured-post-text-content, .image-wrapper_featured-post")
-      );
-      let tl = gsapWithCSS.timeline({
-        scrollTrigger: {
-          trigger: triggerElement,
-          start: "top center"
-        }
-      });
-      tl.from(targetElements, {
-        autoAlpha: 0,
-        stagger: 0.2
-      });
-    });
-  }
-  function hideEmptyPostGrids() {
-    (0, import_jquery.default)(".w-dyn-empty").parents(".section_discover-post-grid").each(function() {
-      (0, import_jquery.default)(this).hide();
     });
   }
 })();

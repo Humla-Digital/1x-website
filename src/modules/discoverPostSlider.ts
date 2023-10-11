@@ -8,10 +8,6 @@ import Swiper from 'swiper';
 import { Mousewheel, Navigation } from 'swiper/modules';
 import { type SwiperOptions } from 'swiper/types/index.d';
 
-import { sliderCursor } from './sliderCursor';
-
-sliderCursor();
-
 export function initDiscoverGallerySlider() {
   gsap.registerPlugin(ScrollTrigger);
   $('.section_discover-slider').each(function (index) {
