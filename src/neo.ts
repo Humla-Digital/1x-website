@@ -31,13 +31,13 @@ window.Webflow.push(() => {
 });
 
 function specsToggle() {
-  const imperialHeight = '5 foot 6 inches';
+  const imperialHeight = '4 foot 7 inches';
   const imperialWeight = '66 pounds';
   const imperialWalkspeed = '2.5 miles/hour walk speed';
   const imperialRunspeed = '7.5 miles/hour run speed';
   const imperialCarry = '44 pound carry capacity';
 
-  const metricHeight = '1.73 meters';
+  const metricHeight = '1.67 meters';
   const metricWeight = '30 kilograms';
   const metricWalkspeed = '4 kilometers/hour walk speed';
   const metricRunspeed = '12 kilometers/hour run speed';
