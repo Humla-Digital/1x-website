@@ -6571,8 +6571,9 @@
   // src/global.ts
   updateFooterYear();
   gsapWithCSS.registerPlugin(ScrollTrigger2);
-  $(".menu-link.w--current").addClass("current-page");
-  $(".current-page").siblings(".menu-link").addClass("opacity-50");
+  if ($(".menu-link.w--current")) {
+    $(".menu-link.w--current").siblings(".menu-link").css("opacity", "0.5");
+  }
   window.Webflow ||= [];
   window.Webflow.push(() => {
     if (!window.WebflowEditor) {

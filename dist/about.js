@@ -17932,12 +17932,12 @@
   gsapWithCSS.registerPlugin(ScrollTrigger2);
   window.Webflow ||= [];
   window.Webflow.push(() => {
+    ourStorySlider();
     if (!window.WebflowEditor) {
       initDiscoverGallerySlider();
       initImageGalleryTabs();
       initValuesTabs();
       aboutAnimations();
-      ourStorySlider();
     } else {
     }
   });

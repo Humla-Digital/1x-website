@@ -22,12 +22,12 @@ declare global {
 }
 window.Webflow ||= [];
 window.Webflow.push(() => {
+  ourStorySlider();
   if (!window.WebflowEditor) {
     initDiscoverGallerySlider();
     initImageGalleryTabs();
     initValuesTabs();
     aboutAnimations();
-    ourStorySlider();
   } else {
   }
 });

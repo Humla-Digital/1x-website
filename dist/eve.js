@@ -18470,7 +18470,7 @@
         splitTextTimeline.from(chars, {
           autoAlpha: 0,
           duration: 0.01,
-          stagger: 0.01
+          stagger: 0.03
         });
         $(this).on("mouseenter", typeText).on("mouseleave", typeText);
         function typeText() {
