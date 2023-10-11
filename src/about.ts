@@ -27,10 +27,11 @@ window.Webflow.push(() => {
     initImageGalleryTabs();
     initValuesTabs();
     aboutAnimations();
+    ourStorySlider();
   } else {
   }
 });
-ourStorySlider();
+
 /* OUR STORY SLIDER */
 function ourStorySlider() {
   const cardsSliderParams: SwiperOptions = {
