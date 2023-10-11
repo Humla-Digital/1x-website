@@ -6661,7 +6661,7 @@
       $("#menu-content-careers").removeClass("is-active");
     });
   } else {
-    $("#menu-item-androids").on("click", function() {
+    $("#mobile-menu-item-androids").on("click", function() {
       if (!$(".sidebar-menu-drawer").hasClass("is-active")) {
         $(".sidebar-menu-drawer").addClass("is-active");
       }
@@ -6669,7 +6669,7 @@
       $("#menu-content-careers").removeClass("is-active");
       $("#menu-content-discover").removeClass("is-active");
     });
-    $("#menu-item-careers").on("click", function() {
+    $("#mobile-menu-item-careers").on("click", function() {
       if (!$(".sidebar-menu-drawer").hasClass("is-active")) {
         $(".sidebar-menu-drawer").addClass("is-active");
       }
