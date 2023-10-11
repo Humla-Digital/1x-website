@@ -17932,7 +17932,6 @@
   gsapWithCSS.registerPlugin(ScrollTrigger2);
   window.Webflow ||= [];
   window.Webflow.push(() => {
-    ourStorySlider();
     if (!window.WebflowEditor) {
       initDiscoverGallerySlider();
       initImageGalleryTabs();
@@ -17941,6 +17940,7 @@
     } else {
     }
   });
+  ourStorySlider();
   function ourStorySlider() {
     const cardsSliderParams = {
       modules: [Controller, Mousewheel],

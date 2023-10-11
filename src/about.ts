@@ -22,7 +22,6 @@ declare global {
 }
 window.Webflow ||= [];
 window.Webflow.push(() => {
-  ourStorySlider();
   if (!window.WebflowEditor) {
     initDiscoverGallerySlider();
     initImageGalleryTabs();
@@ -31,6 +30,7 @@ window.Webflow.push(() => {
   } else {
   }
 });
+ourStorySlider();
 /* OUR STORY SLIDER */
 function ourStorySlider() {
   const cardsSliderParams: SwiperOptions = {
