@@ -86,6 +86,7 @@ function careerBenefits() {
       }
     });
   } else {
+    gsap.set(careerBenefits, { autoAlpha: 0 });
     $('.wrapper_splittext-row').on('click', function () {
       ScrollTrigger.refresh();
       $(this).toggleClass('is-active');

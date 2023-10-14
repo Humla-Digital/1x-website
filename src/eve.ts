@@ -153,56 +153,56 @@ function androidScene() {
     {
       autoAlpha: 0,
     },
-    0
+    1
   );
   sceneTl.to(
     target4,
     {
       autoAlpha: 0,
     },
-    0
+    1
   );
   sceneTl.to(
     target2,
     {
       autoAlpha: 1,
     },
-    1
+    3
   );
   sceneTl.to(
     target5,
     {
       autoAlpha: 1,
     },
-    1
+    3
   );
   sceneTl.to(
     target2,
     {
       autoAlpha: 0,
     },
-    3
+    5
   );
   sceneTl.to(
     target5,
     {
       autoAlpha: 0,
     },
-    3
+    5
   );
   sceneTl.to(
     target3,
     {
       autoAlpha: 1,
     },
-    4
+    6
   );
   sceneTl.to(
     target6,
     {
       autoAlpha: 1,
     },
-    4
+    6
   );
 }
 function eveLearnsSlider() {
