@@ -6,6 +6,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import $ from 'jquery';
 
 import { hideEmptyDynSections } from '$utils/hideEmptyDynLists';
+
+import { initSoMeSlider } from './modules/soMeSlider';
 gsap.registerPlugin(ScrollTrigger);
 
 declare global {
@@ -19,6 +21,7 @@ window.Webflow.push(() => {
     discoverTags();
     //studioPostAnim();
     hideEmptyDynSections();
+    initSoMeSlider();
   } else {
   }
 });
