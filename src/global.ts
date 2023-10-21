@@ -114,6 +114,16 @@ if (window.innerWidth > 992) {
     $('#menu-content-androids').removeClass('is-active');
     $('#menu-content-discover').removeClass('is-active');
   });
+  $('#menu-item-home').on('mouseover', function () {
+    $('.sidebar-menu-drawer').removeClass('is-active');
+  });
+  $('#menu-item-discover').on('mouseover', function () {
+    $('.sidebar-menu-drawer').removeClass('is-active');
+  });
+  $('#menu-item-about').on('mouseover', function () {
+    $('.sidebar-menu-drawer').removeClass('is-active');
+  });
+  /*
   $('#menu-item-discover').on('mouseover', function () {
     if (!$('.sidebar-menu-drawer').hasClass('is-active')) {
       $('.sidebar-menu-drawer').addClass('is-active');
@@ -121,7 +131,7 @@ if (window.innerWidth > 992) {
     $('#menu-content-discover').addClass('is-active');
     $('#menu-content-androids').removeClass('is-active');
     $('#menu-content-careers').removeClass('is-active');
-  });
+  });*/
 } else {
   $('#mobile-menu-item-androids').on('click', function () {
     if (!$('.sidebar-menu-drawer').hasClass('is-active')) {
