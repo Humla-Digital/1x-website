@@ -18402,8 +18402,10 @@
   // src/modules/faqs.ts
   init_live_reload();
   var import_jquery = __toESM(require_jquery(), 1);
+  gsapWithCSS.registerPlugin(ScrollTrigger2);
   function faqModule() {
     (0, import_jquery.default)(".item_faq-header-row").on("click", function() {
+      ScrollTrigger2.refresh();
       if (!(0, import_jquery.default)(this).siblings(".item_faq-content").hasClass("is-active")) {
         (0, import_jquery.default)(this).siblings(".item_faq-content").addClass("is-active");
         (0, import_jquery.default)(this).find(".faq-dot").addClass("is-active");
@@ -18411,7 +18413,6 @@
         (0, import_jquery.default)(this).siblings(".item_faq-content").removeClass("is-active");
         (0, import_jquery.default)(this).find(".faq-dot").removeClass("is-active");
       }
-      ScrollTrigger2.refresh();
     });
   }
 
