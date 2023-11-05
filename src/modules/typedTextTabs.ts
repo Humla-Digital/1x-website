@@ -1,30 +1,18 @@
-/* eslint-disable no-return-assign */
-/* eslint-disable prefer-rest-params */
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-gsap.registerPlugin(ScrollTrigger);
-export function contentCarouselTabs() {
-  // Fix for Safari
-  if (navigator.userAgent.includes('Safari')) {
-    const ts = document.querySelectorAll<HTMLBodyElement>('.stories_tab-link-15s');
-    ts.forEach(
-      (t) =>
-        (t.focus = function () {
-          const x = window.scrollX,
-            y = window.scrollY;
-          const f = () => {
-            setTimeout(() => window.scrollTo(x, y), 1);
-            t.removeEventListener('focus', f);
-          };
-          t.addEventListener('focus', f);
-          HTMLElement.prototype.focus.apply(this);
-        })
-    );
-  }
+import { SplitText } from 'gsap/SplitText';
 
+gsap.registerPlugin(ScrollTrigger, SplitText);
+
+export function typedTextTabs() {
   const tabTimelines: Array<gsap.core.Timeline> = [];
+  const hasPlayedAnimation: Array<boolean> = [];
 
-  $('.content-carousel-tabs-link').each(function () {
+  $('.text-tabs-link').each(function () {
+    hasPlayedAnimation.push(false);
+  });
+
+  $('.text-tabs-link').each(function () {
     const $progressBar = $(this).find('.tabs-link-inner');
 
     const tabTimeline = gsap.timeline({ paused: true });
@@ -45,37 +33,37 @@ export function contentCarouselTabs() {
   });
   tabAutoplay.pause();
   ScrollTrigger.create({
-    trigger: '.content-carousel-tabs',
+    trigger: '.section_our-mission',
     onEnter: () => tabAutoplay.play(),
     onLeave: () => tabAutoplay.pause(),
     onEnterBack: () => tabAutoplay.play(),
     onLeaveBack: () => tabAutoplay.pause(),
   });
 
-  // Create a ScrollTrigger for the .content-carousel-tabs element
+  // Create a ScrollTrigger for the .section_our-mission element
   ScrollTrigger.create({
-    trigger: '.content-carousel-tabs',
+    trigger: '.section_our-mission',
     onEnter: () => {
       // Play the current tab's progress bar animation
-      const $currentTab = $('.content-carousel-tabs-menu').children('.w--current:first');
+      const $currentTab = $('.text-tabs-menu').children('.w--current:first');
       const currentIndex = $currentTab.index();
       tabTimelines[currentIndex].play();
     },
     onLeave: () => {
       // Pause the current tab's progress bar animation
-      const $currentTab = $('.content-carousel-tabs-menu').children('.w--current:first');
+      const $currentTab = $('.text-tabs-menu').children('.w--current:first');
       const currentIndex = $currentTab.index();
       tabTimelines[currentIndex].pause();
     },
     onEnterBack: () => {
       // Play the current tab's progress bar animation when scrolling back into view
-      const $currentTab = $('.content-carousel-tabs-menu').children('.w--current:first');
+      const $currentTab = $('.text-tabs-menu').children('.w--current:first');
       const currentIndex = $currentTab.index();
       tabTimelines[currentIndex].play();
     },
     onLeaveBack: () => {
       // Pause the current tab's progress bar animation when scrolling back out of view
-      const $currentTab = $('.content-carousel-tabs-menu').children('.w--current:first');
+      const $currentTab = $('.text-tabs-menu').children('.w--current:first');
       const currentIndex = $currentTab.index();
       tabTimelines[currentIndex].pause();
     },
@@ -88,7 +76,7 @@ export function contentCarouselTabs() {
   //tabTimelines[0].play();
 
   function nextTab() {
-    const $currentTab = $('.content-carousel-tabs-menu').children('.w--current:first');
+    const $currentTab = $('.text-tabs-menu').children('.w--current:first');
     const currentIndex = $currentTab.index();
 
     tabTimelines[currentIndex].pause();
@@ -97,46 +85,70 @@ export function contentCarouselTabs() {
     if ($next.length) {
       $next.trigger('click');
     } else {
-      $('.content-carousel-tabs-link:first').trigger('click');
+      $('.text-tabs-link:first').trigger('click');
     }
 
-    const $newCurrentTab = $('.content-carousel-tabs-menu').children('.w--current:first');
+    const $newCurrentTab = $('.text-tabs-menu').children('.w--current:first');
     const newIndex = $newCurrentTab.index();
     tabTimelines[newIndex].play();
 
     tabAutoplay.restart(true);
   }
 
-  $('.content-carousel-tabs-content')
+  $('.text-tabs-content')
     .on('mouseover', function () {
       tabAutoplay.pause();
       tabTimelines.forEach((timeline) => timeline.pause());
     })
     .on('mouseleave', function () {
       tabAutoplay.resume();
-      const $currentTab = $('.content-carousel-tabs-menu').children('.w--current:first');
+      const $currentTab = $('.text-tabs-menu').children('.w--current:first');
       const currentIndex = $currentTab.index();
       tabTimelines[currentIndex].play();
     });
 
-  $('.content-carousel-tabs-link').on('click', function () {
+  $('.text-tabs-link').on('click', function () {
     tabTimelines.forEach((timeline) => timeline.progress(0).pause());
     const $clickedTab = $(this);
     const index = $clickedTab.index();
 
+    // Check if the animation has played for the current tab
+    if (!hasPlayedAnimation[index]) {
+      // If the animation hasn't played, create and play the SplitText animation
+      const $tabContent = $('.text-tabs-content')
+        .children(`[data-w-tab="${$clickedTab.data('w-tab')}"]`)
+        .find('.tabs-split-text');
+
+      // Check if the tab content is available in the DOM
+      if ($tabContent.length > 0) {
+        const splitTextTimeline = gsap.timeline({ paused: false });
+        const splitText = new SplitText($tabContent, { type: 'words,chars' });
+        const { chars } = splitText;
+
+        splitTextTimeline.from(chars, {
+          autoAlpha: 0,
+          duration: 0.01,
+          stagger: 0.02,
+        });
+
+        splitTextTimeline.restart();
+        hasPlayedAnimation[index] = true;
+      }
+    }
+
     tabTimelines[index].restart();
     tabAutoplay.restart(true);
   });
-  $('.content-carousel-tabs-button.next').on('click', function () {
+  $('.text-tabs-button.next').on('click', function () {
     navigateToNextTab();
   });
 
-  $('.content-carousel-tabs-button.prev').on('click', function () {
+  $('.text-tabs-button.prev').on('click', function () {
     navigateToPreviousTab();
   });
 
   function navigateToNextTab() {
-    const $currentTab = $('.content-carousel-tabs-menu').children('.w--current:first');
+    const $currentTab = $('.text-tabs-menu').children('.w--current:first');
     const currentIndex = $currentTab.index();
     tabTimelines[currentIndex].pause();
 
@@ -144,17 +156,17 @@ export function contentCarouselTabs() {
     if ($next.length) {
       $next.trigger('click');
     } else {
-      $('.content-carousel-tabs-link:first').trigger('click');
+      $('.text-tabs-link:first').trigger('click');
     }
 
-    const $newCurrentTab = $('.content-carousel-tabs-menu').children('.w--current:first');
+    const $newCurrentTab = $('.text-tabs-menu').children('.w--current:first');
     const newIndex = $newCurrentTab.index();
     tabTimelines[newIndex].play();
     tabAutoplay.restart(true);
   }
 
   function navigateToPreviousTab() {
-    const $currentTab = $('.content-carousel-tabs-menu').children('.w--current:first');
+    const $currentTab = $('.text-tabs-menu').children('.w--current:first');
     const currentIndex = $currentTab.index();
     tabTimelines[currentIndex].pause();
 
@@ -162,12 +174,37 @@ export function contentCarouselTabs() {
     if ($prev.length) {
       $prev.trigger('click');
     } else {
-      $('.content-carousel-tabs-link:last').trigger('click');
+      $('.text-tabs-link:last').trigger('click');
     }
 
-    const $newCurrentTab = $('.content-carousel-tabs-menu').children('.w--current:first');
+    const $newCurrentTab = $('.text-tabs-menu').children('.w--current:first');
     const newIndex = $newCurrentTab.index();
     tabTimelines[newIndex].play();
     tabAutoplay.restart(true);
+  }
+
+  const splitTextTimeline = gsap.timeline({ paused: true });
+  const $tabContent = $('.tabs-split-text');
+  const splitText = new SplitText($tabContent, { type: 'words,chars' });
+  const { chars } = splitText;
+
+  splitTextTimeline.from(chars, {
+    autoAlpha: 0,
+    duration: 0.01,
+    stagger: 0.02,
+  });
+
+  hasPlayedAnimation[0] = true;
+
+  // Create a ScrollTrigger to play SplitText animation when the module is in view
+  ScrollTrigger.create({
+    trigger: '.section_our-mission',
+    start: 'top center',
+    onEnter: () => splitTextTimeline.play(),
+  });
+
+  // Pause the initial SplitText animation for Tab 1
+  if (!hasPlayedAnimation[0]) {
+    tabTimelines[0].pause();
   }
 }

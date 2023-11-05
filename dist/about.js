@@ -17864,67 +17864,180 @@
     const discoverGallerySlider = new Swiper(".discover-slider", discoverGallerySliderParams);
   }
 
-  // src/modules/imageGalleryTabs.ts
+  // src/modules/imageTabs.ts
   init_live_reload();
-  function initImageGalleryTabs() {
-    $(function() {
-      const tabDuration = 5e3;
-      let tabTimeout;
-      clearTimeout(tabTimeout);
-      tabLoop($(".stories_tab-link.is_image-gallery.w--current"));
-      function tabLoop(trigger) {
-        tabTimeout = setTimeout(function() {
-          const $next = trigger.next();
-          if ($next.length) {
-            $next.removeAttr("href").click();
-          } else {
-            $(".stories_tab-link.is_image-gallery:first").removeAttr("href").click();
-          }
-        }, tabDuration);
-      }
-      $(".stories_tab-link.is_image-gallery").click(function() {
-        clearTimeout(tabTimeout);
-        tabLoop($(this));
+  gsapWithCSS.registerPlugin(ScrollTrigger2);
+  function imageTabs() {
+    const tabTimelines = [];
+    $(".image-tabs-link").each(function() {
+      const $progressBar = $(this).find(".tabs-link-inner");
+      const tabTimeline = gsapWithCSS.timeline({ paused: true });
+      tabTimeline.to($progressBar, {
+        width: "100%",
+        duration: 10,
+        ease: "none",
+        onComplete: function() {
+          gsapWithCSS.set($progressBar, { width: "0%" });
+        }
       });
+      tabTimelines.push(tabTimeline);
     });
+    const tabAutoplay = gsapWithCSS.delayedCall(10, function() {
+      nextTab();
+    });
+    tabAutoplay.pause();
+    ScrollTrigger2.create({
+      trigger: ".image-tabs",
+      onEnter: () => tabAutoplay.play(),
+      onLeave: () => tabAutoplay.pause(),
+      onEnterBack: () => tabAutoplay.play(),
+      onLeaveBack: () => tabAutoplay.pause()
+    });
+    ScrollTrigger2.create({
+      trigger: ".image-tabs",
+      onEnter: () => {
+        const $currentTab = $(".image-tabs-menu").children(".w--current:first");
+        const currentIndex = $currentTab.index();
+        tabTimelines[currentIndex].play();
+      },
+      onLeave: () => {
+        const $currentTab = $(".image-tabs-menu").children(".w--current:first");
+        const currentIndex = $currentTab.index();
+        tabTimelines[currentIndex].pause();
+      },
+      onEnterBack: () => {
+        const $currentTab = $(".image-tabs-menu").children(".w--current:first");
+        const currentIndex = $currentTab.index();
+        tabTimelines[currentIndex].play();
+      },
+      onLeaveBack: () => {
+        const $currentTab = $(".image-tabs-menu").children(".w--current:first");
+        const currentIndex = $currentTab.index();
+        tabTimelines[currentIndex].pause();
+      }
+    });
+    tabTimelines[0].pause();
+    function nextTab() {
+      const $currentTab = $(".image-tabs-menu").children(".w--current:first");
+      const currentIndex = $currentTab.index();
+      tabTimelines[currentIndex].pause();
+      const $next = $currentTab.next();
+      if ($next.length) {
+        $next.trigger("click");
+      } else {
+        $(".image-tabs-link:first").trigger("click");
+      }
+      const $newCurrentTab = $(".image-tabs-menu").children(".w--current:first");
+      const newIndex = $newCurrentTab.index();
+      tabTimelines[newIndex].play();
+      tabAutoplay.restart(true);
+    }
+    $(".image-tabs-content").on("mouseover", function() {
+      tabAutoplay.pause();
+      tabTimelines.forEach((timeline2) => timeline2.pause());
+    }).on("mouseleave", function() {
+      tabAutoplay.resume();
+      const $currentTab = $(".image-tabs-menu").children(".w--current:first");
+      const currentIndex = $currentTab.index();
+      tabTimelines[currentIndex].play();
+    });
+    $(".image-tabs-link").on("click", function() {
+      tabTimelines.forEach((timeline2) => timeline2.progress(0).pause());
+      const $clickedTab = $(this);
+      const index = $clickedTab.index();
+      tabTimelines[index].restart();
+      tabAutoplay.restart(true);
+    });
+    $(".image-tabs-button.next").on("click", function() {
+      navigateToNextTab();
+    });
+    $(".image-tabs-button.prev").on("click", function() {
+      navigateToPreviousTab();
+    });
+    function navigateToNextTab() {
+      const $currentTab = $(".image-tabs-menu").children(".w--current:first");
+      const currentIndex = $currentTab.index();
+      tabTimelines[currentIndex].pause();
+      const $next = $currentTab.next();
+      if ($next.length) {
+        $next.trigger("click");
+      } else {
+        $(".image-tabs-link:first").trigger("click");
+      }
+      const $newCurrentTab = $(".image-tabs-menu").children(".w--current:first");
+      const newIndex = $newCurrentTab.index();
+      tabTimelines[newIndex].play();
+      tabAutoplay.restart(true);
+    }
+    function navigateToPreviousTab() {
+      const $currentTab = $(".image-tabs-menu").children(".w--current:first");
+      const currentIndex = $currentTab.index();
+      tabTimelines[currentIndex].pause();
+      const $prev = $currentTab.prev();
+      if ($prev.length) {
+        $prev.trigger("click");
+      } else {
+        $(".image-tabs-link:last").trigger("click");
+      }
+      const $newCurrentTab = $(".image-tabs-menu").children(".w--current:first");
+      const newIndex = $newCurrentTab.index();
+      tabTimelines[newIndex].play();
+      tabAutoplay.restart(true);
+    }
   }
 
   // src/modules/valuesTabs.ts
   init_live_reload();
-  function initValuesTabs() {
-    $(function() {
-      const tabDuration = 15e3;
-      let tabTimeout;
-      clearTimeout(tabTimeout);
-      tabLoop($(".tab_values.w--current"));
-      function startProgressBar() {
-        $(".auto-tabs-values_timer-bar").animate({ width: "100%" }, tabDuration);
+  gsapWithCSS.registerPlugin(ScrollTrigger2);
+  function valuesTabs() {
+    const progressBarAnimation = gsapWithCSS.to(".value-tabs-inner", {
+      width: "100%",
+      duration: 10,
+      ease: "none",
+      paused: true,
+      onComplete: function() {
+        gsapWithCSS.set(".value-tabs-inner", { width: "0%" });
+        nextTab();
       }
-      function stopProgressBar() {
-        $(".auto-tabs-values_timer-bar").stop(true, true).css("width", "0%");
+    });
+    let tabAutoplay;
+    function startTabAutoplay() {
+      tabAutoplay = gsapWithCSS.timeline({ paused: true });
+      tabAutoplay.to({}, { duration: 10, onComplete: nextTab });
+      tabAutoplay.play();
+    }
+    ScrollTrigger2.create({
+      trigger: ".value_gallery-tabs-wrapper",
+      start: "top 50%",
+      onEnter: () => {
+        progressBarAnimation.play();
+        startTabAutoplay();
+      },
+      onLeave: () => {
+        progressBarAnimation.pause();
+        tabAutoplay.pause();
       }
-      function tabLoop(trigger) {
-        startProgressBar();
-        tabTimeout = setTimeout(function() {
-          const $next = trigger.next();
-          startProgressBar();
-          if ($next.length) {
-            $next.removeAttr("href").click();
-            stopProgressBar();
-            startProgressBar();
-          } else {
-            $(".tab_values:first").removeAttr("href").click();
-            stopProgressBar();
-            startProgressBar();
-          }
-        }, tabDuration);
+    });
+    function nextTab() {
+      const $currentTab = $(".tab_values.w--current");
+      const $next = $currentTab.next();
+      if ($next.length) {
+        $next.trigger("click");
+      } else {
+        $(".tab_values:first").trigger("click");
       }
-      $(".tab_values").on("click", function() {
-        clearTimeout(tabTimeout);
-        tabLoop($(this));
-        stopProgressBar();
-        startProgressBar();
-      });
+    }
+    $(".value_gallery-tabs-content").on("mouseenter", function() {
+      progressBarAnimation.pause();
+      tabAutoplay.pause();
+    });
+    $(".value_gallery-tabs-content").on("mouseleave", function() {
+      progressBarAnimation.resume();
+      tabAutoplay.play();
+    });
+    $(".tab_values").on("click", function() {
+      progressBarAnimation.restart();
+      tabAutoplay.restart();
     });
   }
 
@@ -17934,8 +18047,8 @@
   window.Webflow.push(() => {
     if (!window.WebflowEditor) {
       initDiscoverGallerySlider();
-      initImageGalleryTabs();
-      initValuesTabs();
+      imageTabs();
+      valuesTabs();
       aboutAnimations();
       ourStorySlider();
     } else {

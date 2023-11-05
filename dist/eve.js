@@ -18365,6 +18365,7 @@
 
   // src/modules/contentCarouselTabs.ts
   init_live_reload();
+  gsapWithCSS.registerPlugin(ScrollTrigger2);
   function contentCarouselTabs() {
     if (navigator.userAgent.includes("Safari")) {
       const ts = document.querySelectorAll(".stories_tab-link-15s");
@@ -18380,23 +18381,122 @@
         }
       );
     }
-    let tabTimeout;
-    clearTimeout(tabTimeout);
-    tabLoop();
-    function tabLoop() {
-      tabTimeout = setTimeout(function() {
-        const $next = $(".tabs-menu_full-timed-progress").children(".w--current:first").next();
-        if ($next.length) {
-          $next.trigger("click");
-        } else {
-          $(".stories_tab-link-15s:first").trigger("click");
+    const tabTimelines = [];
+    $(".content-carousel-tabs-link").each(function() {
+      const $progressBar = $(this).find(".tabs-link-inner");
+      const tabTimeline = gsapWithCSS.timeline({ paused: true });
+      tabTimeline.to($progressBar, {
+        width: "100%",
+        duration: 10,
+        ease: "none",
+        onComplete: function() {
+          gsapWithCSS.set($progressBar, { width: "0%" });
         }
-      }, 15e3);
-    }
-    $(".stories_tab-link-15s").on("click", function() {
-      clearTimeout(tabTimeout);
-      tabLoop();
+      });
+      tabTimelines.push(tabTimeline);
     });
+    const tabAutoplay = gsapWithCSS.delayedCall(10, function() {
+      nextTab();
+    });
+    tabAutoplay.pause();
+    ScrollTrigger2.create({
+      trigger: ".content-carousel-tabs",
+      onEnter: () => tabAutoplay.play(),
+      onLeave: () => tabAutoplay.pause(),
+      onEnterBack: () => tabAutoplay.play(),
+      onLeaveBack: () => tabAutoplay.pause()
+    });
+    ScrollTrigger2.create({
+      trigger: ".content-carousel-tabs",
+      onEnter: () => {
+        const $currentTab = $(".content-carousel-tabs-menu").children(".w--current:first");
+        const currentIndex = $currentTab.index();
+        tabTimelines[currentIndex].play();
+      },
+      onLeave: () => {
+        const $currentTab = $(".content-carousel-tabs-menu").children(".w--current:first");
+        const currentIndex = $currentTab.index();
+        tabTimelines[currentIndex].pause();
+      },
+      onEnterBack: () => {
+        const $currentTab = $(".content-carousel-tabs-menu").children(".w--current:first");
+        const currentIndex = $currentTab.index();
+        tabTimelines[currentIndex].play();
+      },
+      onLeaveBack: () => {
+        const $currentTab = $(".content-carousel-tabs-menu").children(".w--current:first");
+        const currentIndex = $currentTab.index();
+        tabTimelines[currentIndex].pause();
+      }
+    });
+    tabTimelines[0].pause();
+    function nextTab() {
+      const $currentTab = $(".content-carousel-tabs-menu").children(".w--current:first");
+      const currentIndex = $currentTab.index();
+      tabTimelines[currentIndex].pause();
+      const $next = $currentTab.next();
+      if ($next.length) {
+        $next.trigger("click");
+      } else {
+        $(".content-carousel-tabs-link:first").trigger("click");
+      }
+      const $newCurrentTab = $(".content-carousel-tabs-menu").children(".w--current:first");
+      const newIndex = $newCurrentTab.index();
+      tabTimelines[newIndex].play();
+      tabAutoplay.restart(true);
+    }
+    $(".content-carousel-tabs-content").on("mouseover", function() {
+      tabAutoplay.pause();
+      tabTimelines.forEach((timeline2) => timeline2.pause());
+    }).on("mouseleave", function() {
+      tabAutoplay.resume();
+      const $currentTab = $(".content-carousel-tabs-menu").children(".w--current:first");
+      const currentIndex = $currentTab.index();
+      tabTimelines[currentIndex].play();
+    });
+    $(".content-carousel-tabs-link").on("click", function() {
+      tabTimelines.forEach((timeline2) => timeline2.progress(0).pause());
+      const $clickedTab = $(this);
+      const index = $clickedTab.index();
+      tabTimelines[index].restart();
+      tabAutoplay.restart(true);
+    });
+    $(".content-carousel-tabs-button.next").on("click", function() {
+      navigateToNextTab();
+    });
+    $(".content-carousel-tabs-button.prev").on("click", function() {
+      navigateToPreviousTab();
+    });
+    function navigateToNextTab() {
+      const $currentTab = $(".content-carousel-tabs-menu").children(".w--current:first");
+      const currentIndex = $currentTab.index();
+      tabTimelines[currentIndex].pause();
+      const $next = $currentTab.next();
+      if ($next.length) {
+        $next.trigger("click");
+      } else {
+        $(".content-carousel-tabs-link:first").trigger("click");
+      }
+      const $newCurrentTab = $(".content-carousel-tabs-menu").children(".w--current:first");
+      const newIndex = $newCurrentTab.index();
+      tabTimelines[newIndex].play();
+      tabAutoplay.restart(true);
+    }
+    function navigateToPreviousTab() {
+      const $currentTab = $(".content-carousel-tabs-menu").children(".w--current:first");
+      const currentIndex = $currentTab.index();
+      tabTimelines[currentIndex].pause();
+      const $prev = $currentTab.prev();
+      if ($prev.length) {
+        $prev.trigger("click");
+      } else {
+        $(".content-carousel-tabs-link:last").trigger("click");
+      }
+      const $newCurrentTab = $(".content-carousel-tabs-menu").children(".w--current:first");
+      const newIndex = $newCurrentTab.index();
+      tabTimelines[newIndex].play();
+      tabAutoplay.restart(true);
+    }
   }
 
   // src/modules/faqs.ts

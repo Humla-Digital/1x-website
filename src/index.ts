@@ -6,13 +6,14 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { initDiscoverGallerySlider } from 'src/modules/discoverPostSlider';
 import { initImageGalleryTabs } from 'src/modules/imageGalleryTabs';
 import { initOurAndroidsSlider } from 'src/modules/ourAndroidsSlider';
-import { initValuesTabs } from 'src/modules/valuesTabs';
+import { valuesTabs } from 'src/modules/valuesTabs';
 
 import { hideEmptyDynSections } from '$utils/hideEmptyDynLists';
 import { jobCounter } from '$utils/jobCounter';
 import { pauseVideo } from '$utils/pauseVideo';
 
-import { textTabsV2 } from './modules/textTabs';
+import { imageTabs } from './modules/imageTabs';
+import { typedTextTabs } from './modules/typedTextTabs';
 gsap.registerPlugin(ScrollTrigger);
 
 declare global {
@@ -23,9 +24,9 @@ declare global {
 window.Webflow ||= [];
 window.Webflow.push(() => {
   if (!window.WebflowEditor) {
-    initValuesTabs();
-    textTabsV2();
-    initImageGalleryTabs();
+    valuesTabs();
+    typedTextTabs();
+    imageTabs();
     embodiedLearningAnim();
     exploreCareersAnim();
     pauseVideo();
