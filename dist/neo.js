@@ -13465,6 +13465,7 @@
 
   // src/modules/androidValuePropsTabs.ts
   init_live_reload();
+  gsapWithCSS.registerPlugin(ScrollTrigger2);
   function androidValuePropsTabs() {
     if (navigator.userAgent.includes("Safari")) {
       const ts = document.querySelectorAll(".android_value-props-tab-link");
@@ -13480,24 +13481,87 @@
         }
       );
     }
-    let tabTimeout;
-    clearTimeout(tabTimeout);
-    tabLoop();
-    function tabLoop() {
-      tabTimeout = setTimeout(function() {
-        const $next = $(".android_value-props-menu").children(".w--current:first").next();
-        if ($next.length) {
-          $next.trigger("click");
-        } else {
-          $(".android_value-props-tab-link:first").trigger("click");
+    const tabTimelines = [];
+    $(".android_value-props-tab-link").each(function() {
+      const $progressBar = $(this).find(".android_value-props-progbar");
+      const tabTimeline = gsapWithCSS.timeline({ paused: true });
+      tabTimeline.to($progressBar, {
+        width: "100%",
+        duration: 15,
+        ease: "none",
+        onComplete: function() {
+          gsapWithCSS.set($progressBar, { width: "0%" });
         }
-      }, 1e4);
+      });
+      tabTimelines.push(tabTimeline);
+    });
+    const tabAutoplay = gsapWithCSS.delayedCall(15, function() {
+      nextTab();
+    });
+    tabAutoplay.pause();
+    ScrollTrigger2.create({
+      trigger: ".android_value-props-tabs",
+      onEnter: () => tabAutoplay.play(),
+      onLeave: () => tabAutoplay.pause(),
+      onEnterBack: () => tabAutoplay.play(),
+      onLeaveBack: () => tabAutoplay.pause()
+    });
+    ScrollTrigger2.create({
+      trigger: ".android_value-props-tabs",
+      onEnter: () => {
+        const $currentTab = $(".android_value-props-menu").children(".w--current:first");
+        const currentIndex = $currentTab.index();
+        tabTimelines[currentIndex].play();
+      },
+      onLeave: () => {
+        const $currentTab = $(".android_value-props-menu").children(".w--current:first");
+        const currentIndex = $currentTab.index();
+        tabTimelines[currentIndex].pause();
+      },
+      onEnterBack: () => {
+        const $currentTab = $(".android_value-props-menu").children(".w--current:first");
+        const currentIndex = $currentTab.index();
+        tabTimelines[currentIndex].play();
+      },
+      onLeaveBack: () => {
+        const $currentTab = $(".android_value-props-menu").children(".w--current:first");
+        const currentIndex = $currentTab.index();
+        tabTimelines[currentIndex].pause();
+      }
+    });
+    tabTimelines[0].pause();
+    function nextTab() {
+      const $currentTab = $(".android_value-props-menu").children(".w--current:first");
+      const currentIndex = $currentTab.index();
+      tabTimelines[currentIndex].pause();
+      const $next = $currentTab.next();
+      if ($next.length) {
+        $next.trigger("click");
+      } else {
+        $(".android_value-props-tab-link:first").trigger("click");
+      }
+      const $newCurrentTab = $(".android_value-props-menu").children(".w--current:first");
+      const newIndex = $newCurrentTab.index();
+      tabTimelines[newIndex].play();
+      tabAutoplay.restart(true);
     }
+    $(".android_value-props-menu").on("mouseover", function() {
+      tabAutoplay.pause();
+      tabTimelines.forEach((timeline2) => timeline2.pause());
+    }).on("mouseleave", function() {
+      tabAutoplay.resume();
+      const $currentTab = $(".android_value-props-menu").children(".w--current:first");
+      const currentIndex = $currentTab.index();
+      tabTimelines[currentIndex].play();
+    });
     $(".android_value-props-tab-link").on("click", function() {
       $(this).siblings(".android_value-props-tab-link").find(".accordion_status").removeClass("active");
       $(this).find(".accordion_status").addClass("active");
-      clearTimeout(tabTimeout);
-      tabLoop();
+      tabTimelines.forEach((timeline2) => timeline2.progress(0).pause());
+      const $clickedTab = $(this);
+      const index = $clickedTab.index();
+      tabTimelines[index].restart();
+      tabAutoplay.restart(true);
     });
   }
 

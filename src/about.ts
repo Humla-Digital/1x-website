@@ -8,11 +8,12 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import $ from 'jquery';
 import { initDiscoverGallerySlider } from 'src/modules/discoverPostSlider';
-import { initImageGalleryTabs } from 'src/modules/imageGalleryTabs';
-import { initValuesTabs } from 'src/modules/valuesTabs';
 import Swiper from 'swiper';
 import { Controller, Mousewheel, Navigation } from 'swiper/modules';
 import { type SwiperOptions } from 'swiper/types/index.d';
+
+import { imageTabs } from './modules/imageTabs';
+import { valuesTabs } from './modules/valuesTabs';
 gsap.registerPlugin(ScrollTrigger);
 
 declare global {
@@ -24,8 +25,8 @@ window.Webflow ||= [];
 window.Webflow.push(() => {
   if (!window.WebflowEditor) {
     initDiscoverGallerySlider();
-    initImageGalleryTabs();
-    initValuesTabs();
+    imageTabs();
+    valuesTabs();
     aboutAnimations();
     ourStorySlider();
   } else {

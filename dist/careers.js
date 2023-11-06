@@ -11920,39 +11920,283 @@
     const discoverGallerySlider = new Swiper(".discover-slider", discoverGallerySliderParams);
   }
 
-  // src/modules/textTabs.ts
-  function textTabsV2() {
-    if (navigator.userAgent.includes("Safari")) {
-      const ts = document.querySelectorAll(".stories_tab-link");
-      ts.forEach(
-        (t) => t.focus = function() {
-          const x = window.scrollX, y = window.scrollY;
-          const f = () => {
-            setTimeout(() => window.scrollTo(x, y), 1);
-            t.removeEventListener("focus", f);
-          };
-          t.addEventListener("focus", f);
-          HTMLElement.prototype.focus.apply(this);
+  // src/modules/imageTabs.ts
+  gsapWithCSS.registerPlugin(ScrollTrigger2);
+  function imageTabs() {
+    const tabTimelines = [];
+    $(".image-tabs-link").each(function() {
+      const $progressBar = $(this).find(".tabs-link-inner");
+      const tabTimeline = gsapWithCSS.timeline({ paused: true });
+      tabTimeline.to($progressBar, {
+        width: "100%",
+        duration: 10,
+        ease: "none",
+        onComplete: function() {
+          gsapWithCSS.set($progressBar, { width: "0%" });
         }
-      );
-    }
-    let tabTimeout;
-    clearTimeout(tabTimeout);
-    tabLoop();
-    function tabLoop() {
-      tabTimeout = setTimeout(function() {
-        const $next = $(".stories_tab-menu").children(".w--current:first").next();
-        if ($next.length) {
-          $next.trigger("click");
-        } else {
-          $(".stories_tab-link:first").trigger("click");
-        }
-      }, 5e3);
-    }
-    $(".stories_tab-link").on("click", function() {
-      clearTimeout(tabTimeout);
-      tabLoop();
+      });
+      tabTimelines.push(tabTimeline);
     });
+    const tabAutoplay = gsapWithCSS.delayedCall(10, function() {
+      nextTab();
+    });
+    tabAutoplay.pause();
+    ScrollTrigger2.create({
+      trigger: ".image-tabs",
+      onEnter: () => tabAutoplay.play(),
+      onLeave: () => tabAutoplay.pause(),
+      onEnterBack: () => tabAutoplay.play(),
+      onLeaveBack: () => tabAutoplay.pause()
+    });
+    ScrollTrigger2.create({
+      trigger: ".image-tabs",
+      onEnter: () => {
+        const $currentTab = $(".image-tabs-menu").children(".w--current:first");
+        const currentIndex = $currentTab.index();
+        tabTimelines[currentIndex].play();
+      },
+      onLeave: () => {
+        const $currentTab = $(".image-tabs-menu").children(".w--current:first");
+        const currentIndex = $currentTab.index();
+        tabTimelines[currentIndex].pause();
+      },
+      onEnterBack: () => {
+        const $currentTab = $(".image-tabs-menu").children(".w--current:first");
+        const currentIndex = $currentTab.index();
+        tabTimelines[currentIndex].play();
+      },
+      onLeaveBack: () => {
+        const $currentTab = $(".image-tabs-menu").children(".w--current:first");
+        const currentIndex = $currentTab.index();
+        tabTimelines[currentIndex].pause();
+      }
+    });
+    tabTimelines[0].pause();
+    function nextTab() {
+      const $currentTab = $(".image-tabs-menu").children(".w--current:first");
+      const currentIndex = $currentTab.index();
+      tabTimelines[currentIndex].pause();
+      const $next = $currentTab.next();
+      if ($next.length) {
+        $next.trigger("click");
+      } else {
+        $(".image-tabs-link:first").trigger("click");
+      }
+      const $newCurrentTab = $(".image-tabs-menu").children(".w--current:first");
+      const newIndex = $newCurrentTab.index();
+      tabTimelines[newIndex].play();
+      tabAutoplay.restart(true);
+    }
+    $(".image-tabs-content").on("mouseover", function() {
+      tabAutoplay.pause();
+      tabTimelines.forEach((timeline2) => timeline2.pause());
+    }).on("mouseleave", function() {
+      tabAutoplay.resume();
+      const $currentTab = $(".image-tabs-menu").children(".w--current:first");
+      const currentIndex = $currentTab.index();
+      tabTimelines[currentIndex].play();
+    });
+    $(".image-tabs-link").on("click", function() {
+      tabTimelines.forEach((timeline2) => timeline2.progress(0).pause());
+      const $clickedTab = $(this);
+      const index = $clickedTab.index();
+      tabTimelines[index].restart();
+      tabAutoplay.restart(true);
+    });
+    $(".image-tabs-button.next").on("click", function() {
+      navigateToNextTab();
+    });
+    $(".image-tabs-button.prev").on("click", function() {
+      navigateToPreviousTab();
+    });
+    function navigateToNextTab() {
+      const $currentTab = $(".image-tabs-menu").children(".w--current:first");
+      const currentIndex = $currentTab.index();
+      tabTimelines[currentIndex].pause();
+      const $next = $currentTab.next();
+      if ($next.length) {
+        $next.trigger("click");
+      } else {
+        $(".image-tabs-link:first").trigger("click");
+      }
+      const $newCurrentTab = $(".image-tabs-menu").children(".w--current:first");
+      const newIndex = $newCurrentTab.index();
+      tabTimelines[newIndex].play();
+      tabAutoplay.restart(true);
+    }
+    function navigateToPreviousTab() {
+      const $currentTab = $(".image-tabs-menu").children(".w--current:first");
+      const currentIndex = $currentTab.index();
+      tabTimelines[currentIndex].pause();
+      const $prev = $currentTab.prev();
+      if ($prev.length) {
+        $prev.trigger("click");
+      } else {
+        $(".image-tabs-link:last").trigger("click");
+      }
+      const $newCurrentTab = $(".image-tabs-menu").children(".w--current:first");
+      const newIndex = $newCurrentTab.index();
+      tabTimelines[newIndex].play();
+      tabAutoplay.restart(true);
+    }
+  }
+
+  // src/modules/typedTextTabs.ts
+  gsapWithCSS.registerPlugin(ScrollTrigger2, SplitText);
+  function typedTextTabs() {
+    const tabTimelines = [];
+    const hasPlayedAnimation = [];
+    $(".text-tabs-link").each(function() {
+      hasPlayedAnimation.push(false);
+    });
+    $(".text-tabs-link").each(function() {
+      const $progressBar = $(this).find(".tabs-link-inner");
+      const tabTimeline = gsapWithCSS.timeline({ paused: true });
+      tabTimeline.to($progressBar, {
+        width: "100%",
+        duration: 10,
+        ease: "none",
+        onComplete: function() {
+          gsapWithCSS.set($progressBar, { width: "0%" });
+        }
+      });
+      tabTimelines.push(tabTimeline);
+    });
+    const tabAutoplay = gsapWithCSS.delayedCall(10, function() {
+      nextTab();
+    });
+    tabAutoplay.pause();
+    ScrollTrigger2.create({
+      trigger: ".section_our-mission",
+      onEnter: () => tabAutoplay.play(),
+      onLeave: () => tabAutoplay.pause(),
+      onEnterBack: () => tabAutoplay.play(),
+      onLeaveBack: () => tabAutoplay.pause()
+    });
+    ScrollTrigger2.create({
+      trigger: ".section_our-mission",
+      onEnter: () => {
+        const $currentTab = $(".text-tabs-menu").children(".w--current:first");
+        const currentIndex = $currentTab.index();
+        tabTimelines[currentIndex].play();
+      },
+      onLeave: () => {
+        const $currentTab = $(".text-tabs-menu").children(".w--current:first");
+        const currentIndex = $currentTab.index();
+        tabTimelines[currentIndex].pause();
+      },
+      onEnterBack: () => {
+        const $currentTab = $(".text-tabs-menu").children(".w--current:first");
+        const currentIndex = $currentTab.index();
+        tabTimelines[currentIndex].play();
+      },
+      onLeaveBack: () => {
+        const $currentTab = $(".text-tabs-menu").children(".w--current:first");
+        const currentIndex = $currentTab.index();
+        tabTimelines[currentIndex].pause();
+      }
+    });
+    tabTimelines[0].pause();
+    function nextTab() {
+      const $currentTab = $(".text-tabs-menu").children(".w--current:first");
+      const currentIndex = $currentTab.index();
+      tabTimelines[currentIndex].pause();
+      const $next = $currentTab.next();
+      if ($next.length) {
+        $next.trigger("click");
+      } else {
+        $(".text-tabs-link:first").trigger("click");
+      }
+      const $newCurrentTab = $(".text-tabs-menu").children(".w--current:first");
+      const newIndex = $newCurrentTab.index();
+      tabTimelines[newIndex].play();
+      tabAutoplay.restart(true);
+    }
+    $(".text-tabs-content").on("mouseover", function() {
+      tabAutoplay.pause();
+      tabTimelines.forEach((timeline2) => timeline2.pause());
+    }).on("mouseleave", function() {
+      tabAutoplay.resume();
+      const $currentTab = $(".text-tabs-menu").children(".w--current:first");
+      const currentIndex = $currentTab.index();
+      tabTimelines[currentIndex].play();
+    });
+    $(".text-tabs-link").on("click", function() {
+      tabTimelines.forEach((timeline2) => timeline2.progress(0).pause());
+      const $clickedTab = $(this);
+      const index = $clickedTab.index();
+      if (!hasPlayedAnimation[index]) {
+        const $tabContent2 = $(".text-tabs-content").children(`[data-w-tab="${$clickedTab.data("w-tab")}"]`).find(".tabs-split-text");
+        if ($tabContent2.length > 0) {
+          const splitTextTimeline2 = gsapWithCSS.timeline({ paused: false });
+          const splitText2 = new SplitText($tabContent2, { type: "words,chars" });
+          const { chars: chars2 } = splitText2;
+          splitTextTimeline2.from(chars2, {
+            autoAlpha: 0,
+            duration: 0.01,
+            stagger: 0.02
+          });
+          splitTextTimeline2.restart();
+          hasPlayedAnimation[index] = true;
+        }
+      }
+      tabTimelines[index].restart();
+      tabAutoplay.restart(true);
+    });
+    $(".text-tabs-button.next").on("click", function() {
+      navigateToNextTab();
+    });
+    $(".text-tabs-button.prev").on("click", function() {
+      navigateToPreviousTab();
+    });
+    function navigateToNextTab() {
+      const $currentTab = $(".text-tabs-menu").children(".w--current:first");
+      const currentIndex = $currentTab.index();
+      tabTimelines[currentIndex].pause();
+      const $next = $currentTab.next();
+      if ($next.length) {
+        $next.trigger("click");
+      } else {
+        $(".text-tabs-link:first").trigger("click");
+      }
+      const $newCurrentTab = $(".text-tabs-menu").children(".w--current:first");
+      const newIndex = $newCurrentTab.index();
+      tabTimelines[newIndex].play();
+      tabAutoplay.restart(true);
+    }
+    function navigateToPreviousTab() {
+      const $currentTab = $(".text-tabs-menu").children(".w--current:first");
+      const currentIndex = $currentTab.index();
+      tabTimelines[currentIndex].pause();
+      const $prev = $currentTab.prev();
+      if ($prev.length) {
+        $prev.trigger("click");
+      } else {
+        $(".text-tabs-link:last").trigger("click");
+      }
+      const $newCurrentTab = $(".text-tabs-menu").children(".w--current:first");
+      const newIndex = $newCurrentTab.index();
+      tabTimelines[newIndex].play();
+      tabAutoplay.restart(true);
+    }
+    const splitTextTimeline = gsapWithCSS.timeline({ paused: true });
+    const $tabContent = $(".tabs-split-text");
+    const splitText = new SplitText($tabContent, { type: "words,chars" });
+    const { chars } = splitText;
+    splitTextTimeline.from(chars, {
+      autoAlpha: 0,
+      duration: 0.01,
+      stagger: 0.02
+    });
+    hasPlayedAnimation[0] = true;
+    ScrollTrigger2.create({
+      trigger: ".section_our-mission",
+      start: "top center",
+      onEnter: () => splitTextTimeline.play()
+    });
+    if (!hasPlayedAnimation[0]) {
+      tabTimelines[0].pause();
+    }
   }
 
   // src/careers.ts
@@ -11962,7 +12206,8 @@
     if (!window.WebflowEditor) {
       careerBenefits();
       initDiscoverGallerySlider();
-      textTabsV2();
+      typedTextTabs();
+      imageTabs();
       initImageGalleryTabs();
       companyValuesAnim();
       featuredPostAnims();

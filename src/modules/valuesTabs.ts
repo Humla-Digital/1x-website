@@ -1,47 +1,65 @@
-export function initValuesTabs() {
-  $(function () {
-    // Set duration of tab cycle in milliseconds
-    const tabDuration = 15000;
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-    // Starts the tab cycle
-    let tabTimeout: number | undefined;
-    clearTimeout(tabTimeout);
+gsap.registerPlugin(ScrollTrigger);
 
-    tabLoop($('.tab_values.w--current'));
+export function valuesTabs() {
+  const progressBarAnimation = gsap.to('.value-tabs-inner', {
+    width: '100%',
+    duration: 10,
+    ease: 'none',
+    paused: true,
+    onComplete: function () {
+      gsap.set('.value-tabs-inner', { width: '0%' });
+      nextTab();
+    },
+  });
 
-    function startProgressBar() {
-      $('.auto-tabs-values_timer-bar').animate({ width: '100%' }, tabDuration);
+  let tabAutoplay: gsap.core.Timeline;
+
+  function startTabAutoplay() {
+    tabAutoplay = gsap.timeline({ paused: true });
+    tabAutoplay.to({}, { duration: 10, onComplete: nextTab });
+    tabAutoplay.play();
+  }
+
+  // Define ScrollTrigger to start animations when the module is in view
+  ScrollTrigger.create({
+    trigger: '.value_gallery-tabs-wrapper',
+    start: 'top 50%',
+    onEnter: () => {
+      progressBarAnimation.play();
+      startTabAutoplay();
+    },
+    onLeave: () => {
+      progressBarAnimation.pause();
+      tabAutoplay.pause();
+    },
+  });
+
+  function nextTab() {
+    const $currentTab = $('.tab_values.w--current');
+    const $next = $currentTab.next();
+
+    if ($next.length) {
+      $next.trigger('click');
+    } else {
+      $('.tab_values:first').trigger('click');
     }
+  }
 
-    function stopProgressBar() {
-      $('.auto-tabs-values_timer-bar').stop(true, true).css('width', '0%');
-    }
+  $('.value_gallery-tabs-content').on('mouseenter', function () {
+    progressBarAnimation.pause();
+    tabAutoplay.pause();
+  });
 
-    // Define cycle through all tabs
-    function tabLoop(trigger: JQuery<HTMLElement>) {
-      startProgressBar();
-      // Loop to next/first tab after tabDuration and reset / start progressbar
-      tabTimeout = setTimeout(function () {
-        const $next = trigger.next();
-        startProgressBar();
-        if ($next.length) {
-          $next.removeAttr('href').click();
-          stopProgressBar();
-          startProgressBar();
-        } else {
-          $('.tab_values:first').removeAttr('href').click();
-          stopProgressBar();
-          startProgressBar();
-        }
-      }, tabDuration);
-    }
+  $('.value_gallery-tabs-content').on('mouseleave', function () {
+    progressBarAnimation.resume();
+    tabAutoplay.play();
+  });
 
-    // Reset timeout if a tab is clicked
-    $('.tab_values').on('click', function () {
-      clearTimeout(tabTimeout);
-      tabLoop($(this));
-      stopProgressBar();
-      startProgressBar();
-    });
+  $('.tab_values').on('click', function () {
+    progressBarAnimation.restart();
+    tabAutoplay.restart();
   });
 }
