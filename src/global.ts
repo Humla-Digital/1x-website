@@ -24,10 +24,11 @@ declare global {
 }
 window.Webflow ||= [];
 window.Webflow.push(() => {
+  turnNavWhite();
   if (!window.WebflowEditor) {
     navbarAnim();
     //featuredPostAnim();
-    turnNavWhite();
+
     footerAnim();
   } else {
     $('.item_faq-content').addClass('is-active');
