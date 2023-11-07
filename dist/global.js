@@ -6576,10 +6576,10 @@
   }
   window.Webflow ||= [];
   window.Webflow.push(() => {
+    turnNavWhite();
+    footerAnim();
     if (!window.WebflowEditor) {
       navbarAnim();
-      turnNavWhite();
-      footerAnim();
     } else {
       $(".item_faq-content").addClass("is-active");
     }

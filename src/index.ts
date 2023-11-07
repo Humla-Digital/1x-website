@@ -23,17 +23,17 @@ declare global {
 }
 window.Webflow ||= [];
 window.Webflow.push(() => {
+  initDiscoverGallerySlider();
+  initOurAndroidsSlider();
+  jobCounter();
+  pauseVideo();
+  hideEmptyDynSections();
   if (!window.WebflowEditor) {
     valuesTabs();
     typedTextTabs();
     imageTabs();
     embodiedLearningAnim();
     exploreCareersAnim();
-    pauseVideo();
-    jobCounter();
-    initOurAndroidsSlider();
-    initDiscoverGallerySlider();
-    hideEmptyDynSections();
   } else {
   }
 });
