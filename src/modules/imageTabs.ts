@@ -88,7 +88,7 @@ export function imageTabs() {
 
     tabAutoplay.restart(true);
   }
-
+  /*
   $('.image-tabs-content')
     .on('mouseover', function () {
       tabAutoplay.pause();
@@ -100,7 +100,7 @@ export function imageTabs() {
       const currentIndex = $currentTab.index();
       tabTimelines[currentIndex].play();
     });
-
+  */
   $('.image-tabs-link').on('click', function () {
     tabTimelines.forEach((timeline) => timeline.progress(0).pause());
     const $clickedTab = $(this);
