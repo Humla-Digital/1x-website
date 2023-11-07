@@ -128,7 +128,7 @@ export function typedTextTabs() {
         splitTextTimeline.from(chars, {
           autoAlpha: 0,
           duration: 0.01,
-          stagger: 0.02,
+          stagger: 0.05,
         });
 
         splitTextTimeline.restart();
@@ -191,7 +191,7 @@ export function typedTextTabs() {
   splitTextTimeline.from(chars, {
     autoAlpha: 0,
     duration: 0.01,
-    stagger: 0.02,
+    stagger: 0.05,
   });
 
   hasPlayedAnimation[0] = true;
