@@ -41,6 +41,7 @@ window.Webflow.push(() => {
       y: '20',
       duration: 1.2,
       stagger: 0.12,
+      delay: 1.25,
     });
   }
 
