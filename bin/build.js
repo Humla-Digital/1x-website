@@ -17,6 +17,7 @@ const ENTRY_POINTS = [
   'src/neo.ts',
   'src/eve.ts',
   'src/androids.ts',
+  'src/landingPage.ts',
 ];
 
 // Config dev serving

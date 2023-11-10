@@ -17932,15 +17932,6 @@
       tabTimelines[newIndex].play();
       tabAutoplay.restart(true);
     }
-    $(".image-tabs-content").on("mouseover", function() {
-      tabAutoplay.pause();
-      tabTimelines.forEach((timeline2) => timeline2.pause());
-    }).on("mouseleave", function() {
-      tabAutoplay.resume();
-      const $currentTab = $(".image-tabs-menu").children(".w--current:first");
-      const currentIndex = $currentTab.index();
-      tabTimelines[currentIndex].play();
-    });
     $(".image-tabs-link").on("click", function() {
       tabTimelines.forEach((timeline2) => timeline2.progress(0).pause());
       const $clickedTab = $(this);
