@@ -6,6 +6,34 @@ window.Webflow ||= [];
 window.Webflow.push(() => {
   gsap.registerPlugin(ScrollTrigger);
 
+  /// Function to open the T&C modal
+  function openModal() {
+    const modal = document.getElementById('terms-modal');
+    if (modal) {
+      modal.style.display = 'block';
+    }
+  }
+
+  // Function to close the modal
+  function closeModal() {
+    const modal = document.getElementById('terms-modal');
+    if (modal) {
+      modal.style.display = 'none';
+    }
+  }
+
+  // Event listener for the buttons with the class "openModalBtn"
+  const openModalButtons = document.getElementsByClassName('openModalBtn');
+  for (const button of openModalButtons) {
+    button.addEventListener('click', openModal);
+  }
+
+  // Event listener for the close button inside the modal
+  const closeModalBtn = document.getElementById('closeModalBtn');
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', closeModal);
+  }
+
   function headerAnim() {
     $('.lp_section-hero').each(function () {
       const target = $('.lp-header-circles-wrapper').find('path');
