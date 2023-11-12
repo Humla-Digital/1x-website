@@ -6,23 +6,29 @@ window.Webflow ||= [];
 window.Webflow.push(() => {
   gsap.registerPlugin(ScrollTrigger);
 
-  /// Function to open the T&C modal
+  // Function to open the T&C modal
   function openModal() {
     const modal = document.getElementById('terms-modal');
-    if (modal) {
+    const { body } = document;
+
+    if (modal && body) {
       modal.style.display = 'block';
+      body.style.overflow = 'hidden';
     }
   }
 
   // Function to close the modal
   function closeModal() {
     const modal = document.getElementById('terms-modal');
-    if (modal) {
+    const { body } = document;
+
+    if (modal && body) {
       modal.style.display = 'none';
+      body.style.overflow = 'auto';
     }
   }
 
-  // Event listener for the buttons with the class "openModalBtn"
+  // Event listener for buttons with the class "openModalBtn"
   const openModalButtons = document.getElementsByClassName('openModalBtn');
   for (const button of openModalButtons) {
     button.addEventListener('click', openModal);
