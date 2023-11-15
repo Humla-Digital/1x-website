@@ -6,6 +6,7 @@ window.Webflow ||= [];
 window.Webflow.push(() => {
   gsap.registerPlugin(ScrollTrigger);
 
+  /*
   // Function to open the T&C modal
   function openModal() {
     const modal = document.getElementById('terms-modal');
@@ -39,7 +40,7 @@ window.Webflow.push(() => {
   if (closeModalBtn) {
     closeModalBtn.addEventListener('click', closeModal);
   }
-
+*/
   function headerAnim() {
     $('.lp_section-hero').each(function () {
       const target = $('.lp-header-circles-wrapper').find('path');
