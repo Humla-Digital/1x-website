@@ -5,8 +5,6 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import $ from 'jquery';
 
-import { hideEmptyDynSections } from '$utils/hideEmptyDynLists';
-
 import { initSoMeSlider } from './modules/soMeSlider';
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,7 +18,6 @@ window.Webflow.push(() => {
   if (!window.WebflowEditor) {
     discoverTags();
     //studioPostAnim();
-    hideEmptyDynSections();
     initSoMeSlider();
   } else {
   }
