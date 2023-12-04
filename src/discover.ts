@@ -27,7 +27,7 @@ function discoverTags() {
   gsap.set('.discover-tag-collection-item', { autoAlpha: 1 });
   const showDiscoverTags = gsap.timeline({ paused: true });
   showDiscoverTags.to('.discover-tag-collection-item', {
-    autoAlpha: 0,
+    autoAlpha: 1,
     stagger: 0.1,
     duration: 0.35,
   });
