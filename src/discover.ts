@@ -24,10 +24,10 @@ window.Webflow.push(() => {
 });
 
 function discoverTags() {
-  gsap.set('.discover-tag-collection-item', { autoAlpha: 0 });
+  gsap.set('.discover-tag-collection-item', { autoAlpha: 1 });
   const showDiscoverTags = gsap.timeline({ paused: true });
   showDiscoverTags.to('.discover-tag-collection-item', {
-    autoAlpha: 1,
+    autoAlpha: 0,
     stagger: 0.1,
     duration: 0.35,
   });
