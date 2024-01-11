@@ -31,7 +31,7 @@ window.Webflow.push(() => {
 });
 
 function specsToggle() {
-  const imperialHeight = '5.5 feet';
+  const imperialHeight = '5.41 feet';
   const imperialWeight = '66 pounds';
   const imperialWalkspeed = '2.5 miles/hour walk speed';
   const imperialRunspeed = '7.5 miles/hour run speed';

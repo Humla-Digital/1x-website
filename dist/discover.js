@@ -13029,14 +13029,6 @@
   // src/discover.ts
   var import_jquery = __toESM(require_jquery(), 1);
 
-  // src/utils/hideEmptyDynLists.ts
-  init_live_reload();
-  function hideEmptyDynSections() {
-    $(".w-dyn-empty").parents("section").each(function() {
-      $(this).remove();
-    });
-  }
-
   // src/modules/soMeSlider.ts
   init_live_reload();
 
@@ -17668,13 +17660,12 @@
   window.Webflow.push(() => {
     if (!window.WebflowEditor) {
       discoverTags();
-      hideEmptyDynSections();
       initSoMeSlider();
     } else {
     }
   });
   function discoverTags() {
-    gsapWithCSS.set(".discover-tag-collection-item", { autoAlpha: 0 });
+    gsapWithCSS.set(".discover-tag-collection-item", { autoAlpha: 1 });
     const showDiscoverTags = gsapWithCSS.timeline({ paused: true });
     showDiscoverTags.to(".discover-tag-collection-item", {
       autoAlpha: 1,
