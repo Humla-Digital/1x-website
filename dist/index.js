@@ -11205,7 +11205,7 @@
 
   // src/utils/hideEmptyDynLists.ts
   function hideEmptyDynSections() {
-    $(".w-dyn-empty").parents("section").each(function() {
+    $(".w-dyn-empty").not(".pencil_banner-cms-empty").parents("section").each(function() {
       $(this).remove();
     });
   }
@@ -11232,7 +11232,7 @@
       const tabTimeline = gsapWithCSS.timeline({ paused: true });
       tabTimeline.to($progressBar, {
         width: "100%",
-        duration: 10,
+        duration: 5,
         ease: "none",
         onComplete: function() {
           gsapWithCSS.set($progressBar, { width: "0%" });
@@ -11240,7 +11240,7 @@
       });
       tabTimelines.push(tabTimeline);
     });
-    const tabAutoplay = gsapWithCSS.delayedCall(10, function() {
+    const tabAutoplay = gsapWithCSS.delayedCall(5, function() {
       nextTab();
     });
     tabAutoplay.pause();

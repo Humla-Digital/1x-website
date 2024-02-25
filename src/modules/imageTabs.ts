@@ -12,7 +12,7 @@ export function imageTabs() {
     const tabTimeline = gsap.timeline({ paused: true });
     tabTimeline.to($progressBar, {
       width: '100%',
-      duration: 10,
+      duration: 5,
       ease: 'none',
       onComplete: function () {
         gsap.set($progressBar, { width: '0%' });
@@ -22,7 +22,7 @@ export function imageTabs() {
     tabTimelines.push(tabTimeline);
   });
 
-  const tabAutoplay = gsap.delayedCall(10, function () {
+  const tabAutoplay = gsap.delayedCall(5, function () {
     nextTab();
   });
   tabAutoplay.pause();
