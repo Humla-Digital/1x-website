@@ -20,7 +20,8 @@ if ($('.menu-link.w--current')) {
 $(".menu-open").on("click", function() {
   $("body").addClass("overflow-hidden")
 })
-$(".menu-close").on("click", function() {
+
+$(".sidebar-close").on("click", function() {
   $("body").removeClass("overflow-hidden")
 })
 
