@@ -4,7 +4,6 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { initDiscoverGallerySlider } from 'src/modules/discoverPostSlider';
-import { initImageGalleryTabs } from 'src/modules/imageGalleryTabs';
 import { initOurAndroidsSlider } from 'src/modules/ourAndroidsSlider';
 import { valuesTabs } from 'src/modules/valuesTabs';
 
