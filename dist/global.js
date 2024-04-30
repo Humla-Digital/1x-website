@@ -6574,6 +6574,12 @@
   if ($(".menu-link.w--current")) {
     $(".menu-link.w--current").siblings(".menu-link").css("opacity", "0.5");
   }
+  $(".menu-open").on("click", function() {
+    $("body").addClass("overflow-hidden");
+  });
+  $(".sidebar-close").on("click", function() {
+    $("body").removeClass("overflow-hidden");
+  });
   window.Webflow ||= [];
   window.Webflow.push(() => {
     turnNavWhite();

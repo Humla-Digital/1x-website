@@ -6960,30 +6960,6 @@
   SplitText.version = "3.12.2";
   SplitText.register = _initCore5;
 
-  // src/modules/imageGalleryTabs.ts
-  function initImageGalleryTabs() {
-    $(function() {
-      const tabDuration = 5e3;
-      let tabTimeout;
-      clearTimeout(tabTimeout);
-      tabLoop($(".stories_tab-link.is_image-gallery.w--current"));
-      function tabLoop(trigger) {
-        tabTimeout = setTimeout(function() {
-          const $next = trigger.next();
-          if ($next.length) {
-            $next.removeAttr("href").click();
-          } else {
-            $(".stories_tab-link.is_image-gallery:first").removeAttr("href").click();
-          }
-        }, tabDuration);
-      }
-      $(".stories_tab-link.is_image-gallery").click(function() {
-        clearTimeout(tabTimeout);
-        tabLoop($(this));
-      });
-    });
-  }
-
   // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/shared/ssr-window.esm.mjs
   function isObject(obj) {
     return obj !== null && typeof obj === "object" && "constructor" in obj && obj.constructor === Object;
@@ -11848,13 +11824,6 @@
     });
   }
 
-  // src/utils/hideEmptyDepartments.ts
-  function hideEmptyDepartments() {
-    $(".w-dyn-empty").parents(".open_position-department").each(function() {
-      $(this).remove();
-    });
-  }
-
   // src/modules/discoverPostSlider.ts
   function initDiscoverGallerySlider() {
     gsapWithCSS.registerPlugin(ScrollTrigger2);
@@ -11918,118 +11887,6 @@
       }
     };
     const discoverGallerySlider = new Swiper(".discover-slider", discoverGallerySliderParams);
-  }
-
-  // src/modules/imageTabs.ts
-  gsapWithCSS.registerPlugin(ScrollTrigger2);
-  function imageTabs() {
-    const tabTimelines = [];
-    $(".image-tabs-link").each(function() {
-      const $progressBar = $(this).find(".tabs-link-inner");
-      const tabTimeline = gsapWithCSS.timeline({ paused: true });
-      tabTimeline.to($progressBar, {
-        width: "100%",
-        duration: 5,
-        ease: "none",
-        onComplete: function() {
-          gsapWithCSS.set($progressBar, { width: "0%" });
-        }
-      });
-      tabTimelines.push(tabTimeline);
-    });
-    const tabAutoplay = gsapWithCSS.delayedCall(5, function() {
-      nextTab();
-    });
-    tabAutoplay.pause();
-    ScrollTrigger2.create({
-      trigger: ".image-tabs",
-      onEnter: () => tabAutoplay.play(),
-      onLeave: () => tabAutoplay.pause(),
-      onEnterBack: () => tabAutoplay.play(),
-      onLeaveBack: () => tabAutoplay.pause()
-    });
-    ScrollTrigger2.create({
-      trigger: ".image-tabs",
-      onEnter: () => {
-        const $currentTab = $(".image-tabs-menu").children(".w--current:first");
-        const currentIndex = $currentTab.index();
-        tabTimelines[currentIndex].play();
-      },
-      onLeave: () => {
-        const $currentTab = $(".image-tabs-menu").children(".w--current:first");
-        const currentIndex = $currentTab.index();
-        tabTimelines[currentIndex].pause();
-      },
-      onEnterBack: () => {
-        const $currentTab = $(".image-tabs-menu").children(".w--current:first");
-        const currentIndex = $currentTab.index();
-        tabTimelines[currentIndex].play();
-      },
-      onLeaveBack: () => {
-        const $currentTab = $(".image-tabs-menu").children(".w--current:first");
-        const currentIndex = $currentTab.index();
-        tabTimelines[currentIndex].pause();
-      }
-    });
-    tabTimelines[0].pause();
-    function nextTab() {
-      const $currentTab = $(".image-tabs-menu").children(".w--current:first");
-      const currentIndex = $currentTab.index();
-      tabTimelines[currentIndex].pause();
-      const $next = $currentTab.next();
-      if ($next.length) {
-        $next.trigger("click");
-      } else {
-        $(".image-tabs-link:first").trigger("click");
-      }
-      const $newCurrentTab = $(".image-tabs-menu").children(".w--current:first");
-      const newIndex = $newCurrentTab.index();
-      tabTimelines[newIndex].play();
-      tabAutoplay.restart(true);
-    }
-    $(".image-tabs-link").on("click", function() {
-      tabTimelines.forEach((timeline2) => timeline2.progress(0).pause());
-      const $clickedTab = $(this);
-      const index = $clickedTab.index();
-      tabTimelines[index].restart();
-      tabAutoplay.restart(true);
-    });
-    $(".image-tabs-button.next").on("click", function() {
-      navigateToNextTab();
-    });
-    $(".image-tabs-button.prev").on("click", function() {
-      navigateToPreviousTab();
-    });
-    function navigateToNextTab() {
-      const $currentTab = $(".image-tabs-menu").children(".w--current:first");
-      const currentIndex = $currentTab.index();
-      tabTimelines[currentIndex].pause();
-      const $next = $currentTab.next();
-      if ($next.length) {
-        $next.trigger("click");
-      } else {
-        $(".image-tabs-link:first").trigger("click");
-      }
-      const $newCurrentTab = $(".image-tabs-menu").children(".w--current:first");
-      const newIndex = $newCurrentTab.index();
-      tabTimelines[newIndex].play();
-      tabAutoplay.restart(true);
-    }
-    function navigateToPreviousTab() {
-      const $currentTab = $(".image-tabs-menu").children(".w--current:first");
-      const currentIndex = $currentTab.index();
-      tabTimelines[currentIndex].pause();
-      const $prev = $currentTab.prev();
-      if ($prev.length) {
-        $prev.trigger("click");
-      } else {
-        $(".image-tabs-link:last").trigger("click");
-      }
-      const $newCurrentTab = $(".image-tabs-menu").children(".w--current:first");
-      const newIndex = $newCurrentTab.index();
-      tabTimelines[newIndex].play();
-      tabAutoplay.restart(true);
-    }
   }
 
   // src/modules/typedTextTabs.ts
@@ -12198,11 +12055,8 @@
       careerBenefits();
       initDiscoverGallerySlider();
       typedTextTabs();
-      imageTabs();
-      initImageGalleryTabs();
       companyValuesAnim();
       featuredPostAnims();
-      hideEmptyDepartments();
       careersImageGallery();
     } else {
     }

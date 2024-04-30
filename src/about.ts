@@ -12,7 +12,6 @@ import Swiper from 'swiper';
 import { Controller, Mousewheel, Navigation } from 'swiper/modules';
 import { type SwiperOptions } from 'swiper/types/index.d';
 
-import { imageTabs } from './modules/imageTabs';
 import { valuesTabs } from './modules/valuesTabs';
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,7 +24,6 @@ window.Webflow ||= [];
 window.Webflow.push(() => {
   if (!window.WebflowEditor) {
     initDiscoverGallerySlider();
-    imageTabs();
     valuesTabs();
     aboutAnimations();
     ourStorySlider();
@@ -97,11 +95,12 @@ function ourStorySlider() {
   timelineSlider.controller.control = cardsSlider;
   cardsSlider.controller.control = timelineSlider;
 }
+
 function aboutAnimations() {
   $('.section_our-perspective').each(function () {
     const triggerElement = $(this);
     const targetElements = gsap.utils.toArray(
-      '.image-wrapper_our-perspective, .d-mono-15, .d-light-48'
+      '.image-wrapper_our-perspective, #perspective-animate-brow, #perspective-animate-text'
     );
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -118,7 +117,9 @@ function aboutAnimations() {
   $('.section_explore-careers').each(function () {
     const triggerElement = $(this);
     const bgTarget = $(this).find('.content-wrapper_explore-careers');
-    const contentTargets = gsap.utils.toArray('.sm-max-width-200, .m-light-16, .p2-button');
+    const contentTargets = gsap.utils.toArray(
+      '#explore-anim-1, #explore-anim-2, #explore-anim-button'
+    );
 
     const tl = gsap.timeline({
       scrollTrigger: {

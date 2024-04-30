@@ -17864,119 +17864,6 @@
     const discoverGallerySlider = new Swiper(".discover-slider", discoverGallerySliderParams);
   }
 
-  // src/modules/imageTabs.ts
-  init_live_reload();
-  gsapWithCSS.registerPlugin(ScrollTrigger2);
-  function imageTabs() {
-    const tabTimelines = [];
-    $(".image-tabs-link").each(function() {
-      const $progressBar = $(this).find(".tabs-link-inner");
-      const tabTimeline = gsapWithCSS.timeline({ paused: true });
-      tabTimeline.to($progressBar, {
-        width: "100%",
-        duration: 5,
-        ease: "none",
-        onComplete: function() {
-          gsapWithCSS.set($progressBar, { width: "0%" });
-        }
-      });
-      tabTimelines.push(tabTimeline);
-    });
-    const tabAutoplay = gsapWithCSS.delayedCall(5, function() {
-      nextTab();
-    });
-    tabAutoplay.pause();
-    ScrollTrigger2.create({
-      trigger: ".image-tabs",
-      onEnter: () => tabAutoplay.play(),
-      onLeave: () => tabAutoplay.pause(),
-      onEnterBack: () => tabAutoplay.play(),
-      onLeaveBack: () => tabAutoplay.pause()
-    });
-    ScrollTrigger2.create({
-      trigger: ".image-tabs",
-      onEnter: () => {
-        const $currentTab = $(".image-tabs-menu").children(".w--current:first");
-        const currentIndex = $currentTab.index();
-        tabTimelines[currentIndex].play();
-      },
-      onLeave: () => {
-        const $currentTab = $(".image-tabs-menu").children(".w--current:first");
-        const currentIndex = $currentTab.index();
-        tabTimelines[currentIndex].pause();
-      },
-      onEnterBack: () => {
-        const $currentTab = $(".image-tabs-menu").children(".w--current:first");
-        const currentIndex = $currentTab.index();
-        tabTimelines[currentIndex].play();
-      },
-      onLeaveBack: () => {
-        const $currentTab = $(".image-tabs-menu").children(".w--current:first");
-        const currentIndex = $currentTab.index();
-        tabTimelines[currentIndex].pause();
-      }
-    });
-    tabTimelines[0].pause();
-    function nextTab() {
-      const $currentTab = $(".image-tabs-menu").children(".w--current:first");
-      const currentIndex = $currentTab.index();
-      tabTimelines[currentIndex].pause();
-      const $next = $currentTab.next();
-      if ($next.length) {
-        $next.trigger("click");
-      } else {
-        $(".image-tabs-link:first").trigger("click");
-      }
-      const $newCurrentTab = $(".image-tabs-menu").children(".w--current:first");
-      const newIndex = $newCurrentTab.index();
-      tabTimelines[newIndex].play();
-      tabAutoplay.restart(true);
-    }
-    $(".image-tabs-link").on("click", function() {
-      tabTimelines.forEach((timeline2) => timeline2.progress(0).pause());
-      const $clickedTab = $(this);
-      const index = $clickedTab.index();
-      tabTimelines[index].restart();
-      tabAutoplay.restart(true);
-    });
-    $(".image-tabs-button.next").on("click", function() {
-      navigateToNextTab();
-    });
-    $(".image-tabs-button.prev").on("click", function() {
-      navigateToPreviousTab();
-    });
-    function navigateToNextTab() {
-      const $currentTab = $(".image-tabs-menu").children(".w--current:first");
-      const currentIndex = $currentTab.index();
-      tabTimelines[currentIndex].pause();
-      const $next = $currentTab.next();
-      if ($next.length) {
-        $next.trigger("click");
-      } else {
-        $(".image-tabs-link:first").trigger("click");
-      }
-      const $newCurrentTab = $(".image-tabs-menu").children(".w--current:first");
-      const newIndex = $newCurrentTab.index();
-      tabTimelines[newIndex].play();
-      tabAutoplay.restart(true);
-    }
-    function navigateToPreviousTab() {
-      const $currentTab = $(".image-tabs-menu").children(".w--current:first");
-      const currentIndex = $currentTab.index();
-      tabTimelines[currentIndex].pause();
-      const $prev = $currentTab.prev();
-      if ($prev.length) {
-        $prev.trigger("click");
-      } else {
-        $(".image-tabs-link:last").trigger("click");
-      }
-      const $newCurrentTab = $(".image-tabs-menu").children(".w--current:first");
-      const newIndex = $newCurrentTab.index();
-      tabTimelines[newIndex].play();
-      tabAutoplay.restart(true);
-    }
-  }
-
   // src/modules/valuesTabs.ts
   init_live_reload();
   gsapWithCSS.registerPlugin(ScrollTrigger2);
@@ -18038,7 +17925,6 @@
   window.Webflow.push(() => {
     if (!window.WebflowEditor) {
       initDiscoverGallerySlider();
-      imageTabs();
       valuesTabs();
       aboutAnimations();
       ourStorySlider();
@@ -18111,7 +17997,7 @@
     (0, import_jquery.default)(".section_our-perspective").each(function() {
       const triggerElement = (0, import_jquery.default)(this);
       const targetElements = gsapWithCSS.utils.toArray(
-        ".image-wrapper_our-perspective, .d-mono-15, .d-light-48"
+        ".image-wrapper_our-perspective, #perspective-animate-brow, #perspective-animate-text"
       );
       const tl = gsapWithCSS.timeline({
         scrollTrigger: {
@@ -18127,7 +18013,9 @@
     (0, import_jquery.default)(".section_explore-careers").each(function() {
       const triggerElement = (0, import_jquery.default)(this);
       const bgTarget = (0, import_jquery.default)(this).find(".content-wrapper_explore-careers");
-      const contentTargets = gsapWithCSS.utils.toArray(".sm-max-width-200, .m-light-16, .p2-button");
+      const contentTargets = gsapWithCSS.utils.toArray(
+        "#explore-anim-1, #explore-anim-2, #explore-anim-button"
+      );
       const tl = gsapWithCSS.timeline({
         scrollTrigger: {
           trigger: triggerElement,
