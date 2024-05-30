@@ -3,6 +3,7 @@
 /* eslint-disable no-console */
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { SplitText } from 'gsap/SplitText';
 import { initDiscoverGallerySlider } from 'src/modules/discoverPostSlider';
 import { initImageGalleryTabs } from 'src/modules/imageGalleryTabs';
 import { initOurAndroidsSlider } from 'src/modules/ourAndroidsSlider';
@@ -17,7 +18,7 @@ import Swiper from 'swiper';
 import { Controller, Mousewheel, Navigation } from 'swiper/modules';
 import { type SwiperOptions } from 'swiper/types/index.d';
 import { typedTextTabs } from './modules/typedTextTabs';
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 declare global {
   interface Window {
