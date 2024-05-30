@@ -10,7 +10,6 @@ import { type SwiperOptions } from 'swiper/types/index.d';
 import { pauseVideo } from '$utils/pauseVideo';
 
 import { androidValuePropsTabs } from './modules/androidValuePropsTabs';
-import { contentCarouselTabs } from './modules/contentCarouselTabs';
 import { faqModule } from './modules/faqs';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
@@ -24,13 +23,10 @@ window.Webflow ||= [];
 window.Webflow.push(() => {
   if (!window.WebflowEditor) {
     androidValuePropsTabs();
-    //contentCarouselTabs();
-    //careerBenefits();
     faqModule();
     androidScene();
     aboutEveTypedAnim();
     specsToggle();
-    //eveLearnsSlider();
     pauseVideo();
     ourStorySlider();
   } else {

@@ -5,8 +5,6 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
 import { initDiscoverGallerySlider } from 'src/modules/discoverPostSlider';
-import { initImageGalleryTabs } from 'src/modules/imageGalleryTabs';
-import { initOurAndroidsSlider } from 'src/modules/ourAndroidsSlider';
 import { valuesTabs } from 'src/modules/valuesTabs';
 import Swiper from 'swiper';
 import { Controller, Mousewheel, Navigation } from 'swiper/modules';
@@ -16,8 +14,6 @@ import { hideEmptyDynSections } from '$utils/hideEmptyDynLists';
 import { jobCounter } from '$utils/jobCounter';
 import { pauseVideo } from '$utils/pauseVideo';
 
-import { imageTabs } from './modules/imageTabs';
-import { typedTextTabs } from './modules/typedTextTabs';
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 declare global {
@@ -28,14 +24,12 @@ declare global {
 window.Webflow ||= [];
 window.Webflow.push(() => {
   initDiscoverGallerySlider();
-  initOurAndroidsSlider();
   jobCounter();
   pauseVideo();
   hideEmptyDynSections();
   if (!window.WebflowEditor) {
     valuesTabs();
     ourMissionTypedAnim();
-
     embodiedLearningAnim();
     exploreCareersAnim();
     ourStorySlider();
