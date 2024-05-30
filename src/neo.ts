@@ -19,7 +19,6 @@ window.Webflow ||= [];
 window.Webflow.push(() => {
   if (!window.WebflowEditor) {
     androidValuePropsTabs();
-    careerBenefits();
     faqModule();
     androidScene();
     aboutNeoTypedAnim();
@@ -66,49 +65,6 @@ function specsToggle() {
   });
 }
 specsToggle();
-
-function careerBenefits() {
-  if (window.innerWidth > 1399) {
-    $('.wrapper_splittext-row').each(function (_i, _element) {
-      const splitTextTimeline = gsap.timeline({ paused: true, reversed: true }),
-        careerBenefit = $(this).find('.is-splittext'),
-        splitText = new SplitText(careerBenefit, { type: 'words,chars' }),
-        { chars } = splitText;
-
-      splitTextTimeline.from(chars, {
-        autoAlpha: 0,
-        duration: 0.01,
-        stagger: 0.03,
-      });
-      $(this).on('mouseenter', typeText).on('mouseleave', typeText);
-      function typeText() {
-        splitTextTimeline.reversed() ? splitTextTimeline.play() : splitTextTimeline.reverse();
-      }
-    });
-  } else {
-    gsap.set(careerBenefits, { autoAlpha: 0 });
-    $('.wrapper_splittext-row').on('click', function () {
-      ScrollTrigger.refresh();
-      $(this).toggleClass('is-active');
-      if ($(this).hasClass('is-active')) {
-        $(this).find('.is-splittext').addClass('is-active');
-        const splitTextTimeline = gsap.timeline({ paused: true, reversed: true }),
-          careerBenefit = $(this).find('.is-splittext'),
-          splitText = new SplitText(careerBenefit, { type: 'words,chars' }),
-          { chars } = splitText;
-        splitTextTimeline.from(chars, {
-          autoAlpha: 0,
-          duration: 0.01,
-          stagger: 0.01,
-        });
-        splitTextTimeline.reversed() ? splitTextTimeline.play() : splitTextTimeline.reverse();
-      } else {
-        $(this).removeClass('is-active');
-        $(this).find('.is-splittext').removeClass('is-active');
-      }
-    });
-  }
-}
 
 function androidScene() {
   const target1 = $('#scene-content-1');
