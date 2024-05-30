@@ -8,7 +8,6 @@ import 'swiper/css/scrollbar';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import { SplitText } from 'gsap/SplitText';
-import { initImageGalleryTabs } from 'src/modules/imageGalleryTabs';
 import Swiper from 'swiper';
 import { Mousewheel, Navigation, Scrollbar } from 'swiper/modules';
 import { type SwiperOptions } from 'swiper/types/index.d';
@@ -16,8 +15,6 @@ import { type SwiperOptions } from 'swiper/types/index.d';
 import { hideEmptyDepartments } from '$utils/hideEmptyDepartments';
 
 import { initDiscoverGallerySlider } from './modules/discoverPostSlider';
-import { imageTabs } from './modules/imageTabs';
-import { textTabsV2 } from './modules/textTabs';
 import { typedTextTabs } from './modules/typedTextTabs';
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
@@ -30,11 +27,8 @@ declare global {
 window.Webflow ||= [];
 window.Webflow.push(() => {
   if (!window.WebflowEditor) {
-    careerBenefits();
     initDiscoverGallerySlider();
     typedTextTabs();
-    imageTabs();
-    initImageGalleryTabs();
     companyValuesAnim();
     featuredPostAnims();
     hideEmptyDepartments();
