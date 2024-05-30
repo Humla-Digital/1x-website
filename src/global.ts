@@ -8,11 +8,6 @@ import { updateFooterYear } from '$utils/updateFooterYear';
 updateFooterYear();
 gsap.registerPlugin(ScrollTrigger);
 
-/*
-$('.menu-link.w--current').addClass('current-page');
-$('.current-page').siblings('.menu-link').addClass('opacity-50');
-*/
-
 if ($('.menu-link.w--current')) {
   $('.menu-link.w--current').siblings('.menu-link').css('opacity', '0.5');
 }
@@ -170,25 +165,3 @@ $('.sidebar-close').on('click', function () {
 $('.tablet_sidebar-back').on('click', function () {
   $('.sidebar-menu-drawer').removeClass('is-active');
 });
-
-function featuredPostAnim() {
-  if ('.section_announcement-featured-post') {
-    $('.section_announcement-featured-post').each(function () {
-      const triggerElement = $(this);
-      const targets = gsap.utils.toArray([$(this).find('div'), $(this).find('p')]);
-      const targetImg = $(this).find('img');
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          start: 'top center',
-          trigger: triggerElement,
-        },
-      });
-      tl.from(targets, {
-        autoAlpha: 0,
-      });
-      tl.from(targetImg, {
-        autoAlpha: 0,
-      });
-    });
-  }
-}
