@@ -35,7 +35,7 @@ window.Webflow.push(() => {
   if (!window.WebflowEditor) {
     valuesTabs();
     ourMissionTypedAnim()
-    imageTabs();
+    //imageTabs();
     embodiedLearningAnim();
     exploreCareersAnim();
     ourStorySlider();
