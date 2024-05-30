@@ -5,8 +5,6 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import SplitText from 'gsap/SplitText';
 import $ from 'jquery';
 
-import { pauseVideo } from '$utils/pauseVideo';
-
 import { androidValuePropsTabs } from './modules/androidValuePropsTabs';
 import { faqModule } from './modules/faqs';
 gsap.registerPlugin(ScrollTrigger, SplitText);
@@ -23,7 +21,6 @@ window.Webflow.push(() => {
     androidScene();
     aboutNeoTypedAnim();
     specsToggle();
-    pauseVideo();
   } else {
     $('.is_pdp-android-scene').addClass('in-editor');
   }
