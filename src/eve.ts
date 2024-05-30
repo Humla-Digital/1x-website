@@ -28,7 +28,7 @@ window.Webflow ||= [];
 window.Webflow.push(() => {
   if (!window.WebflowEditor) {
     androidValuePropsTabs();
-    contentCarouselTabs();
+    //contentCarouselTabs();
     careerBenefits();
     faqModule();
     androidScene();
