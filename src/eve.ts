@@ -29,10 +29,10 @@ window.Webflow.push(() => {
   if (!window.WebflowEditor) {
     androidValuePropsTabs();
     //contentCarouselTabs();
-    careerBenefits();
+    //careerBenefits();
     faqModule();
     androidScene();
-    //aboutEveTypedAnim();
+    aboutEveTypedAnim();
     specsToggle();
     //eveLearnsSlider();
     pauseVideo();
