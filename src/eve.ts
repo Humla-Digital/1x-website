@@ -2,13 +2,14 @@
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/mousewheel';
+import 'swiper/css/controller';
 
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
 import Swiper from 'swiper';
-import { Controller, Mousewheel, Navigation, Pagination } from 'swiper/modules';
-import { type SwiperOptions } from 'swiper/types';
+import { Controller, Mousewheel, Navigation } from 'swiper/modules';
+import { type SwiperOptions } from 'swiper/types/index.d';
 
 import { pauseVideo } from '$utils/pauseVideo';
 
