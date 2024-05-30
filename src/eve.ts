@@ -117,9 +117,11 @@ function careerBenefits() {
     });
   }
 }
+/*
 $('.stories_tab-link-15s').on('click', function () {
   ScrollTrigger.refresh();
 });
+*/
 function androidScene() {
   const target1 = $('#scene-content-1');
   const target2 = $('#scene-content-2');
@@ -206,43 +208,6 @@ function androidScene() {
     },
     6
   );
-}
-function eveLearnsSlider() {
-  const cardsSliderParams: SwiperOptions = {
-    modules: [Mousewheel, Pagination],
-    slidesPerView: 'auto',
-    spaceBetween: 40,
-    speed: 400,
-    setWrapperSize: false,
-    mousewheel: {
-      forceToAxis: true,
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-      renderBullet: function (index, className) {
-        return '<span class="' + className + '">' + '</span>';
-      },
-    },
-    breakpoints: {
-      // when window width is >= 290px
-      290: {
-        slidesPerView: 1,
-        spaceBetween: 20,
-        setWrapperSize: false,
-        slidesPerGroup: 1,
-      },
-      // when window width is >= 768px
-      768: {
-        slidesPerView: 1,
-      },
-      // when window width is >= 992px
-      992: {
-        slidesPerView: 'auto',
-      },
-    },
-  };
-  const cardsSlider = new Swiper('.our-story-cards-slider', cardsSliderParams);
 }
 
 function aboutEveTypedAnim() {
