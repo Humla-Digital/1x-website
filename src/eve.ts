@@ -76,52 +76,6 @@ function specsToggle() {
 }
 specsToggle();
 
-function careerBenefits() {
-  if (window.innerWidth > 1399) {
-    $('.wrapper_splittext-row').each(function (_i, _element) {
-      const splitTextTimeline = gsap.timeline({ paused: true, reversed: true }),
-        careerBenefit = $(this).find('.is-splittext'),
-        splitText = new SplitText(careerBenefit, { type: 'words,chars' }),
-        { chars } = splitText;
-
-      splitTextTimeline.from(chars, {
-        autoAlpha: 0,
-        duration: 0.01,
-        stagger: 0.03,
-      });
-      $(this).on('mouseenter', typeText).on('mouseleave', typeText);
-      function typeText() {
-        splitTextTimeline.reversed() ? splitTextTimeline.play() : splitTextTimeline.reverse();
-      }
-    });
-  } else {
-    $('.wrapper_splittext-row').on('click', function () {
-      ScrollTrigger.refresh();
-      $(this).toggleClass('is-active');
-      if ($(this).hasClass('is-active')) {
-        $(this).find('.is-splittext').addClass('is-active');
-        const splitTextTimeline = gsap.timeline({ paused: true, reversed: true }),
-          careerBenefit = $(this).find('.is-splittext'),
-          splitText = new SplitText(careerBenefit, { type: 'words,chars' }),
-          { chars } = splitText;
-        splitTextTimeline.from(chars, {
-          autoAlpha: 0,
-          duration: 0.01,
-          stagger: 0.03,
-        });
-        splitTextTimeline.reversed() ? splitTextTimeline.play() : splitTextTimeline.reverse();
-      } else {
-        $(this).removeClass('is-active');
-        $(this).find('.is-splittext').removeClass('is-active');
-      }
-    });
-  }
-}
-/*
-$('.stories_tab-link-15s').on('click', function () {
-  ScrollTrigger.refresh();
-});
-*/
 function androidScene() {
   const target1 = $('#scene-content-1');
   const target2 = $('#scene-content-2');
@@ -211,7 +165,7 @@ function androidScene() {
 }
 
 function aboutEveTypedAnim() {
-  $('.section_about-eve').each(function () {
+  $('.section_typed-big-text').each(function () {
     const splitTextTimeline = gsap.timeline({ paused: true, reversed: true }),
       aboutText = $(this).find('.d-light-44'),
       splitText = new SplitText(aboutText, { type: 'words,chars' }),
