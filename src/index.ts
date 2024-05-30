@@ -8,15 +8,15 @@ import { initDiscoverGallerySlider } from 'src/modules/discoverPostSlider';
 import { initImageGalleryTabs } from 'src/modules/imageGalleryTabs';
 import { initOurAndroidsSlider } from 'src/modules/ourAndroidsSlider';
 import { valuesTabs } from 'src/modules/valuesTabs';
+import Swiper from 'swiper';
+import { Controller, Mousewheel, Navigation } from 'swiper/modules';
+import { type SwiperOptions } from 'swiper/types/index.d';
 
 import { hideEmptyDynSections } from '$utils/hideEmptyDynLists';
 import { jobCounter } from '$utils/jobCounter';
 import { pauseVideo } from '$utils/pauseVideo';
 
 import { imageTabs } from './modules/imageTabs';
-import Swiper from 'swiper';
-import { Controller, Mousewheel, Navigation } from 'swiper/modules';
-import { type SwiperOptions } from 'swiper/types/index.d';
 import { typedTextTabs } from './modules/typedTextTabs';
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -34,7 +34,7 @@ window.Webflow.push(() => {
   hideEmptyDynSections();
   if (!window.WebflowEditor) {
     valuesTabs();
-    ourMissionTypedAnim()
+    ourMissionTypedAnim();
     //imageTabs();
     embodiedLearningAnim();
     exploreCareersAnim();

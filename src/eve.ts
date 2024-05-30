@@ -7,7 +7,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
 import Swiper from 'swiper';
-import { Mousewheel, Pagination } from 'swiper/modules';
+import { Controller, Mousewheel, Navigation, Pagination } from 'swiper/modules';
 import { type SwiperOptions } from 'swiper/types';
 
 import { pauseVideo } from '$utils/pauseVideo';
@@ -31,10 +31,11 @@ window.Webflow.push(() => {
     careerBenefits();
     faqModule();
     androidScene();
-    aboutEveTypedAnim();
+    //aboutEveTypedAnim();
     specsToggle();
-    eveLearnsSlider();
+    //eveLearnsSlider();
     pauseVideo();
+    ourStorySlider();
   } else {
     $('.is_pdp-android-scene').addClass('in-editor');
   }
@@ -263,3 +264,68 @@ function aboutEveTypedAnim() {
   });
 }
 $();
+
+/* OUR STORY SLIDER */
+function ourStorySlider() {
+  const cardsSliderParams: SwiperOptions = {
+    modules: [Controller, Mousewheel],
+    slidesPerView: 1,
+    spaceBetween: 56,
+    speed: 400,
+    setWrapperSize: false,
+    mousewheel: {
+      forceToAxis: true,
+    },
+    breakpoints: {
+      // when window width is >= 290px
+      290: {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        setWrapperSize: false,
+        slidesPerGroup: 1,
+      },
+      // when window width is >= 768px
+      768: {
+        slidesPerView: 1,
+      },
+      // when window width is >= 992px
+      992: {
+        slidesPerView: 1,
+      },
+    },
+  };
+  const cardsSlider = new Swiper('.our-story-cards-slider', cardsSliderParams);
+
+  const timelineSliderParams: SwiperOptions = {
+    modules: [Navigation, Controller],
+    slidesPerView: 1,
+    spaceBetween: 0,
+    speed: 400,
+    slideToClickedSlide: true,
+    setWrapperSize: false,
+    slideActiveClass: 'is-active',
+    breakpoints: {
+      // when window width is >= 290px
+      290: {
+        slidesPerView: 1,
+        setWrapperSize: false,
+        slidesPerGroup: 1,
+      },
+      // when window width is >= 768px
+      768: {
+        slidesPerView: 1,
+      },
+      // when window width is >= 992px
+      992: {
+        slidesPerView: 1,
+      },
+    },
+    navigation: {
+      nextEl: $('#our-story-next')[0],
+      prevEl: $('#our-story-prev')[0],
+    },
+  };
+  const timelineSlider = new Swiper('.our-story-timeline-slider', timelineSliderParams);
+  timelineSlider.controller.control = cardsSlider;
+  cardsSlider.controller.control = timelineSlider;
+}
