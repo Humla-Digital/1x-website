@@ -33,7 +33,7 @@ function specsToggle() {
   const imperialRunspeed = '7.5 miles/hour run speed';
   const imperialCarry = '44 pound carry capacity';
 
-  const metricHeight = '1.67 meters';
+  const metricHeight = '1.65 meters';
   const metricWeight = '30 kilograms';
   const metricWalkspeed = '4 kilometers/hour walk speed';
   const metricRunspeed = '12 kilometers/hour run speed';
