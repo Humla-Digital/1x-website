@@ -25,7 +25,6 @@ declare global {
 window.Webflow ||= [];
 window.Webflow.push(() => {
   if (!window.WebflowEditor) {
-    careerBenefits();
     initDiscoverGallerySlider();
     typedTextTabs();
     companyValuesAnim();

@@ -6,6 +6,7 @@ import 'swiper/css/controller';
 
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { SplitText } from 'gsap/SplitText';
 import $ from 'jquery';
 import { initDiscoverGallerySlider } from 'src/modules/discoverPostSlider';
 import Swiper from 'swiper';
@@ -13,7 +14,7 @@ import { Controller, Mousewheel, Navigation } from 'swiper/modules';
 import { type SwiperOptions } from 'swiper/types/index.d';
 
 import { valuesTabs } from './modules/valuesTabs';
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 declare global {
   interface Window {
@@ -24,12 +25,34 @@ window.Webflow ||= [];
 window.Webflow.push(() => {
   if (!window.WebflowEditor) {
     initDiscoverGallerySlider();
+    // imageTabs();
     valuesTabs();
     aboutAnimations();
     ourStorySlider();
+    ourMissionTypedAnim();
   } else {
   }
 });
+
+function ourMissionTypedAnim() {
+  $('.section_our-mission').each(function () {
+    const splitTextTimeline = gsap.timeline({ paused: true, reversed: true }),
+      aboutText = $(this).find('.d-light-44'),
+      splitText = new SplitText(aboutText, { type: 'words,chars' }),
+      { chars } = splitText;
+    splitTextTimeline.from(chars, {
+      autoAlpha: 0,
+      duration: 0.01,
+      stagger: 0.05,
+    });
+    const triggerElement = $(this);
+    ScrollTrigger.create({
+      trigger: triggerElement,
+      start: 'top center',
+      onEnter: () => splitTextTimeline.play(),
+    });
+  });
+}
 
 /* OUR STORY SLIDER */
 function ourStorySlider() {
