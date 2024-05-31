@@ -12,7 +12,6 @@ import Swiper from 'swiper';
 import { Controller, Mousewheel, Navigation } from 'swiper/modules';
 import { type SwiperOptions } from 'swiper/types/index.d';
 
-import { imageTabs } from './modules/imageTabs';
 import { valuesTabs } from './modules/valuesTabs';
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,7 +24,7 @@ window.Webflow ||= [];
 window.Webflow.push(() => {
   if (!window.WebflowEditor) {
     initDiscoverGallerySlider();
-    imageTabs();
+    // imageTabs();
     valuesTabs();
     aboutAnimations();
     ourStorySlider();
