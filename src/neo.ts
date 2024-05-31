@@ -44,7 +44,7 @@ function specsToggle() {
     $(this).siblings('.metric-toggle_item').removeClass('is-active');
     ScrollTrigger.refresh();
   });
-  $('#imperial').on('click', function () {
+  $('#standard').on('click', function () {
     ScrollTrigger.refresh();
     $('#height').text(imperialHeight);
     $('#weight').text(imperialWeight);
