@@ -40,7 +40,7 @@ window.Webflow.push(() => {
 function ourMissionTypedAnim() {
   $('.section_typed-big-text').each(function () {
     const splitTextTimeline = gsap.timeline({ paused: true, reversed: true }),
-      aboutText = $(this).find('.d-light-44'),
+      aboutText = $(this).find('h2'),
       splitText = new SplitText(aboutText, { type: 'words,chars' }),
       { chars } = splitText;
     splitTextTimeline.from(chars, {
