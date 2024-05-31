@@ -36,7 +36,7 @@ window.Webflow.push(() => {
 
 function specsToggle() {
   const imperialHeight = '6 foot 2 inches';
-  const imperialWeight = '192 pounds';
+  const imperialWeight = '86 kilograms';
   const imperialWalkspeed = '9 miles/hour top speed';
   const imperialCarry = '33 pound carry capacity';
 
@@ -50,7 +50,7 @@ function specsToggle() {
     $(this).siblings('.metric-toggle_item').removeClass('is-active');
     ScrollTrigger.refresh();
   });
-  $('#imperial').on('click', function () {
+  $('#standard').on('click', function () {
     ScrollTrigger.refresh();
     $('#height').text(imperialHeight);
     $('#weight').text(imperialWeight);
