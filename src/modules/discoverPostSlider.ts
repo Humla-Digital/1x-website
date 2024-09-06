@@ -19,6 +19,12 @@ export function initDiscoverGallerySlider() {
       scrollTrigger: {
         start: 'top 80%',
         trigger: triggerElement,
+        // Add these options:
+        invalidateOnRefresh: true,
+        refreshPriority: 1,
+        onUpdate: (self) => {
+          self.refresh();
+        },
       },
     });
     tl.from(h2Target, {
