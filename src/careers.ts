@@ -34,7 +34,7 @@ window.Webflow.push(() => {
   }
 });
 
-$('.discover-tag-radio').on('click', function () {
+$('.discover-tag').on('click', function () {
   ScrollTrigger.refresh();
 });
 
