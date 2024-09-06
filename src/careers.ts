@@ -34,6 +34,12 @@ window.Webflow.push(() => {
   }
 });
 
+document.querySelectorAll('.discover-tag-radio').forEach((element) => {
+  element.addEventListener('click', () => {
+    ScrollTrigger.refresh();
+  });
+});
+
 function companyValuesAnim() {
   $('.section_company-values').each(function (_index: unknown) {
     const triggerElement = $(this);
