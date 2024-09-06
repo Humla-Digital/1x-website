@@ -37,6 +37,7 @@ window.Webflow.push(() => {
 document.querySelectorAll('.discover-tag-radio').forEach((element) => {
   element.addEventListener('click', () => {
     ScrollTrigger.refresh();
+    console.log('scrolltrigger refreshed');
   });
 });
 
