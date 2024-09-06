@@ -34,11 +34,8 @@ window.Webflow.push(() => {
   }
 });
 
-document.querySelectorAll('.discover-tag-radio').forEach((element) => {
-  element.addEventListener('click', () => {
-    ScrollTrigger.refresh();
-    console.log('scrolltrigger refreshed');
-  });
+$(".discover-tag-radio'").on('click', function () {
+  ScrollTrigger.refresh();
 });
 
 function companyValuesAnim() {
