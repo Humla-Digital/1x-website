@@ -34,10 +34,6 @@ window.Webflow.push(() => {
   }
 });
 
-$('.discover-tag').on('click', function () {
-  ScrollTrigger.refresh();
-});
-
 function companyValuesAnim() {
   $('.section_company-values').each(function (_index: unknown) {
     const triggerElement = $(this);
