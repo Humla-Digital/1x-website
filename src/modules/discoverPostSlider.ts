@@ -17,7 +17,7 @@ export function initDiscoverGallerySlider() {
     const triggerElement = $(this);
     const tl = gsap.timeline({
       scrollTrigger: {
-        start: 'top center',
+        start: 'top 80%',
         trigger: triggerElement,
       },
     });
