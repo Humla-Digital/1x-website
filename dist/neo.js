@@ -13455,14 +13455,6 @@
   // src/neo.ts
   var import_jquery2 = __toESM(require_jquery(), 1);
 
-  // src/utils/pauseVideo.ts
-  init_live_reload();
-  function pauseVideo() {
-    $(".togglepause").on("click", function() {
-      $("video").trigger("click");
-    });
-  }
-
   // src/modules/androidValuePropsTabs.ts
   init_live_reload();
   gsapWithCSS.registerPlugin(ScrollTrigger2);
@@ -13588,23 +13580,21 @@
   window.Webflow.push(() => {
     if (!window.WebflowEditor) {
       androidValuePropsTabs();
-      careerBenefits();
       faqModule();
       androidScene();
       aboutNeoTypedAnim();
       specsToggle();
-      pauseVideo();
     } else {
       (0, import_jquery2.default)(".is_pdp-android-scene").addClass("in-editor");
     }
   });
   function specsToggle() {
-    const imperialHeight = "5.5 feet";
+    const imperialHeight = "5.41 feet";
     const imperialWeight = "66 pounds";
     const imperialWalkspeed = "2.5 miles/hour walk speed";
     const imperialRunspeed = "7.5 miles/hour run speed";
     const imperialCarry = "44 pound carry capacity";
-    const metricHeight = "1.67 meters";
+    const metricHeight = "1.65 meters";
     const metricWeight = "30 kilograms";
     const metricWalkspeed = "4 kilometers/hour walk speed";
     const metricRunspeed = "12 kilometers/hour run speed";
@@ -13614,7 +13604,7 @@
       (0, import_jquery2.default)(this).siblings(".metric-toggle_item").removeClass("is-active");
       ScrollTrigger2.refresh();
     });
-    (0, import_jquery2.default)("#imperial").on("click", function() {
+    (0, import_jquery2.default)("#standard").on("click", function() {
       ScrollTrigger2.refresh();
       (0, import_jquery2.default)("#height").text(imperialHeight);
       (0, import_jquery2.default)("#weight").text(imperialWeight);
@@ -13632,41 +13622,6 @@
     });
   }
   specsToggle();
-  function careerBenefits() {
-    if (window.innerWidth > 1399) {
-      (0, import_jquery2.default)(".wrapper_splittext-row").each(function(_i2, _element) {
-        const splitTextTimeline = gsapWithCSS.timeline({ paused: true, reversed: true }), careerBenefit = (0, import_jquery2.default)(this).find(".is-splittext"), splitText = new SplitText(careerBenefit, { type: "words,chars" }), { chars } = splitText;
-        splitTextTimeline.from(chars, {
-          autoAlpha: 0,
-          duration: 0.01,
-          stagger: 0.03
-        });
-        (0, import_jquery2.default)(this).on("mouseenter", typeText).on("mouseleave", typeText);
-        function typeText() {
-          splitTextTimeline.reversed() ? splitTextTimeline.play() : splitTextTimeline.reverse();
-        }
-      });
-    } else {
-      gsapWithCSS.set(careerBenefits, { autoAlpha: 0 });
-      (0, import_jquery2.default)(".wrapper_splittext-row").on("click", function() {
-        ScrollTrigger2.refresh();
-        (0, import_jquery2.default)(this).toggleClass("is-active");
-        if ((0, import_jquery2.default)(this).hasClass("is-active")) {
-          (0, import_jquery2.default)(this).find(".is-splittext").addClass("is-active");
-          const splitTextTimeline = gsapWithCSS.timeline({ paused: true, reversed: true }), careerBenefit = (0, import_jquery2.default)(this).find(".is-splittext"), splitText = new SplitText(careerBenefit, { type: "words,chars" }), { chars } = splitText;
-          splitTextTimeline.from(chars, {
-            autoAlpha: 0,
-            duration: 0.01,
-            stagger: 0.01
-          });
-          splitTextTimeline.reversed() ? splitTextTimeline.play() : splitTextTimeline.reverse();
-        } else {
-          (0, import_jquery2.default)(this).removeClass("is-active");
-          (0, import_jquery2.default)(this).find(".is-splittext").removeClass("is-active");
-        }
-      });
-    }
-  }
   function androidScene() {
     const target1 = (0, import_jquery2.default)("#scene-content-1");
     const target2 = (0, import_jquery2.default)("#scene-content-2");

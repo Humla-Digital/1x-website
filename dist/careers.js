@@ -6960,30 +6960,6 @@
   SplitText.version = "3.12.2";
   SplitText.register = _initCore5;
 
-  // src/modules/imageGalleryTabs.ts
-  function initImageGalleryTabs() {
-    $(function() {
-      const tabDuration = 5e3;
-      let tabTimeout;
-      clearTimeout(tabTimeout);
-      tabLoop($(".stories_tab-link.is_image-gallery.w--current"));
-      function tabLoop(trigger) {
-        tabTimeout = setTimeout(function() {
-          const $next = trigger.next();
-          if ($next.length) {
-            $next.removeAttr("href").click();
-          } else {
-            $(".stories_tab-link.is_image-gallery:first").removeAttr("href").click();
-          }
-        }, tabDuration);
-      }
-      $(".stories_tab-link.is_image-gallery").click(function() {
-        clearTimeout(tabTimeout);
-        tabLoop($(this));
-      });
-    });
-  }
-
   // node_modules/.pnpm/swiper@10.3.1/node_modules/swiper/shared/ssr-window.esm.mjs
   function isObject(obj) {
     return obj !== null && typeof obj === "object" && "constructor" in obj && obj.constructor === Object;
@@ -11920,118 +11896,6 @@
     const discoverGallerySlider = new Swiper(".discover-slider", discoverGallerySliderParams);
   }
 
-  // src/modules/imageTabs.ts
-  gsapWithCSS.registerPlugin(ScrollTrigger2);
-  function imageTabs() {
-    const tabTimelines = [];
-    $(".image-tabs-link").each(function() {
-      const $progressBar = $(this).find(".tabs-link-inner");
-      const tabTimeline = gsapWithCSS.timeline({ paused: true });
-      tabTimeline.to($progressBar, {
-        width: "100%",
-        duration: 10,
-        ease: "none",
-        onComplete: function() {
-          gsapWithCSS.set($progressBar, { width: "0%" });
-        }
-      });
-      tabTimelines.push(tabTimeline);
-    });
-    const tabAutoplay = gsapWithCSS.delayedCall(10, function() {
-      nextTab();
-    });
-    tabAutoplay.pause();
-    ScrollTrigger2.create({
-      trigger: ".image-tabs",
-      onEnter: () => tabAutoplay.play(),
-      onLeave: () => tabAutoplay.pause(),
-      onEnterBack: () => tabAutoplay.play(),
-      onLeaveBack: () => tabAutoplay.pause()
-    });
-    ScrollTrigger2.create({
-      trigger: ".image-tabs",
-      onEnter: () => {
-        const $currentTab = $(".image-tabs-menu").children(".w--current:first");
-        const currentIndex = $currentTab.index();
-        tabTimelines[currentIndex].play();
-      },
-      onLeave: () => {
-        const $currentTab = $(".image-tabs-menu").children(".w--current:first");
-        const currentIndex = $currentTab.index();
-        tabTimelines[currentIndex].pause();
-      },
-      onEnterBack: () => {
-        const $currentTab = $(".image-tabs-menu").children(".w--current:first");
-        const currentIndex = $currentTab.index();
-        tabTimelines[currentIndex].play();
-      },
-      onLeaveBack: () => {
-        const $currentTab = $(".image-tabs-menu").children(".w--current:first");
-        const currentIndex = $currentTab.index();
-        tabTimelines[currentIndex].pause();
-      }
-    });
-    tabTimelines[0].pause();
-    function nextTab() {
-      const $currentTab = $(".image-tabs-menu").children(".w--current:first");
-      const currentIndex = $currentTab.index();
-      tabTimelines[currentIndex].pause();
-      const $next = $currentTab.next();
-      if ($next.length) {
-        $next.trigger("click");
-      } else {
-        $(".image-tabs-link:first").trigger("click");
-      }
-      const $newCurrentTab = $(".image-tabs-menu").children(".w--current:first");
-      const newIndex = $newCurrentTab.index();
-      tabTimelines[newIndex].play();
-      tabAutoplay.restart(true);
-    }
-    $(".image-tabs-link").on("click", function() {
-      tabTimelines.forEach((timeline2) => timeline2.progress(0).pause());
-      const $clickedTab = $(this);
-      const index = $clickedTab.index();
-      tabTimelines[index].restart();
-      tabAutoplay.restart(true);
-    });
-    $(".image-tabs-button.next").on("click", function() {
-      navigateToNextTab();
-    });
-    $(".image-tabs-button.prev").on("click", function() {
-      navigateToPreviousTab();
-    });
-    function navigateToNextTab() {
-      const $currentTab = $(".image-tabs-menu").children(".w--current:first");
-      const currentIndex = $currentTab.index();
-      tabTimelines[currentIndex].pause();
-      const $next = $currentTab.next();
-      if ($next.length) {
-        $next.trigger("click");
-      } else {
-        $(".image-tabs-link:first").trigger("click");
-      }
-      const $newCurrentTab = $(".image-tabs-menu").children(".w--current:first");
-      const newIndex = $newCurrentTab.index();
-      tabTimelines[newIndex].play();
-      tabAutoplay.restart(true);
-    }
-    function navigateToPreviousTab() {
-      const $currentTab = $(".image-tabs-menu").children(".w--current:first");
-      const currentIndex = $currentTab.index();
-      tabTimelines[currentIndex].pause();
-      const $prev = $currentTab.prev();
-      if ($prev.length) {
-        $prev.trigger("click");
-      } else {
-        $(".image-tabs-link:last").trigger("click");
-      }
-      const $newCurrentTab = $(".image-tabs-menu").children(".w--current:first");
-      const newIndex = $newCurrentTab.index();
-      tabTimelines[newIndex].play();
-      tabAutoplay.restart(true);
-    }
-  }
-
   // src/modules/typedTextTabs.ts
   gsapWithCSS.registerPlugin(ScrollTrigger2, SplitText);
   function typedTextTabs() {
@@ -12195,11 +12059,8 @@
   window.Webflow ||= [];
   window.Webflow.push(() => {
     if (!window.WebflowEditor) {
-      careerBenefits();
       initDiscoverGallerySlider();
       typedTextTabs();
-      imageTabs();
-      initImageGalleryTabs();
       companyValuesAnim();
       featuredPostAnims();
       hideEmptyDepartments();
@@ -12281,39 +12142,6 @@
       }
     };
     const careersImageSlider = new Swiper(".image-gallery", careersImageSliderParams);
-  }
-  function careerBenefits() {
-    if (window.innerWidth > 1399) {
-      $(".wrapper_splittext-row").each(function(_i2, _element) {
-        const splitTextTimeline = gsapWithCSS.timeline({ paused: true, reversed: true }), careerBenefit = $(this).find(".is-splittext"), splitText = new SplitText(careerBenefit, { type: "words,chars" }), { chars } = splitText;
-        splitTextTimeline.from(chars, {
-          autoAlpha: 0,
-          duration: 0.01,
-          stagger: 0.03
-        });
-        $(this).on("mouseenter", typeText).on("mouseleave", typeText);
-        function typeText() {
-          splitTextTimeline.reversed() ? splitTextTimeline.play() : splitTextTimeline.reverse();
-        }
-      });
-    } else {
-      $(".wrapper_splittext-row").on("click", function() {
-        $(this).toggleClass("is-active");
-        if ($(this).hasClass("is-active")) {
-          $(this).find(".is-splittext").addClass("is-active");
-          const splitTextTimeline = gsapWithCSS.timeline({ paused: true, reversed: true }), careerBenefit = $(this).find(".is-splittext"), splitText = new SplitText(careerBenefit, { type: "words,chars" }), { chars } = splitText;
-          splitTextTimeline.from(chars, {
-            autoAlpha: 0,
-            duration: 0.01,
-            stagger: 0.01
-          });
-          splitTextTimeline.reversed() ? splitTextTimeline.play() : splitTextTimeline.reverse();
-        } else {
-          $(this).removeClass("is-active");
-          $(this).find(".is-splittext").removeClass("is-active");
-        }
-      });
-    }
   }
   function featuredPostAnims() {
     $(".section_featured-team-post").each(function() {
