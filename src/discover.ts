@@ -1,9 +1,17 @@
 /* eslint-disable prefer-const */
 /* eslint-disable no-return-assign */
 /* eslint-disable no-console */
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/mousewheel';
+import 'swiper/css/scrollbar';
+
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import $ from 'jquery';
+import Swiper from 'swiper';
+import { Mousewheel, Navigation, Scrollbar } from 'swiper/modules';
+import { type SwiperOptions } from 'swiper/types/index.d';
 
 import { initSoMeSlider } from './modules/soMeSlider';
 gsap.registerPlugin(ScrollTrigger);
@@ -73,3 +81,49 @@ function hideEmptyPostGrids() {
       $(this).hide();
     });
 }
+
+function careersImageGallery() {
+  const careersImageSliderParams: SwiperOptions = {
+    modules: [Navigation, Mousewheel, Scrollbar],
+    direction: 'horizontal',
+    slidesPerView: 1,
+    freeMode: true,
+    slidesPerGroup: 1,
+    spaceBetween: 20,
+    mousewheel: {
+      forceToAxis: true,
+    },
+    speed: 300,
+    // Responsive breakpoints
+    breakpoints: {
+      320: {
+        slidesPerView: 'auto',
+        spaceBetween: 9.6,
+      },
+      // when window width is >= 480px
+      480: {
+        slidesPerView: 'auto',
+        spaceBetween: 9.6,
+      },
+      // when window width is >= 768px
+      768: {
+        slidesPerView: 2,
+      },
+      // when window width is >= 992px
+      992: {
+        slidesPerView: 3,
+      },
+    },
+    navigation: {
+      nextEl: '#careers-images-next',
+      prevEl: '#careers-images-prev',
+    },
+    scrollbar: {
+      el: '.swiper-scrollbar',
+      dragSize: 90,
+      draggable: true,
+    },
+  };
+  const careersImageSlider = new Swiper('.image-gallery', careersImageSliderParams);
+}
+careersImageGallery();
