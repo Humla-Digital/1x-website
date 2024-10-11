@@ -23,48 +23,53 @@ window.Webflow.push(() => {
   footerAnim();
   if (!window.WebflowEditor) {
     navbarAnim();
-    //featuredPostAnim();
   } else {
     $('.item_faq-content').addClass('is-active');
   }
 });
 
 function navbarAnim() {
-  const showNav = gsap
-    .from('.navbar-wrapper', {
-      yPercent: -100,
-      paused: true,
-      duration: 0.25,
-    })
-    .progress(1);
+  const navbar = document.querySelector('.navbar-wrapper');
+  if (navbar) {
+    const showNav = gsap
+      .from('.navbar-wrapper', {
+        yPercent: -100,
+        paused: true,
+        duration: 0.25,
+      })
+      .progress(1);
 
-  ScrollTrigger.create({
-    start: 'top top',
-    end: 99999,
-    onUpdate: (self) => {
-      self.direction === -1 ? showNav.play() : showNav.reverse();
-    },
-  });
+    ScrollTrigger.create({
+      start: 'top top',
+      end: 99999,
+      onUpdate: (self) => {
+        self.direction === -1 ? showNav.play() : showNav.reverse();
+      },
+    });
+  }
 }
 
 function footerAnim() {
-  $('footer').each(function () {
-    const triggerElement = $('.footer_circles-wrapper');
-    const target = $('.footer_circles-wrapper').find('path');
-    const footerAnimation = gsap.timeline({
-      scrollTrigger: {
-        trigger: triggerElement,
-        start: 'center bottom',
-      },
-    });
+  const footer = document.querySelector('.footer');
+  if (footer) {
+    $(footer).each(function () {
+      const triggerElement = $('.footer_circles-wrapper');
+      const target = $('.footer_circles-wrapper').find('path');
+      const footerAnimation = gsap.timeline({
+        scrollTrigger: {
+          trigger: triggerElement,
+          start: 'center bottom',
+        },
+      });
 
-    footerAnimation.from(target, {
-      autoAlpha: '0',
-      y: 20,
-      duration: 1.2,
-      stagger: 0.12,
+      footerAnimation.from(target, {
+        autoAlpha: '0',
+        y: 20,
+        duration: 1.2,
+        stagger: 0.12,
+      });
     });
-  });
+  }
 }
 
 /**SIDEBAR MENU HOVER STATES*/
@@ -118,15 +123,6 @@ if (window.innerWidth > 992) {
   $('#menu-item-about').on('mouseover', function () {
     $('.sidebar-menu-drawer').removeClass('is-active');
   });
-  /*
-  $('#menu-item-discover').on('mouseover', function () {
-    if (!$('.sidebar-menu-drawer').hasClass('is-active')) {
-      $('.sidebar-menu-drawer').addClass('is-active');
-    }
-    $('#menu-content-discover').addClass('is-active');
-    $('#menu-content-androids').removeClass('is-active');
-    $('#menu-content-careers').removeClass('is-active');
-  });*/
 } else {
   $('#mobile-menu-item-androids').on('click', function () {
     if (!$('.sidebar-menu-drawer').hasClass('is-active')) {
