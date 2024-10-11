@@ -12,6 +12,14 @@ if ($('.menu-link.w--current')) {
   $('.menu-link.w--current').siblings('.menu-link').css('opacity', '0.5');
 }
 
+$('.menu-open').on('click', function () {
+  $('body').addClass('overflow-hidden');
+});
+
+$('.sidebar-close').on('click', function () {
+  $('body').removeClass('overflow-hidden');
+});
+
 declare global {
   interface Window {
     WebflowEditor: unknown;
@@ -23,6 +31,7 @@ window.Webflow.push(() => {
   footerAnim();
   if (!window.WebflowEditor) {
     navbarAnim();
+    //featuredPostAnim();
   } else {
     $('.item_faq-content').addClass('is-active');
   }
@@ -32,7 +41,7 @@ function navbarAnim() {
   const navbar = document.querySelector('.navbar-wrapper');
   if (navbar) {
     const showNav = gsap
-      .from('.navbar-wrapper', {
+      .from(navbar, {
         yPercent: -100,
         paused: true,
         duration: 0.25,
@@ -52,7 +61,7 @@ function navbarAnim() {
 function footerAnim() {
   const footer = document.querySelector('.footer');
   if (footer) {
-    $(footer).each(function () {
+    $('footer').each(function () {
       const triggerElement = $('.footer_circles-wrapper');
       const target = $('.footer_circles-wrapper').find('path');
       const footerAnimation = gsap.timeline({

@@ -55,8 +55,8 @@ function discoverTags() {
   });
 }
 
-function careersImageGallery() {
-  const careersImageSliderParams: SwiperOptions = {
+function NewsSlider() {
+  const NewsSliderParams: SwiperOptions = {
     modules: [Navigation, Mousewheel, Scrollbar],
     direction: 'horizontal',
     slidesPerView: 1,
@@ -97,6 +97,6 @@ function careersImageGallery() {
       draggable: true,
     },
   };
-  const careersImageSlider = new Swiper('.image-gallery', careersImageSliderParams);
+  const NewsSlider = new Swiper('.image-gallery', NewsSliderParams);
 }
-careersImageGallery();
+NewsSlider();
