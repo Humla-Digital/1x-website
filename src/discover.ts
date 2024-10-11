@@ -25,7 +25,6 @@ window.Webflow ||= [];
 window.Webflow.push(() => {
   if (!window.WebflowEditor) {
     discoverTags();
-    //studioPostAnim();
     initSoMeSlider();
   } else {
   }
@@ -55,35 +54,9 @@ function discoverTags() {
     ScrollTrigger.refresh();
   });
 }
-function studioPostAnim() {
-  $('.section_evergreen-studio-post').each(function () {
-    let triggerElement = $(this);
-    let targetElements = gsap.utils.toArray(
-      $(this).find('.wrapper_featured-post-text-content, .image-wrapper_featured-post')
-    );
-    let tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: triggerElement,
-        start: 'top center',
-      },
-    });
-    tl.from(targetElements, {
-      autoAlpha: 0,
-      stagger: 0.2,
-    });
-  });
-}
 
-function hideEmptyPostGrids() {
-  $('.w-dyn-empty')
-    .parents('.section_discover-post-grid')
-    .each(function () {
-      $(this).hide();
-    });
-}
-
-function careersImageGallery() {
-  const careersImageSliderParams: SwiperOptions = {
+function NewsSlider() {
+  const NewsSliderParams: SwiperOptions = {
     modules: [Navigation, Mousewheel, Scrollbar],
     direction: 'horizontal',
     slidesPerView: 1,
@@ -124,6 +97,6 @@ function careersImageGallery() {
       draggable: true,
     },
   };
-  const careersImageSlider = new Swiper('.image-gallery', careersImageSliderParams);
+  const NewsSlider = new Swiper('.image-gallery', NewsSliderParams);
 }
-careersImageGallery();
+NewsSlider();

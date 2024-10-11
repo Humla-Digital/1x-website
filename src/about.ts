@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-console */
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/controller';
@@ -25,7 +23,6 @@ window.Webflow ||= [];
 window.Webflow.push(() => {
   if (!window.WebflowEditor) {
     initDiscoverGallerySlider();
-    // imageTabs();
     valuesTabs();
     aboutAnimations();
     ourStorySlider();
@@ -54,7 +51,6 @@ function ourMissionTypedAnim() {
   });
 }
 
-/* OUR STORY SLIDER */
 function ourStorySlider() {
   const cardsSliderParams: SwiperOptions = {
     modules: [Controller, Mousewheel],

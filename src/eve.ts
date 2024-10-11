@@ -175,7 +175,7 @@ function aboutEveTypedAnim() {
 }
 $();
 
-/* OUR STORY SLIDER */
+/* EVE EMBODIED LEARNING SLIDER*/
 function ourStorySlider() {
   const cardsSliderParams: SwiperOptions = {
     modules: [Controller, Mousewheel],
